@@ -16,3 +16,9 @@ test_that("Loading names from a text string works correctly", {
   expect_gte(length(results), 2)
   expect_true( any(grepl("Formica", results)))
 })
+
+test_that("Resolving names with OToL works", {
+  taxa <- c("Setophaga striata", "Setophaga megnolia", "Setophaga angilae", "Setophaga plumbea", "Setophaga virens")
+  expect_warning(taxa.new <- ResolveNamesWithOToL(taxa))
+  expect_gte(length(taxa.new), 3)
+})
