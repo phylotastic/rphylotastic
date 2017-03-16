@@ -37,7 +37,7 @@ ResolveNamesWithOToL <- function(taxa) {
     warning("No names matched")
   } else {
     final.names <- results$resolvedNames$matched_name
-    if(length(final.names) < length(taxa.string)) {
+    if(length(final.names) < length(taxa)) {
       warning("Fewer names were found than were given; missing taxa were dropped.")
     }
   }

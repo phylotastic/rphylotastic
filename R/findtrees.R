@@ -7,5 +7,8 @@
 GetOToLTree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   results <- jsonlite::fromJSON(paste(GetBaseURL(), 'gt/ot/get_tree?taxa=', taxa.string, sep=""))$newick
-  return(ape::read.tree(text=results))
+  tmp.file <- paste(tempdir(), "/tmp.tre", sep="")
+  cat(results, file=tmp.file)
+  tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
+  return(tree)
 }
