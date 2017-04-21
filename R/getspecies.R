@@ -6,8 +6,5 @@
 #' @export
 GetSpeciesFromTaxon <- function(taxon) {
   results <- jsonlite::fromJSON(paste(GetBaseURL(), 'ts/all_species?taxon=', utils::URLencode(taxon), sep=""))$species
-  tmp.file <- paste(tempdir(), "/tmp.tre", sep="")
-  cat(results, file=tmp.file)
-  tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
-  return(tree)
+  return(results)
 }
