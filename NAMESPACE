@@ -3,4 +3,5 @@
 export(GetOToLTree)
 export(GetScientificNamesFromText)
 export(GetScientificNamesFromURL)
+export(GetSpeciesFromTaxon)
 export(ResolveNamesWithOToL)
