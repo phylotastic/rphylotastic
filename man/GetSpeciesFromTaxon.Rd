@@ -4,10 +4,12 @@
 \alias{GetSpeciesFromTaxon}
 \title{Get all species from a taxon}
 \usage{
-GetSpeciesFromTaxon(taxon)
+GetSpeciesFromTaxon(taxon, filters = c("environmental", "sp."))
 }
 \arguments{
 \item{taxon}{A taxon to get all species for}
+
+\item{filters}{A character vector of strings to exclude}
 }
 \value{
 A vector of names
