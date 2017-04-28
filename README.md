@@ -9,3 +9,10 @@ To install this in R:
 library(devtools)
 devtools::install_github("phylotastic/rphylotastic")
 ```
+
+For help on functions:
+
+```
+library(rphylotastic)
+help(package="rphylotastic")
+```
