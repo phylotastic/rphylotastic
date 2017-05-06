@@ -2,7 +2,7 @@
 #'
 #' @param taxon A taxon to get all species for
 #' @param filters A character vector of strings to exclude
-#' @return A vector of names
+#' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
 #' @export
 SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {
@@ -20,7 +20,7 @@ SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\
 #'
 #' @param taxon A taxon to get all species for
 #' @param filters A character vector of strings to exclude
-#' @return A vector of names
+#' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
 #' @export
 SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {
   search.results <- rentrez::entrez_search("nuccore", term =paste0(taxon,"[Organism]"), use_history=TRUE)

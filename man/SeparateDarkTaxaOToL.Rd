@@ -13,7 +13,7 @@ SeparateDarkTaxaOToL(taxon, filters = c("environmental", "sp\\\\.",
 \item{filters}{A character vector of strings to exclude}
 }
 \value{
-A vector of names
+A list containing a vector of dark names, a vector of known names, and fraction.dark
 }
 \description{
 Separate dark from known taxa on OpenTree of Life
