@@ -20,24 +20,6 @@ SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\
 #'
 #' @param taxon A taxon to get all species for
 #' @param filters A character vector of strings to exclude
-#' @param db See ?taxize::downstream for options
-#' @return A vector of names
-#' @export
-SeparateDarkTaxaDB <- function(taxon, filters=c("environmental", "sp\\.", "cf\\."), db="col") {
-  results <- jsonlite::fromJSON(paste(GetBaseURL(), 'ts/all_species?taxon=', utils::URLencode(taxon), sep=""))$species
-  results.dark <- c()
-  results.known <- results
-  for (i in sequence(length(filters))) {
-    results.known <- results.known[!grepl(filters[i], results.known)]
-  }
-  results.dark <- setdiff(results, results.known)
-  return(list(dark=results.dark, known=results.known, fraction.dark = length(results.dark)/length(results)))
-}
-
-#' Separate dark from known taxa on another database
-#'
-#' @param taxon A taxon to get all species for
-#' @param filters A character vector of strings to exclude
 #' @return A vector of names
 #' @export
 SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {
