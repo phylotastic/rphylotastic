@@ -10,7 +10,9 @@ Imports:
     ape,
     utils,
     phylobase,
-    methods
+    methods,
+    taxize,
+    rentrez
 Suggests:
     testthat
 License: GPL-2
