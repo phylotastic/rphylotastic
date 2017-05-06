@@ -1,6 +1,6 @@
 Package: rphylotastic
 Title: R interface to phylotastic web services
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre"))
 Description: This wraps the Phylotastic services APIs for ease of use within R.
 Depends: R (>= 3.3.2)
