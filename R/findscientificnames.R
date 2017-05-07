@@ -19,7 +19,7 @@ GetScientificNamesFromURL <- function(URL, search.engine=0) {
 #' @export
 GetScientificNamesFromText <- function(text, search.engine=0) {
   #results <- jsonlite::fromJSON(utils::URLencode(paste(GetBaseURL(), 'fn/names_url?url=', text, '&engine=', search.engine, sep="")))
-  results <- jsonlite::fromJSON((paste(GetBaseURL(), 'fn/names_text?text=', utils::URLencode(text), '&engine=', search.engine, sep="")))
+  results <- jsonlite::fromJSON((paste(GetBaseURL(), 'fn/names_text?text=', utils::URLencode(gsub(';','', text)), '&engine=', search.engine, sep="")))
   return(results$scientificNames)
 }
 
