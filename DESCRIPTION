@@ -13,7 +13,7 @@ Imports:
     utils,
     phylobase,
     methods,
-    rentrez
+    rentrez (>= 1.0.4)
 Suggests:
     testthat
 License: GPL-2

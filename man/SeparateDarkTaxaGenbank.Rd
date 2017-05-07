@@ -5,7 +5,7 @@
 \title{Separate dark from known taxa on another database}
 \usage{
 SeparateDarkTaxaGenbank(taxon, filters = c("environmental", "sp\\\\.",
-  "cf\\\\."))
+  "cf\\\\.", "uncultured"))
 }
 \arguments{
 \item{taxon}{A taxon to get all species for}
