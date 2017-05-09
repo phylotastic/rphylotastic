@@ -46,7 +46,7 @@ SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\
 SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured"), verbose=TRUE) {
   search.results <- rentrez::entrez_search("taxonomy", term =paste0(taxon,"[subtree] AND species[Rank] "), use_history=TRUE)
   if(verbose) {
-    print(paste("There are", search.results$count, "for taxon", taxon))
+    print(paste("There are", search.results$count, "species for taxon", taxon))
   }
 #  search.fetch <- entrez_fetch(db="taxonomy", web_history=search.results$web_history, rettype="xml", parsed=TRUE)
   taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"))
@@ -56,11 +56,11 @@ SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "
   all.taxa.returns <- taxa.returns
   loop.count <- 1
   while(length(taxa.returns)==10000) {
-    taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"),retstart=(loop.count*10000)+1)
+    taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"),retstart=(loop.count*10000)) #it's 0 indexed, so no need to do +1 for retstart
     loop.count <- loop.count + 1
     all.taxa.returns <- c(all.taxa.returns, taxa.returns)
     if(verbose) {
-      print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",length(all.taxa.returns),"in total, which represents", 100*length(all.taxa.returns) / search.results$count, "percent of all"))
+      print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",length(all.taxa.returns),"species in total, which represents", 100*length(all.taxa.returns) / search.results$count, "percent of all"))
     }
   }
   results <- unique(rentrez::extract_from_esummary(taxa.returns, "ScientificName"))
