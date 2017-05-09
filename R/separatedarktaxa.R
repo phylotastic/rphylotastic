@@ -48,27 +48,31 @@ SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "
   if(verbose) {
     print(paste("There are", search.results$count, "species for taxon", taxon))
   }
-#  search.fetch <- entrez_fetch(db="taxonomy", web_history=search.results$web_history, rettype="xml", parsed=TRUE)
-  taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"))
-  if(verbose) {
-    print(paste("Initially found", length(taxa.returns), "for taxon", taxon))
-  }
-  all.taxa.returns <- taxa.returns
-  loop.count <- 1
-  while(length(taxa.returns)==10000) {
-    taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"),retstart=(loop.count*10000)) #it's 0 indexed, so no need to do +1 for retstart
-    loop.count <- loop.count + 1
-    all.taxa.returns <- c(all.taxa.returns, taxa.returns)
+  if(search.results$count>0) {
+  #  search.fetch <- entrez_fetch(db="taxonomy", web_history=search.results$web_history, rettype="xml", parsed=TRUE)
+    taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"))
     if(verbose) {
-      print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",length(all.taxa.returns),"species in total, which represents", 100*length(all.taxa.returns) / search.results$count, "percent of all"))
+      print(paste("Initially found", length(taxa.returns), "for taxon", taxon))
     }
+    all.taxa.returns <- taxa.returns
+    loop.count <- 1
+    while(length(taxa.returns)==10000) {
+      taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"),retstart=(loop.count*10000)) #it's 0 indexed, so no need to do +1 for retstart
+      loop.count <- loop.count + 1
+      all.taxa.returns <- c(all.taxa.returns, taxa.returns)
+      if(verbose) {
+        print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",length(all.taxa.returns),"species in total, which represents", 100*length(all.taxa.returns) / search.results$count, "percent of all"))
+      }
+    }
+    results <- unique(rentrez::extract_from_esummary(taxa.returns, "ScientificName"))
+    results.dark <- c()
+    results.known <- results
+    for (i in sequence(length(filters))) {
+      results.known <- results.known[!grepl(filters[i], results.known)]
+    }
+    results.dark <- setdiff(results, results.known)
+    return(list(dark=results.dark, known=results.known, fraction.dark = length(results.dark)/length(results)))
+  } else {
+   return(list(dark=0, known=0, fraction.dark = NA))
   }
-  results <- unique(rentrez::extract_from_esummary(taxa.returns, "ScientificName"))
-  results.dark <- c()
-  results.known <- results
-  for (i in sequence(length(filters))) {
-    results.known <- results.known[!grepl(filters[i], results.known)]
-  }
-  results.dark <- setdiff(results, results.known)
-  return(list(dark=results.dark, known=results.known, fraction.dark = length(results.dark)/length(results)))
 }
