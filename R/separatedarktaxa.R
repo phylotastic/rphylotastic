@@ -40,18 +40,25 @@ SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\
 #'
 #' @param taxon A taxon to get all species for
 #' @param filters A character vector of strings to exclude
+#' @param verbose Update on how many are done
 #' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
 #' @export
-SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured")) {
+SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured"), verbose=TRUE) {
   search.results <- rentrez::entrez_search("taxonomy", term =paste0(taxon,"[subtree] AND species[Rank] "), use_history=TRUE)
 #  search.fetch <- entrez_fetch(db="taxonomy", web_history=search.results$web_history, rettype="xml", parsed=TRUE)
   taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"))
+  if(verbose) {
+    print(paste("Initially found", length(taxa.returns), "for taxon", taxon))
+  }
   all.taxa.returns <- taxa.returns
   loop.count <- 1
   while(length(taxa.returns)==10000) {
     taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"),retstart=(loop.count*10000)+1)
     loop.count <- loop.count + 1
     all.taxa.returns <- c(all.taxa.returns, taxa.returns)
+    if(verbose) {
+      print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",nrow(all.taxa.returns),"in total"))
+    }
   }
   results <- unique(rentrez::extract_from_esummary(taxa.returns, "ScientificName"))
   results.dark <- c()

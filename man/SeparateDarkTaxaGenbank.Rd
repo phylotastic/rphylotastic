@@ -5,12 +5,14 @@
 \title{Separate dark from known taxa on another database}
 \usage{
 SeparateDarkTaxaGenbank(taxon, filters = c("environmental", "sp\\\\.",
-  "cf\\\\.", "uncultured"))
+  "cf\\\\.", "uncultured"), verbose = TRUE)
 }
 \arguments{
 \item{taxon}{A taxon to get all species for}
 
 \item{filters}{A character vector of strings to exclude}
+
+\item{verbose}{Update on how many are done}
 }
 \value{
 A list containing a vector of dark names, a vector of known names, and fraction.dark
