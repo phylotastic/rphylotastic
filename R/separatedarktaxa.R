@@ -45,6 +45,9 @@ SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\
 #' @export
 SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured"), verbose=TRUE) {
   search.results <- rentrez::entrez_search("taxonomy", term =paste0(taxon,"[subtree] AND species[Rank] "), use_history=TRUE)
+  if(verbose) {
+    print(paste("There are", search.results$count, "for taxon", taxon))
+  }
 #  search.fetch <- entrez_fetch(db="taxonomy", web_history=search.results$web_history, rettype="xml", parsed=TRUE)
   taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"))
   if(verbose) {
@@ -57,7 +60,7 @@ SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "
     loop.count <- loop.count + 1
     all.taxa.returns <- c(all.taxa.returns, taxa.returns)
     if(verbose) {
-      print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",nrow(all.taxa.returns),"in total"))
+      print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",length(all.taxa.returns),"in total, which represents", 100*length(all.taxa.returns) / search.results$count, "percent of all"))
     }
   }
   results <- unique(rentrez::extract_from_esummary(taxa.returns, "ScientificName"))
