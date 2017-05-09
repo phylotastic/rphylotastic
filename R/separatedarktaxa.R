@@ -49,7 +49,7 @@ SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "
   all.taxa.returns <- taxa.returns
   loop.count <- 1
   while(length(taxa.returns)==10000) {
-    taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"),restart=(loop.count*10000)+1)
+    taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"),retstart=(loop.count*10000)+1)
     loop.count <- loop.count + 1
     all.taxa.returns <- c(all.taxa.returns, taxa.returns)
   }
