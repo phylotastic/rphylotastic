@@ -5,7 +5,7 @@
 #' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
 #' @export
-SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {
+SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment")) {
   results <- unique(jsonlite::fromJSON(paste(GetBaseURL(), 'ts/all_species?taxon=', utils::URLencode(taxon), sep=""))$species)
   results.dark <- c()
   results.known <- results
@@ -44,7 +44,7 @@ SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\
 #' @param sleep How many seconds to sleep between calls (on top of rentrez's defaults)
 #' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
 #' @export
-SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured"), verbose=TRUE, sleep=0) {
+SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment"), verbose=TRUE, sleep=0) { #clone and enrichment with space on purpose
   search.results <- rentrez::entrez_search("taxonomy", term =paste0(taxon,"[subtree] AND species[Rank] "), use_history=TRUE)
   Sys.sleep(sleep)
   if(verbose) {
