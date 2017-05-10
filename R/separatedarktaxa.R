@@ -55,20 +55,20 @@ SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "
     taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"))
     Sys.sleep(sleep)
     if(verbose) {
-      print(paste("Initially found", length(taxa.returns), "for taxon", taxon))
+      print(paste("Initially found", length(taxa.returns), "species for taxon", taxon))
     }
-    all.taxa.returns <- taxa.returns
+    all.taxa.returns <- rentrez::extract_from_esummary(taxa.returns, "ScientificName")
     loop.count <- 1
     while(length(taxa.returns)==10000) {
       taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"),retstart=(loop.count*10000)) #it's 0 indexed, so no need to do +1 for retstart
       Sys.sleep(sleep)
       loop.count <- loop.count + 1
-      all.taxa.returns <- c(all.taxa.returns, taxa.returns)
+      all.taxa.returns <- c(all.taxa.returns, rentrez::extract_from_esummary(taxa.returns, "ScientificName"))
       if(verbose) {
         print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",length(all.taxa.returns),"species in total, which represents", 100*length(all.taxa.returns) / search.results$count, "percent of all"))
       }
     }
-    results <- unique(rentrez::extract_from_esummary(all.taxa.returns, "ScientificName"))
+    results <- unique(all.taxa.returns)
     Sys.sleep(sleep)
     results.dark <- c()
     results.known <- results
