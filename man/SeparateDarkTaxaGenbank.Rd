@@ -5,7 +5,8 @@
 \title{Separate dark from known taxa on another database}
 \usage{
 SeparateDarkTaxaGenbank(taxon, filters = c("environmental", "sp\\\\.",
-  "cf\\\\.", "uncultured"), verbose = TRUE)
+  "cf\\\\.", "uncultured", "unidentified", " clone", " enrichment"),
+  verbose = TRUE, sleep = 0)
 }
 \arguments{
 \item{taxon}{A taxon to get all species for}
@@ -13,6 +14,8 @@ SeparateDarkTaxaGenbank(taxon, filters = c("environmental", "sp\\\\.",
 \item{filters}{A character vector of strings to exclude}
 
 \item{verbose}{Update on how many are done}
+
+\item{sleep}{How many seconds to sleep between calls (on top of rentrez's defaults)}
 }
 \value{
 A list containing a vector of dark names, a vector of known names, and fraction.dark
