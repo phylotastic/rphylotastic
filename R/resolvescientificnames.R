@@ -8,13 +8,11 @@ ResolveNamesWithGNR <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   results <- jsonlite::fromJSON(paste(GetBaseURL(), 'tnrs/gnr/resolve?names=', taxa.string, sep=""))
   final.names <- c()
-  if(nrow(results$resolvedNames)==0) {
-    warning("No names matched")
-  } else {
-    final.names <- results$resolvedNames$matched_name
-    if(length(final.names) < length(taxa)) {
+  matched <- results$resolvedNames$matched_name
+  final.names <- matched[matched != ""]
+  
+  if(length(final.names) < length(taxa)) {
       warning("Fewer names were found than were given; missing taxa were dropped.")
-    }
   }
   return(final.names)
 }

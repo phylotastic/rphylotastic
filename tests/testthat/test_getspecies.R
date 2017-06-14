@@ -1,8 +1,13 @@
 test_that("Get species works", {
-  results <- GetSpeciesFromTaxon("vulpes")
-  expect_gte(length(results), 12)
+  results <- GetSpeciesFromTaxon("Vulpes")
+  expect_gte(length(results), 10)
 })
 
+test_that("Get country species works", {
+  results <- GetCountrySpeciesFromTaxon("Felidae", "Nepal")
+  expect_gte(length(results), 10)
+  expect_equal(grepl("Prionailurus viverrinus", results), c(FALSE, FALSE, TRUE,FALSE, FALSE,FALSE, FALSE,FALSE, FALSE,FALSE, FALSE))
+})
 
 test_that("Separating dark species works for OToL", {
   results <- SeparateDarkTaxaOToL("vulpes")
