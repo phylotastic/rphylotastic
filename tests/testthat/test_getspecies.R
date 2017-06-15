@@ -9,6 +9,12 @@ test_that("Get country species works", {
   expect_equal(grepl("Prionailurus viverrinus", results), c(FALSE, FALSE, TRUE,FALSE, FALSE,FALSE, FALSE,FALSE, FALSE,FALSE, FALSE))
 })
 
+test_that("Get genome species works", {
+  results <- GetGenomeSpeciesFromTaxon("Rodentia")
+  expect_gte(length(results), 30)
+  expect_equal(grep("Mus", results, value=TRUE), c("Mus musculus molossinus","Mus musculus musculus","Mus spretus", "Mus pahari", "Mus musculus domesticus", "Mus musculus castaneus", "Mus musculus", "Mus caroli"))
+})
+
 test_that("Separating dark species works for OToL", {
   results <- SeparateDarkTaxaOToL("vulpes")
   expect_gte(length(results$dark), 1)

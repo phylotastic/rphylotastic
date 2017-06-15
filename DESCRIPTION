@@ -1,7 +1,9 @@
 Package: rphylotastic
 Title: R interface to phylotastic web services
 Version: 0.0.3
-Authors@R: person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre"))
+Authors@R: c(
+    person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre")),
+    person("Abu Saleh", "Md Tayeen", email = "abusalehmdtayeen@gmail.com", role = "aut"))
 Author: Brian O'Meara <omeara.brian@gmail.com>
 Maintainer: Brian O'Meara <omeara.brian@gmail.com>
 Description: This wraps the Phylotastic services APIs for ease of use within R.
