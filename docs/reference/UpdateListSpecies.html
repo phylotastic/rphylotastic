@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get all species from a taxon — GetSpeciesFromTaxon • rphylotastic</title>
+<title>Update metadata of a list of species — UpdateListSpecies • rphylotastic</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,37 +68,81 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get all species from a taxon</h1>
+    <h1>Update metadata of a list of species</h1>
     </div>
 
     
-    <p>Get all species from a taxon</p>
+    <p>Update metadata of a list of species</p>
     
 
-    <pre class="usage"><span class='fu'>GetSpeciesFromTaxon</span>(<span class='no'>taxon</span>, <span class='kw'>filters</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"environmental"</span>, <span class='st'>"sp\\."</span>, <span class='st'>"cf\\."</span>))</pre>
+    <pre class="usage"><span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listobj</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>taxon</th>
-      <td><p>A taxon to get all species for</p></td>
+      <th>userid</th>
+      <td><p>A valid gmail address of the user</p></td>
     </tr>
     <tr>
-      <th>filters</th>
-      <td><p>A character vector of strings to exclude</p></td>
+      <th>accesstoken</th>
+      <td><p>A valid gmail address of the user</p></td>
+    </tr>
+    <tr>
+      <th>listid</th>
+      <td><p>An integer id of the list to be modified</p></td>
+    </tr>
+    <tr>
+      <th>listObj</th>
+      <td><p>A species object to replace with</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of names</p>
+    <p>A list with modified list metadata</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><a href = 'https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md'>https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md</a> or the rotl package, another interface to Open Tree of Life</p>
+    <p><a href = 'https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md'>https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md</a></p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
+  <span class='no'>accesstoken</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
+  <span class='no'>listid</span> <span class='kw'>=</span> <span class='fl'>12</span>
+  <span class='no'>listObj</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>list_description</span><span class='kw'>=</span><span class='st'>"A sublist on the bird species"</span>, <span class='kw'>list_keywords</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"bird"</span>,<span class='st'>"Everglades"</span>))
+  <span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listObj</span>)</div><div class='output co'>#&gt; $user_id
+#&gt; [1] "abusalehmdtayeen@gmail.com"
+#&gt; 
+#&gt; $date_modified
+#&gt; [1] "2017-07-05T16:29:37.969387"
+#&gt; 
+#&gt; $status_code
+#&gt; [1] 200
+#&gt; 
+#&gt; $modified_content
+#&gt; $modified_content$list_keywords
+#&gt; $modified_content$list_keywords[[1]]
+#&gt; [1] "bird"
+#&gt; 
+#&gt; $modified_content$list_keywords[[2]]
+#&gt; [1] "Everglades"
+#&gt; 
+#&gt; 
+#&gt; $modified_content$list_description
+#&gt; [1] "A sublist on the bird species"
+#&gt; 
+#&gt; 
+#&gt; $list_id
+#&gt; [1] 12
+#&gt; 
+#&gt; $list_title
+#&gt; [1] "Bird Species List"
+#&gt; 
+#&gt; $message
+#&gt; [1] "Success"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -108,7 +152,9 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

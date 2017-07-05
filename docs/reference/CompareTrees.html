@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get all species from a taxon — GetSpeciesFromTaxon • rphylotastic</title>
+<title>Compare two phylogenetic trees — CompareTrees • rphylotastic</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,35 +68,31 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get all species from a taxon</h1>
+    <h1>Compare two phylogenetic trees</h1>
     </div>
 
     
-    <p>Get all species from a taxon</p>
+    <p>Compare two phylogenetic trees</p>
     
 
-    <pre class="usage"><span class='fu'>GetSpeciesFromTaxon</span>(<span class='no'>taxon</span>, <span class='kw'>filters</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"environmental"</span>, <span class='st'>"sp\\."</span>, <span class='st'>"cf\\."</span>))</pre>
+    <pre class="usage"><span class='fu'>CompareTrees</span>(<span class='no'>trees</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>taxon</th>
-      <td><p>A taxon to get all species for</p></td>
-    </tr>
-    <tr>
-      <th>filters</th>
-      <td><p>A character vector of strings to exclude</p></td>
+      <th>trees</th>
+      <td><p>A character vector of two newick trees</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of names</p>
+    <p>A named list with are_same_tree property set to either TRUE or FALSE</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><a href = 'https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md'>https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md</a> or the rotl package, another interface to Open Tree of Life</p>
+    <p><a href = 'https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md'>https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md</a></p>
     
 
   </div>
