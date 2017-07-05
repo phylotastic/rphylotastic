@@ -13,9 +13,9 @@ GetListSpecies(userid, accesstoken, listid, verbose = FALSE, content = TRUE)
 
 \item{listid}{An integer id of the list to retrieve}
 
-\item{verbose(optional)}{By default FALSE and shows minimal meta-data of the list.}
+\item{verbose}{(optional)By default FALSE and shows minimal meta-data of the list.}
 
-\item{content(optional)}{By default TRUE and shows the species collection of the list}
+\item{content}{(optional)By default TRUE and shows the species collection of the list}
 }
 \value{
 An existing list with metadata and content based on parameters
@@ -27,8 +27,8 @@ Get existing list/lists of species
   userid = "abusalehmdtayeen@gmail.com"
   accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
   listid = 12
-  verbose = True
-  content = False
+  verbose = TRUE
+  content = FALSE
   GetListSpecies(userid, accesstoken, listid, verbose, content)
 }
 \seealso{

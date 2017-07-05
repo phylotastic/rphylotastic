@@ -75,7 +75,7 @@
     <p>Insert list of species</p>
     
 
-    <pre class="usage"><span class='fu'>InsertListSpecies</span>(<span class='no'>userid</span>, <span class='no'>listobj</span>)</pre>
+    <pre class="usage"><span class='fu'>InsertListSpecies</span>(<span class='no'>userid</span>, <span class='no'>listObj</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -101,7 +101,18 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
-  <span class='no'>listObj</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>list_extra_info</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>list_description</span><span class='kw'>=</span><span class='st'>"A sublist on the bird species added"</span>, <span class='kw'>list_keywords</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"bird"</span>, <span class='st'>"endangered species"</span>, <span class='st'>"Everglades"</span>),<span class='kw'>list_curator</span><span class='kw'>=</span><span class='st'>"HD Laughinghouse"</span>, <span class='kw'>list_origin</span><span class='kw'>=</span><span class='st'>"webapp"</span>, <span class='kw'>list_curation_date</span><span class='kw'>=</span><span class='st'>"02-24-2016"</span>, <span class='kw'>list_source</span><span class='kw'>=</span><span class='st'>"des"</span>, <span class='kw'>list_focal_clade</span><span class='kw'>=</span><span class='st'>"Aves"</span>, <span class='kw'>list_title</span><span class='kw'>=</span><span class='st'>"Bird Species List"</span>, <span class='kw'>list_author</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"Bass"</span>, <span class='st'>"O. &amp; Cunningham"</span>, <span class='st'>"R."</span>),  <span class='kw'>list_date_published</span><span class='kw'>=</span><span class='st'>"01-01-2017"</span>, <span class='kw'>is_list_public</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>list_species</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='fu'>list</span>(<span class='kw'>family</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>scientific_name</span><span class='kw'>=</span><span class='st'>"Aix sponsa"</span>,<span class='kw'>scientific_name_authorship</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>vernacular_name</span><span class='kw'>=</span><span class='st'>"Wood Duck"</span>,<span class='kw'>phylum</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>nomenclature_code</span><span class='kw'>=</span><span class='st'>"ICZN"</span>,<span class='kw'>order</span><span class='kw'>=</span><span class='st'>"Anseriformes"</span>,<span class='kw'>class</span><span class='kw'>=</span><span class='st'>""</span>), <span class='fu'>list</span>(<span class='kw'>family</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>scientific_name</span><span class='kw'>=</span><span class='st'>"Anas strepera"</span>,<span class='kw'>scientific_name_authorship</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>vernacular_name</span><span class='kw'>=</span><span class='st'>"Gadwall"</span>,<span class='kw'>phylum</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>nomenclature_code</span><span class='kw'>=</span><span class='st'>"ICZN"</span>,<span class='kw'>order</span><span class='kw'>=</span><span class='st'>"Anseriformes"</span>,<span class='kw'>class</span><span class='kw'>=</span><span class='st'>""</span>) ))
+  <span class='no'>listObj</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>list_extra_info</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>list_description</span><span class='kw'>=</span><span class='st'>"A sublist on the bird species added"</span>,
+      <span class='kw'>list_keywords</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"bird"</span>, <span class='st'>"endangered species"</span>, <span class='st'>"Everglades"</span>),
+      <span class='kw'>list_curator</span><span class='kw'>=</span><span class='st'>"HD Laughinghouse"</span>, <span class='kw'>list_origin</span><span class='kw'>=</span><span class='st'>"webapp"</span>,
+      <span class='kw'>list_curation_date</span><span class='kw'>=</span><span class='st'>"02-24-2016"</span>, <span class='kw'>list_source</span><span class='kw'>=</span><span class='st'>"des"</span>, <span class='kw'>list_focal_clade</span><span class='kw'>=</span><span class='st'>"Aves"</span>,
+      <span class='kw'>list_title</span><span class='kw'>=</span><span class='st'>"Bird Species List"</span>,<span class='kw'>list_author</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"Bass"</span>, <span class='st'>"O. &amp; Cunningham"</span>, <span class='st'>"R."</span>),
+      <span class='kw'>list_date_published</span><span class='kw'>=</span><span class='st'>"01-01-2017"</span>, <span class='kw'>is_list_public</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
+      <span class='kw'>list_species</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='fu'>list</span>(<span class='kw'>family</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>scientific_name</span><span class='kw'>=</span><span class='st'>"Aix sponsa"</span>,
+          <span class='kw'>scientific_name_authorship</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>vernacular_name</span><span class='kw'>=</span><span class='st'>"Wood Duck"</span>,
+          <span class='kw'>phylum</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>nomenclature_code</span><span class='kw'>=</span><span class='st'>"ICZN"</span>,<span class='kw'>order</span><span class='kw'>=</span><span class='st'>"Anseriformes"</span>,<span class='kw'>class</span><span class='kw'>=</span><span class='st'>""</span>),
+          <span class='fu'>list</span>(<span class='kw'>family</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>scientific_name</span><span class='kw'>=</span><span class='st'>"Anas strepera"</span>,
+          <span class='kw'>scientific_name_authorship</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>vernacular_name</span><span class='kw'>=</span><span class='st'>"Gadwall"</span>,<span class='kw'>phylum</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>nomenclature_code</span><span class='kw'>=</span><span class='st'>"ICZN"</span>,
+          <span class='kw'>order</span><span class='kw'>=</span><span class='st'>"Anseriformes"</span>,<span class='kw'>class</span><span class='kw'>=</span><span class='st'>""</span>) ))
   <span class='fu'>InsertListSpecies</span>(<span class='no'>userid</span>, <span class='no'>listObj</span>)</div><div class='output co'>#&gt; $status_code
 #&gt; [1] 200
 #&gt; 
@@ -109,7 +120,7 @@
 #&gt; [1] "Success"
 #&gt; 
 #&gt; $list_id
-#&gt; [1] 16
+#&gt; [1] 18
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

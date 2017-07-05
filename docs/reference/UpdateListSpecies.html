@@ -75,7 +75,7 @@
     <p>Update metadata of a list of species</p>
     
 
-    <pre class="usage"><span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listobj</span>)</pre>
+    <pre class="usage"><span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listObj</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -111,7 +111,8 @@
     <pre class="examples"><div class='input'>  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
   <span class='no'>accesstoken</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
   <span class='no'>listid</span> <span class='kw'>=</span> <span class='fl'>12</span>
-  <span class='no'>listObj</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>list_description</span><span class='kw'>=</span><span class='st'>"A sublist on the bird species"</span>, <span class='kw'>list_keywords</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"bird"</span>,<span class='st'>"Everglades"</span>))
+  <span class='no'>listObj</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>list_description</span><span class='kw'>=</span><span class='st'>"A sublist on the bird species"</span>,
+            <span class='kw'>list_keywords</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"bird"</span>,<span class='st'>"Everglades"</span>))
   <span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listObj</span>)</div><div class='output co'>#&gt; $status_code
 #&gt; [1] 204
 #&gt; 

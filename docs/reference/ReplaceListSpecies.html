@@ -75,7 +75,7 @@
     <p>Replace a list of species</p>
     
 
-    <pre class="usage"><span class='fu'>ReplaceListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>speciesobj</span>)</pre>
+    <pre class="usage"><span class='fu'>ReplaceListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>speciesObj</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -86,7 +86,7 @@
     </tr>
     <tr>
       <th>accesstoken</th>
-      <td><p>A valid gmail address of the user</p></td>
+      <td><p>Access token of the gmail address</p></td>
     </tr>
     <tr>
       <th>listid</th>
@@ -111,80 +111,16 @@
     <pre class="examples"><div class='input'>  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
   <span class='no'>accesstoken</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
   <span class='no'>listid</span> <span class='kw'>=</span> <span class='fl'>12</span>
-  <span class='no'>speciesObj</span> <span class='kw'>=</span> <span class='fu'>list</span>( <span class='fu'>list</span>(<span class='kw'>family</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>scientific_name</span><span class='kw'>=</span><span class='st'>"Aix sponsa"</span>,<span class='kw'>scientific_name_authorship</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>vernacular_name</span><span class='kw'>=</span><span class='st'>"Wood Duck"</span>,<span class='kw'>phylum</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>nomenclature_code</span><span class='kw'>=</span><span class='st'>"ICZN"</span>,<span class='kw'>order</span><span class='kw'>=</span><span class='st'>"Anseriformes"</span>,<span class='kw'>class</span><span class='kw'>=</span><span class='st'>""</span>) )
-  <span class='fu'>ReplaceListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>speciesObj</span>)</div><div class='output co'>#&gt; $user_id
-#&gt; [1] "abusalehmdtayeen@gmail.com"
-#&gt; 
-#&gt; $date_modified
-#&gt; [1] "2017-07-05T16:29:37.398640"
-#&gt; 
-#&gt; $status_code
-#&gt; [1] 200
-#&gt; 
-#&gt; $old_species
-#&gt; $old_species[[1]]
-#&gt; $old_species[[1]]$family
-#&gt; [1] ""
-#&gt; 
-#&gt; $old_species[[1]]$scientific_name
-#&gt; [1] "Aix sponsa"
-#&gt; 
-#&gt; $old_species[[1]]$scientific_name_authorship
-#&gt; [1] ""
-#&gt; 
-#&gt; $old_species[[1]]$order
-#&gt; [1] "Anseriformes"
-#&gt; 
-#&gt; $old_species[[1]]$vernacular_name
-#&gt; [1] "Wood Duck"
-#&gt; 
-#&gt; $old_species[[1]]$phylum
-#&gt; [1] ""
-#&gt; 
-#&gt; $old_species[[1]]$nomenclature_code
-#&gt; [1] "ICZN"
-#&gt; 
-#&gt; $old_species[[1]]$class
-#&gt; [1] ""
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; $new_species
-#&gt; $new_species[[1]]
-#&gt; $new_species[[1]]$family
-#&gt; [1] ""
-#&gt; 
-#&gt; $new_species[[1]]$scientific_name
-#&gt; [1] "Aix sponsa"
-#&gt; 
-#&gt; $new_species[[1]]$scientific_name_authorship
-#&gt; [1] ""
-#&gt; 
-#&gt; $new_species[[1]]$class
-#&gt; [1] ""
-#&gt; 
-#&gt; $new_species[[1]]$vernacular_name
-#&gt; [1] "Wood Duck"
-#&gt; 
-#&gt; $new_species[[1]]$phylum
-#&gt; [1] ""
-#&gt; 
-#&gt; $new_species[[1]]$nomenclature_code
-#&gt; [1] "ICZN"
-#&gt; 
-#&gt; $new_species[[1]]$order
-#&gt; [1] "Anseriformes"
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; $list_id
-#&gt; [1] 12
-#&gt; 
-#&gt; $list_title
-#&gt; [1] "Bird Species List"
+  <span class='no'>speciesObj</span> <span class='kw'>=</span> <span class='fu'>list</span>( <span class='fu'>list</span>(<span class='kw'>family</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>scientific_name</span><span class='kw'>=</span><span class='st'>"Aix sponsa"</span>,<span class='kw'>scientific_name_authorship</span><span class='kw'>=</span><span class='st'>""</span>,
+  <span class='kw'>vernacular_name</span><span class='kw'>=</span><span class='st'>"Wood Duck"</span>,<span class='kw'>phylum</span><span class='kw'>=</span><span class='st'>""</span>,<span class='kw'>nomenclature_code</span><span class='kw'>=</span><span class='st'>"ICZN"</span>,<span class='kw'>order</span><span class='kw'>=</span><span class='st'>"Anseriformes"</span>,<span class='kw'>class</span><span class='kw'>=</span><span class='st'>""</span>))
+  <span class='fu'>ReplaceListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>speciesObj</span>)</div><div class='output co'>#&gt; $status_code
+#&gt; [1] 204
 #&gt; 
 #&gt; $message
-#&gt; [1] "Success"
+#&gt; [1] "No list found with ID 12"
+#&gt; 
+#&gt; $user_id
+#&gt; [1] "abusalehmdtayeen@gmail.com"
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

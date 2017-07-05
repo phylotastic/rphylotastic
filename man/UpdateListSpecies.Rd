@@ -4,7 +4,7 @@
 \alias{UpdateListSpecies}
 \title{Update metadata of a list of species}
 \usage{
-UpdateListSpecies(userid, accesstoken, listid, listobj)
+UpdateListSpecies(userid, accesstoken, listid, listObj)
 }
 \arguments{
 \item{userid}{A valid gmail address of the user}
@@ -25,7 +25,8 @@ Update metadata of a list of species
   userid = "abusalehmdtayeen@gmail.com"
   accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
   listid = 12
-  listObj = list(list_description="A sublist on the bird species", list_keywords=c("bird","Everglades"))
+  listObj = list(list_description="A sublist on the bird species", 
+            list_keywords=c("bird","Everglades"))
   UpdateListSpecies(userid, accesstoken, listid, listObj)
 }
 \seealso{

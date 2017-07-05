@@ -5,18 +5,29 @@
 #' @return A list with the id of the new list created
 #' @examples
 #'   userid = "abusalehmdtayeen@gmail.com"
-#'   listObj = list(list_extra_info="", list_description="A sublist on the bird species added", list_keywords=c("bird", "endangered species", "Everglades"),list_curator="HD Laughinghouse", list_origin="webapp", list_curation_date="02-24-2016", list_source="des", list_focal_clade="Aves", list_title="Bird Species List", list_author=c("Bass", "O. & Cunningham", "R."),  list_date_published="01-01-2017", is_list_public=TRUE, list_species=list(list(family="",scientific_name="Aix sponsa",scientific_name_authorship="", vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""), list(family="",scientific_name="Anas strepera",scientific_name_authorship="", vernacular_name="Gadwall",phylum="",nomenclature_code="ICZN",order="Anseriformes",class="") ))
+#'   listObj = list(list_extra_info="", list_description="A sublist on the bird species added", 
+#'       list_keywords=c("bird", "endangered species", "Everglades"),
+#'       list_curator="HD Laughinghouse", list_origin="webapp",
+#'       list_curation_date="02-24-2016", list_source="des", list_focal_clade="Aves", 
+#'       list_title="Bird Species List",list_author=c("Bass", "O. & Cunningham", "R."),  
+#'       list_date_published="01-01-2017", is_list_public=TRUE, 
+#'       list_species=list(list(family="",scientific_name="Aix sponsa",
+#'           scientific_name_authorship="", vernacular_name="Wood Duck",
+#'           phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""), 
+#'           list(family="",scientific_name="Anas strepera",
+#'           scientific_name_authorship="", vernacular_name="Gadwall",phylum="",nomenclature_code="ICZN",
+#'           order="Anseriformes",class="") ))
 #'   InsertListSpecies(userid, listObj)
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
 
-InsertListSpecies <- function(userid, listobj) {
-  library(httr)
+InsertListSpecies <- function(userid, listObj) {
+  #library(httr)
   #body <- list(user_id = "abusalehmdtayeen@gmail.com", list = list(list_extra_info="", list_description="A sublist on the bird species added", list_keywords=c("bird", "endangered species", "Everglades"),list_curator="HD Laughinghouse", list_origin="webapp", list_curation_date="02-24-2016", list_source="des", list_focal_clade="Aves", list_title="Bird Species List", list_author=c("Bass", "O. & Cunningham", "R."),  list_date_published="01-01-2017", is_list_public=TRUE, list_species=list(list(family="",scientific_name="Aix sponsa",scientific_name_authorship="", vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""), list(family="",scientific_name="Anas strepera",scientific_name_authorship="", vernacular_name="Gadwall",phylum="",nomenclature_code="ICZN",order="Anseriformes",class="") )))	
   url <- paste(GetListServerURL(), 'insert_list', sep="")
-  body <- list(user_id = userid, list = listobj)
-  response <- POST(url, body = body, encode = "json")
-  result <- content(response,"parsed")	
+  body <- list(user_id = userid, list = listObj)
+  response <- httr::POST(url, body = body, encode = "json")
+  result <- httr::content(response,"parsed")	
   
   return(result)
 }
@@ -33,16 +44,17 @@ InsertListSpecies <- function(userid, listobj) {
 #'   userid = "abusalehmdtayeen@gmail.com"
 #'   accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
 #'   listid = 12
-#'   speciesObj = list( list(family="",scientific_name="Aix sponsa",scientific_name_authorship="", vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class="") )
+#'   speciesObj = list( list(family="",scientific_name="Aix sponsa",scientific_name_authorship="", 
+#'   vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""))
 #'   ReplaceListSpecies(userid, accesstoken, listid, speciesObj)
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
-ReplaceListSpecies <- function(userid, accesstoken, listid, speciesobj) {
-  library(httr)
+ReplaceListSpecies <- function(userid, accesstoken, listid, speciesObj) {
+  #library(httr)
   url <- paste(GetListServerURL(), 'replace_species', sep="")
-  body <- list(user_id = userid, access_token = accesstoken, list_id = listid, species = speciesobj)
-  response <- POST(url, body = body, encode = "json")
-  result <- content(response,"parsed")	
+  body <- list(user_id = userid, access_token = accesstoken, list_id = listid, species = speciesObj)
+  response <- httr::POST(url, body = body, encode = "json")
+  result <- httr::content(response,"parsed")	
   
   return(result)
 }
@@ -59,16 +71,17 @@ ReplaceListSpecies <- function(userid, accesstoken, listid, speciesobj) {
 #'   userid = "abusalehmdtayeen@gmail.com"
 #'   accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
 #'   listid = 12
-#'   listObj = list(list_description="A sublist on the bird species", list_keywords=c("bird","Everglades"))
+#'   listObj = list(list_description="A sublist on the bird species", 
+#'             list_keywords=c("bird","Everglades"))
 #'   UpdateListSpecies(userid, accesstoken, listid, listObj)
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
-UpdateListSpecies <- function(userid, accesstoken, listid, listobj) {
+UpdateListSpecies <- function(userid, accesstoken, listid, listObj) {
   #library(httr)
   url <- paste(GetListServerURL(), 'update_list', sep="")
-  body <- list(user_id = userid, access_token = accesstoken, list_id = listid, list = listobj)
+  body <- list(user_id = userid, access_token = accesstoken, list_id = listid, list = listObj)
   response <- httr::POST(url, body = body, encode = "json")
-  result <- content(response,"parsed")	
+  result <- httr::content(response,"parsed")	
   
   return(result)
 }
@@ -79,15 +92,15 @@ UpdateListSpecies <- function(userid, accesstoken, listid, listobj) {
 #' @param userid A valid gmail address of the user
 #' @param accesstoken Access token of the gmail address
 #' @param listid An integer id of the list to retrieve
-#' @param verbose(optional) By default FALSE and shows minimal meta-data of the list. 
-#' @param content(optional) By default TRUE and shows the species collection of the list  
+#' @param verbose (optional)By default FALSE and shows minimal meta-data of the list. 
+#' @param content (optional)By default TRUE and shows the species collection of the list  
 #' @return An existing list with metadata and content based on parameters 
 #' @examples
 #'   userid = "abusalehmdtayeen@gmail.com"
 #'   accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
 #'   listid = 12
-#'   verbose = True
-#'   content = False
+#'   verbose = TRUE
+#'   content = FALSE
 #'   GetListSpecies(userid, accesstoken, listid, verbose, content)
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export

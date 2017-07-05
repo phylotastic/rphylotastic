@@ -4,7 +4,7 @@
 \alias{ReplaceListSpecies}
 \title{Replace a list of species}
 \usage{
-ReplaceListSpecies(userid, accesstoken, listid, speciesobj)
+ReplaceListSpecies(userid, accesstoken, listid, speciesObj)
 }
 \arguments{
 \item{userid}{A valid gmail address of the user}
@@ -25,7 +25,8 @@ Replace a list of species
   userid = "abusalehmdtayeen@gmail.com"
   accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
   listid = 12
-  speciesObj = list( list(family="",scientific_name="Aix sponsa",scientific_name_authorship="", vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class="") )
+  speciesObj = list( list(family="",scientific_name="Aix sponsa",scientific_name_authorship="", 
+  vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""))
   ReplaceListSpecies(userid, accesstoken, listid, speciesObj)
 }
 \seealso{

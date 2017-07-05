@@ -93,12 +93,12 @@
       <td><p>An integer id of the list to retrieve</p></td>
     </tr>
     <tr>
-      <th>verbose(optional)</th>
-      <td><p>By default FALSE and shows minimal meta-data of the list.</p></td>
+      <th>verbose</th>
+      <td><p>(optional)By default FALSE and shows minimal meta-data of the list.</p></td>
     </tr>
     <tr>
-      <th>content(optional)</th>
-      <td><p>By default TRUE and shows the species collection of the list</p></td>
+      <th>content</th>
+      <td><p>(optional)By default TRUE and shows the species collection of the list</p></td>
     </tr>
     </table>
     
@@ -115,7 +115,14 @@
     <pre class="examples"><div class='input'>  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
   <span class='no'>accesstoken</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
   <span class='no'>listid</span> <span class='kw'>=</span> <span class='fl'>12</span>
-  <span class='no'>verbose</span> <span class='kw'>=</span> <span class='no'>True</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'True' not found</span></div><div class='input'>  <span class='no'>content</span> <span class='kw'>=</span> <span class='no'>False</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'False' not found</span></div><div class='input'>  <span class='fu'>GetListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>verbose</span>, <span class='no'>content</span>)</div><div class='output co'>#&gt; <span class='error'>Error in paste(GetListServerURL(), "get_list?user_id=", userid, "&amp;access_token=",     accesstoken, "&amp;list_id=", listid, "&amp;verbose=", verbose, "&amp;content=",     content, sep = ""): cannot coerce type 'closure' to vector of type 'character'</span></div></pre>
+  <span class='no'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='no'>content</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='fu'>GetListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>verbose</span>, <span class='no'>content</span>)</div><div class='output co'>#&gt; $status_code
+#&gt; [1] 400
+#&gt; 
+#&gt; $message
+#&gt; [1] "Error: Invalid Access Token. Access Token expired"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
