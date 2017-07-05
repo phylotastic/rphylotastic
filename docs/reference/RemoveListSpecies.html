@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Update metadata of a list of species — UpdateListSpecies • rphylotastic</title>
+<title>Remove an existing list of species — RemoveListSpecies • rphylotastic</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,14 +68,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Update metadata of a list of species</h1>
+    <h1>Remove an existing list of species</h1>
     </div>
 
     
-    <p>Update metadata of a list of species</p>
+    <p>Remove an existing list of species</p>
     
 
-    <pre class="usage"><span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listobj</span>)</pre>
+    <pre class="usage"><span class='fu'>RemoveListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -90,17 +90,13 @@
     </tr>
     <tr>
       <th>listid</th>
-      <td><p>An integer id of the list to be modified</p></td>
-    </tr>
-    <tr>
-      <th>listObj</th>
-      <td><p>A list object to update with</p></td>
+      <td><p>An integer id of the list to retrieve</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with modified list metadata</p>
+    <p>A list with the id of the list removed</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -111,15 +107,11 @@
     <pre class="examples"><div class='input'>  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
   <span class='no'>accesstoken</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
   <span class='no'>listid</span> <span class='kw'>=</span> <span class='fl'>12</span>
-  <span class='no'>listObj</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>list_description</span><span class='kw'>=</span><span class='st'>"A sublist on the bird species"</span>, <span class='kw'>list_keywords</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"bird"</span>,<span class='st'>"Everglades"</span>))
-  <span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listObj</span>)</div><div class='output co'>#&gt; $status_code
+  <span class='fu'>RemoveListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>)</div><div class='output co'>#&gt; $status_code
 #&gt; [1] 204
 #&gt; 
 #&gt; $message
 #&gt; [1] "No list found with ID 12"
-#&gt; 
-#&gt; $user_id
-#&gt; [1] "abusalehmdtayeen@gmail.com"
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

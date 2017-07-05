@@ -9,7 +9,7 @@ ReplaceListSpecies(userid, accesstoken, listid, speciesobj)
 \arguments{
 \item{userid}{A valid gmail address of the user}
 
-\item{accesstoken}{A valid gmail address of the user}
+\item{accesstoken}{Access token of the gmail address}
 
 \item{listid}{An integer id of the list to be modified}
 
