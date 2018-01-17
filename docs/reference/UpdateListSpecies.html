@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Update metadata of a list of species — UpdateListSpecies • rphylotastic</title>
+<title>Update metadata of a list of species — update_species_in_list • rphylotastic</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -75,7 +75,7 @@
     <p>Update metadata of a list of species</p>
     
 
-    <pre class="usage"><span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listObj</span>)</pre>
+    <pre class="usage"><span class='fu'>update_species_in_list</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listObj</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -113,7 +113,7 @@
   <span class='no'>listid</span> <span class='kw'>=</span> <span class='fl'>12</span>
   <span class='no'>listObj</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>list_description</span><span class='kw'>=</span><span class='st'>"A sublist on the bird species"</span>,
             <span class='kw'>list_keywords</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"bird"</span>,<span class='st'>"Everglades"</span>))
-  <span class='fu'>UpdateListSpecies</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listObj</span>)</div><div class='output co'>#&gt; $status_code
+  <span class='fu'>update_species_in_list</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>, <span class='no'>listObj</span>)</div><div class='output co'>#&gt; $status_code
 #&gt; [1] 204
 #&gt; 
 #&gt; $message

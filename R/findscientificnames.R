@@ -6,7 +6,7 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
 GetScientificNamesFromURL <- function(URL, search.engine=0) {
-  results <- jsonlite::fromJSON(paste(GetBaseURL(), 'fn/names_url?url=', URL, '&engine=', search.engine, sep=""))
+  results <- jsonlite::fromJSON(paste(get_base_url(), 'fn/names_url?url=', URL, '&engine=', search.engine, sep=""))
   return(results$scientificNames)
 }
 
@@ -18,8 +18,8 @@ GetScientificNamesFromURL <- function(URL, search.engine=0) {
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
 GetScientificNamesFromText <- function(text, search.engine=0) {
-  #results <- jsonlite::fromJSON(utils::URLencode(paste(GetBaseURL(), 'fn/names_url?url=', text, '&engine=', search.engine, sep="")))
-  results <- jsonlite::fromJSON((paste(GetBaseURL(), 'fn/names_text?text=', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '&engine=', search.engine, sep="")))
+  #results <- jsonlite::fromJSON(utils::URLencode(paste(get_base_url(), 'fn/names_url?url=', text, '&engine=', search.engine, sep="")))
+  results <- jsonlite::fromJSON((paste(get_base_url(), 'fn/names_text?text=', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '&engine=', search.engine, sep="")))
   return(results$scientificNames)
 }
 
@@ -31,7 +31,7 @@ GetScientificNamesFromText <- function(text, search.engine=0) {
 #' @export
 ResolveNamesWithOToL <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(GetBaseURL(), 'tnrs/ot/resolve?names=', taxa.string, sep=""))
+  results <- jsonlite::fromJSON(paste(get_base_url(), 'tnrs/ot/resolve?names=', taxa.string, sep=""))
   final.names <- c()
   if(nrow(results$resolvedNames)==0) {
     warning("No names matched")

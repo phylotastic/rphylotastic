@@ -5,8 +5,8 @@
 #' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
 #' @export
-SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment")) {
-  results <- unique(jsonlite::fromJSON(paste(GetBaseURL(), 'ts/all_species?taxon=', utils::URLencode(taxon), sep=""))$species)
+taxon_separate_dark_taxa_using_otol <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment")) {
+  results <- unique(jsonlite::fromJSON(paste(get_base_url(), 'ts/all_species?taxon=', utils::URLencode(taxon), sep=""))$species)
   results.dark <- c()
   results.known <- results
   for (i in sequence(length(filters))) {
@@ -22,7 +22,7 @@ SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\
 # #' @param filters A character vector of strings to exclude
 # #' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
 # #' @export
-# SeparateDarkTaxaGenbankOLD <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {
+# taxon_separate_dark_taxa_using_genbankOLD <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {
 #   search.results <- rentrez::entrez_search("nuccore", term =paste0(taxon,"[Organism]"), use_history=TRUE)
 #   taxa.ids <- rentrez::entrez_link(dbfrom="nuccore", db="taxonomy", web_history=search.results$web_history)
 #   taxa.returns <- rentrez::entrez_summary(db="taxonomy", id=taxa.ids$links$nuccore_taxonomy)
@@ -44,7 +44,7 @@ SeparateDarkTaxaOToL <- function(taxon, filters=c("environmental", "sp\\.", "cf\
 #' @param sleep How many seconds to sleep between calls (on top of rentrez's defaults)
 #' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
 #' @export
-SeparateDarkTaxaGenbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment"), verbose=TRUE, sleep=0) { #clone and enrichment with space on purpose
+taxon_separate_dark_taxa_using_genbank <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment"), verbose=TRUE, sleep=0) { #clone and enrichment with space on purpose
   search.results <- rentrez::entrez_search("taxonomy", term =paste0(taxon,"[subtree] AND species[Rank] "), use_history=TRUE)
   Sys.sleep(sleep)
   if(verbose) {

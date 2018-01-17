@@ -6,7 +6,7 @@
 #' @export
 GetImageDataSpecies <- function(species) {
   spec.string <- paste(species, collapse="|")
-  results <- jsonlite::fromJSON(paste(GetBaseURL(), 'si/eol/get_images?species=', utils::URLencode(spec.string), sep=""))
+  results <- jsonlite::fromJSON(paste(get_base_url(), 'si/eol/get_images?species=', utils::URLencode(spec.string), sep=""))
   
   return(results$species)
 }
@@ -19,7 +19,7 @@ GetImageDataSpecies <- function(species) {
 #' @export
 GetInfoSpecies <- function(species) {
   spec.string <- paste(species, collapse="|")
-  results <- jsonlite::fromJSON(paste(GetBaseURL(), 'sl/eol/get_links?species=', utils::URLencode(spec.string), sep=""))
+  results <- jsonlite::fromJSON(paste(get_base_url(), 'sl/eol/get_links?species=', utils::URLencode(spec.string), sep=""))
   
   return(results$species)
 }

@@ -4,9 +4,9 @@
 #' @return A phylo object
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
 #' @export
-GetOToLTree <- function(taxa) {
+taxa_get_otol_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(GetBaseURL(), 'gt/ot/get_tree?taxa=', taxa.string, sep=""))$newick
+  results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string, sep=""))$newick
   tmp.file <- paste(tempdir(), "/tmp.tre", sep="")
   cat(results, file=tmp.file)
   tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
@@ -20,10 +20,10 @@ GetOToLTree <- function(taxa) {
 #' @return A newick string
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the interface of phylomatic \url{http://phylodiversity.net/phylomatic/}
 #' @export
-GetPhylomaticTree <- function(taxa) {
+taxa_get_phylomatic_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(GetBaseURL(), 'gt/pm/get_tree?taxa=', taxa.string, sep=""))
-  
+  results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string, sep=""))
+
   tree <- results$newick
 
   return(tree)
@@ -36,10 +36,10 @@ GetPhylomaticTree <- function(taxa) {
 #' @return A newick string
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the interface of phyloT \url{http://phylot.biobyte.de/}
 #' @export
-GetTaxonomicTree <- function(taxa) {
+taxa_get_taxonomic_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(GetBaseURL(), 'gt/pt/get_tree?taxa=', taxa.string, sep=""))
-  
+  results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/pt/get_tree?taxa=', taxa.string, sep=""))
+
   tree <- results$tree_newick
 
   return(tree)
