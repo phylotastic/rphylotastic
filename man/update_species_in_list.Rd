@@ -4,14 +4,14 @@
 \alias{update_species_in_list}
 \title{Update metadata of a list of species}
 \usage{
-update_species_in_list(userid, accesstoken, listid, listObj)
+update_species_in_list(userid, access_token, list_id, listObj)
 }
 \arguments{
 \item{userid}{A valid gmail address of the user}
 
-\item{accesstoken}{Access token of the gmail address}
+\item{access_token}{Access token of the gmail address}
 
-\item{listid}{An integer id of the list to be modified}
+\item{list_id}{An integer id of the list to be modified}
 
 \item{listObj}{A list object to update with}
 }
@@ -23,11 +23,11 @@ Update metadata of a list of species
 }
 \examples{
   userid = "abusalehmdtayeen@gmail.com"
-  accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
-  listid = 12
+  access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
+  list_id = 12
   listObj = list(list_description="A sublist on the bird species",
             list_keywords=c("bird","Everglades"))
-  update_species_in_list(userid, accesstoken, listid, listObj)
+  update_species_in_list(userid, access_token, list_id, listObj)
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}

@@ -4,15 +4,15 @@
 \alias{get_species_from_list}
 \title{Get existing list/lists of species}
 \usage{
-get_species_from_list(userid, accesstoken, listid, verbose = FALSE,
+get_species_from_list(userid, access_token, list_id, verbose = FALSE,
   content = TRUE)
 }
 \arguments{
 \item{userid}{A valid gmail address of the user}
 
-\item{accesstoken}{Access token of the gmail address}
+\item{access_token}{Access token of the gmail address}
 
-\item{listid}{An integer id of the list to retrieve}
+\item{list_id}{An integer id of the list to retrieve}
 
 \item{verbose}{(optional)By default FALSE and shows minimal meta-data of the list.}
 
@@ -26,11 +26,11 @@ Get existing list/lists of species
 }
 \examples{
   userid = "abusalehmdtayeen@gmail.com"
-  accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
-  listid = 12
+  access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
+  list_id = 12
   verbose = TRUE
   content = FALSE
-  get_species_from_list(userid, accesstoken, listid, verbose, content)
+  get_species_from_list(userid, access_token, list_id, verbose, content)
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}

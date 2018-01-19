@@ -1,25 +1,25 @@
 #' Function to pull scientific names from web pages
 #'
 #' @param URL The URL to extract names from
-#' @param search.engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
+#' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
 #' @return A vector of scientific names
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
-url_get_scientific_names <- function(URL, search.engine=0) {
-  results <- jsonlite::fromJSON(paste(get_base_url(), 'fn/names_url?url=', URL, '&engine=', search.engine, sep=""))
+url_get_scientific_names <- function(URL, search_engine=0) {
+  results <- jsonlite::fromJSON(paste(get_base_url(), 'fn/names_url?url=', URL, '&engine=', search_engine, sep=""))
   return(results$scientificNames)
 }
 
 #' Function to pull scientific names from text
 #'
 #' @param text The text string to extract names from
-#' @param search.engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
+#' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
 #' @return A vector of scientific names
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
-text_get_scientific_names <- function(text, search.engine=0) {
-  #results <- jsonlite::fromJSON(utils::URLencode(paste(get_base_url(), 'fn/names_url?url=', text, '&engine=', search.engine, sep="")))
-  results <- jsonlite::fromJSON((paste(get_base_url(), 'fn/names_text?text=', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '&engine=', search.engine, sep="")))
+text_get_scientific_names <- function(text, search_engine=0) {
+  #results <- jsonlite::fromJSON(utils::URLencode(paste(get_base_url(), 'fn/names_url?url=', text, '&engine=', search_engine, sep="")))
+  results <- jsonlite::fromJSON((paste(get_base_url(), 'fn/names_text?text=', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '&engine=', search_engine, sep="")))
   return(results$scientificNames)
 }
 

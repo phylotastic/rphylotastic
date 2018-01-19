@@ -75,7 +75,7 @@
     <p>Remove an existing list of species</p>
     
 
-    <pre class="usage"><span class='fu'>remove_species_from_list</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>)</pre>
+    <pre class="usage"><span class='fu'>remove_species_from_list</span>(<span class='no'>userid</span>, <span class='no'>access_token</span>, <span class='no'>list_id</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -85,11 +85,11 @@
       <td><p>A valid gmail address of the user</p></td>
     </tr>
     <tr>
-      <th>accesstoken</th>
+      <th>access_token</th>
       <td><p>Access token of the gmail address</p></td>
     </tr>
     <tr>
-      <th>listid</th>
+      <th>list_id</th>
       <td><p>An integer id of the list to retrieve</p></td>
     </tr>
     </table>
@@ -105,9 +105,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
-  <span class='no'>accesstoken</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
-  <span class='no'>listid</span> <span class='kw'>=</span> <span class='fl'>12</span>
-  <span class='fu'>remove_species_from_list</span>(<span class='no'>userid</span>, <span class='no'>accesstoken</span>, <span class='no'>listid</span>)</div><div class='output co'>#&gt; $status_code
+  <span class='no'>access_token</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
+  <span class='no'>list_id</span> <span class='kw'>=</span> <span class='fl'>12</span>
+  <span class='fu'>remove_species_from_list</span>(<span class='no'>userid</span>, <span class='no'>access_token</span>, <span class='no'>list_id</span>)</div><div class='output co'>#&gt; $status_code
 #&gt; [1] 204
 #&gt; 
 #&gt; $message

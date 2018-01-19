@@ -4,12 +4,12 @@
 \alias{url_get_scientific_names}
 \title{Function to pull scientific names from web pages}
 \usage{
-url_get_scientific_names(URL, search.engine = 0)
+url_get_scientific_names(URL, search_engine = 0)
 }
 \arguments{
 \item{URL}{The URL to extract names from}
 
-\item{search.engine}{1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both}
+\item{search_engine}{1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both}
 }
 \value{
 A vector of scientific names

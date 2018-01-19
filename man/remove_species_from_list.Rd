@@ -4,14 +4,14 @@
 \alias{remove_species_from_list}
 \title{Remove an existing list of species}
 \usage{
-remove_species_from_list(userid, accesstoken, listid)
+remove_species_from_list(userid, access_token, list_id)
 }
 \arguments{
 \item{userid}{A valid gmail address of the user}
 
-\item{accesstoken}{Access token of the gmail address}
+\item{access_token}{Access token of the gmail address}
 
-\item{listid}{An integer id of the list to retrieve}
+\item{list_id}{An integer id of the list to retrieve}
 }
 \value{
 A list with the id of the list removed
@@ -21,9 +21,9 @@ Remove an existing list of species
 }
 \examples{
   userid = "abusalehmdtayeen@gmail.com"
-  accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
-  listid = 12
-  remove_species_from_list(userid, accesstoken, listid)
+  access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
+  list_id = 12
+  remove_species_from_list(userid, access_token, list_id)
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}

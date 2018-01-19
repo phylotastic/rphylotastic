@@ -4,14 +4,14 @@
 \alias{replace_species_in_list}
 \title{Replace a list of species}
 \usage{
-replace_species_in_list(userid, accesstoken, listid, speciesObj)
+replace_species_in_list(userid, access_token, list_id, speciesObj)
 }
 \arguments{
 \item{userid}{A valid gmail address of the user}
 
-\item{accesstoken}{Access token of the gmail address}
+\item{access_token}{Access token of the gmail address}
 
-\item{listid}{An integer id of the list to be modified}
+\item{list_id}{An integer id of the list to be modified}
 
 \item{speciesObj}{A species object to replace with}
 }
@@ -23,11 +23,11 @@ Replace a list of species
 }
 \examples{
   userid = "abusalehmdtayeen@gmail.com"
-  accesstoken = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
-  listid = 12
+  access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
+  list_id = 12
   speciesObj = list( list(family="",scientific_name="Aix sponsa",scientific_name_authorship="",
   vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""))
-  replace_species_in_list(userid, accesstoken, listid, speciesObj)
+  replace_species_in_list(userid, access_token, list_id, speciesObj)
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}

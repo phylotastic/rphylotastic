@@ -29,7 +29,8 @@ Insert list of species
           scientific_name_authorship="", vernacular_name="Wood Duck",
           phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""),
           list(family="",scientific_name="Anas strepera",
-          scientific_name_authorship="", vernacular_name="Gadwall",phylum="",nomenclature_code="ICZN",
+          scientific_name_authorship="", vernacular_name="Gadwall",
+          phylum="",nomenclature_code="ICZN",
           order="Anseriformes",class="") ))
   insert_species_in_list(userid, listObj)
 }
