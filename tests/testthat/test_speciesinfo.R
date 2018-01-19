@@ -1,5 +1,5 @@
 test_that("Get species info works", {
-  results <- GetInfoSpecies(c('Cervus elaphus'))
+  results <- species_get_info(c('Cervus elaphus'))
   expect_equal(results[1,2:3]$eol_id, 328649)
   expect_equal(results[1,1], "http://eol.org/328649?action=overview&controller=taxa")
 })
