@@ -5,7 +5,7 @@
 #' @return A vector of scientific names
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
-GetScientificNamesFromURL <- function(URL, search.engine=0) {
+url_get_scientific_names <- function(URL, search.engine=0) {
   results <- jsonlite::fromJSON(paste(get_base_url(), 'fn/names_url?url=', URL, '&engine=', search.engine, sep=""))
   return(results$scientificNames)
 }
@@ -17,7 +17,7 @@ GetScientificNamesFromURL <- function(URL, search.engine=0) {
 #' @return A vector of scientific names
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
-GetScientificNamesFromText <- function(text, search.engine=0) {
+text_get_scientific_names <- function(text, search.engine=0) {
   #results <- jsonlite::fromJSON(utils::URLencode(paste(get_base_url(), 'fn/names_url?url=', text, '&engine=', search.engine, sep="")))
   results <- jsonlite::fromJSON((paste(get_base_url(), 'fn/names_text?text=', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '&engine=', search.engine, sep="")))
   return(results$scientificNames)
@@ -29,7 +29,7 @@ GetScientificNamesFromText <- function(text, search.engine=0) {
 #' @return A vector of corrected names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life, or the taxize package for name resolution in general.
 #' @export
-ResolveNamesWithOToL <- function(taxa) {
+taxa_resolve_names_with_otol <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   results <- jsonlite::fromJSON(paste(get_base_url(), 'tnrs/ot/resolve?names=', taxa.string, sep=""))
   final.names <- c()
