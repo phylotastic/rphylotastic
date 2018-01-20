@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authors • rphylotastic</title>
+<title>Get all species that have genome sequence in NCBI from a taxon — taxon_get_species_with_genome • rphylotastic</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -20,9 +20,9 @@
 
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script>
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
+<script src="../pkgdown.js"></script>
   
   
 <!-- mathjax -->
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-authors">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -47,18 +47,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">rphylotastic</a>
+      <a class="navbar-brand" href="../index.html">rphylotastic</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       
@@ -73,26 +73,53 @@
       </header>
 
       <div class="row">
-  <div class="contents col-md-12">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Authors</h1>
+    <h1>Get all species that have genome sequence in NCBI from a taxon</h1>
     </div>
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong>Brian O'Meara</strong>. Author, maintainer.
-        </p>
-      </li>
-      <li>
-        <p><strong>Abu Saleh Md Tayeen</strong>. Author.
-        </p>
-      </li>
-    </ul>
+    
+    <p>Get all species that have genome sequence in NCBI from a taxon</p>
+    
+
+    <pre class="usage"><span class='fu'>taxon_get_species_with_genome</span>(<span class='no'>taxon</span>, <span class='kw'>filters</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"environmental"</span>, <span class='st'>"sp\\."</span>,
+  <span class='st'>"cf\\."</span>))</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>taxon</th>
+      <td><p>A taxon to get subset of species having genome sequence</p></td>
+    </tr>
+    <tr>
+      <th>filters</th>
+      <td><p>A character vector of strings to exclude</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A vector of names</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><a href='https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription'>https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription</a> or the rotl package, another interface to Open Tree of Life</p>
+    
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
 
+      <li><a href="#see-also">See also</a></li>
+          </ul>
+
+  </div>
 </div>
-
 
       <footer>
       <div class="copyright">
