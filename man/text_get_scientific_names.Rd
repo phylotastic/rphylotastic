@@ -17,6 +17,12 @@ A vector of scientific names
 \description{
 Function to pull scientific names from text
 }
+\examples{
+text <- "Formica polyctena is a species of European red wood ant in
+   the genus Formica. The pavement ant, Tetramorium caespitum
+   is an ant native to Europe."
+print(text_get_scientific_names(text))
+}
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 }

@@ -15,6 +15,13 @@ A phylo object
 \description{
 Get OToL induced subtree
 }
+\examples{
+taxa <- c("Crabronidae", "Ophiocordyceps", "Megalyridae",
+          "Formica polyctena", "Tetramorium caespitum",
+          "Pseudomyrmex", "Carebara diversa", "Formicinae")
+phy <- taxa_get_otol_tree(taxa)
+plot(phy)
+}
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 }

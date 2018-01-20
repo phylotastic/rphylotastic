@@ -5,7 +5,7 @@ R package to interact with phylotastic web services.
 
   * Find the available functions of the R library in this [documentation](http://phylo.cs.nmsu.edu:8080/rphylo/reference/index.html)
  
-  * See the full description of the API of phylotastic web services [here](https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md)
+  * See the full description of the API of phylotastic web services [here](https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription)
 
 To install this in R:
 

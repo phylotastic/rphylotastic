@@ -3,7 +3,7 @@
 #' @param taxon A taxon to get all species for
 #' @param filters A character vector of strings to exclude
 #' @return A list containing a vector of dark names, a vector of known names, and fraction.dark
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxon_separate_dark_taxa_using_otol <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment")) {
   results <- unique(jsonlite::fromJSON(paste(get_base_url(), 'ts/all_species?taxon=', utils::URLencode(taxon), sep=""))$species)

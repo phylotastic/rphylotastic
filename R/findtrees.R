@@ -2,7 +2,13 @@
 #'
 #' @param taxa The vector of names, already resolved to match OToL taxa
 #' @return A phylo object
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
+#' @examples
+#' taxa <- c("Crabronidae", "Ophiocordyceps", "Megalyridae",
+#'           "Formica polyctena", "Tetramorium caespitum",
+#'           "Pseudomyrmex", "Carebara diversa", "Formicinae")
+#' phy <- taxa_get_otol_tree(taxa)
+#' plot(phy)
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxa_get_otol_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
@@ -17,14 +23,18 @@ taxa_get_otol_tree <- function(taxa) {
 #' Get phylomatic subtree
 #'
 #' @param taxa The vector of names, already resolved
-#' @return A newick string
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the interface of phylomatic \url{http://phylodiversity.net/phylomatic/}
+#' @return A phylo object
+#' @examples
+#' phy <- taxa_get_phylomatic_tree(c("Panthera leo", "Panthera onca",
+#'          "Panthera tigris", "Panthera uncia"))
+#' plot(phy)
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phylomatic \url{http://phylodiversity.net/phylomatic/}
 #' @export
 taxa_get_phylomatic_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string, sep=""))
 
-  tree <- results$newick
+  tree <- ape::read.tree(text=results$newick)
 
   return(tree)
 }
@@ -33,14 +43,20 @@ taxa_get_phylomatic_tree <- function(taxa) {
 #' Get taxonomic tree from the NCBI
 #'
 #' @param taxa The vector of names, already resolved
-#' @return A newick string
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the interface of phyloT \url{http://phylot.biobyte.de/}
+#' @return A phylo object
+#' @examples
+#' taxa <- c("Setophaga striata", "Setophaga magnolia",
+#'      "Setophaga angelae", "Setophaga plumbea",
+#'      "Setophaga virens")
+#' phy <- taxa_get_taxonomic_tree(taxa)
+#' plot(phy)
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phyloT \url{http://phylot.biobyte.de/}
 #' @export
 taxa_get_taxonomic_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/pt/get_tree?taxa=', taxa.string, sep=""))
 
-  tree <- results$newick
+  tree <- ape::read.tree(text=results$newick)
 
   return(tree)
 }

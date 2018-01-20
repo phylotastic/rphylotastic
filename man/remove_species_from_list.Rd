@@ -30,5 +30,5 @@ Remove an existing list of species
   }
 }
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 }

@@ -16,5 +16,5 @@ A data frame of info about species
 Get information of a list of species
 }
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or \url{https://eol.org/api/}
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or \url{https://eol.org/api/}
 }

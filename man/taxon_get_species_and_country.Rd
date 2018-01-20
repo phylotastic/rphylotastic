@@ -21,5 +21,5 @@ A vector of names
 Get all species filtered by country from a taxon
 }
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 }

@@ -35,5 +35,5 @@ Insert list of species
   insert_species_in_list(userid, listObj)
 }
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 }

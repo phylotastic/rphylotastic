@@ -10,11 +10,18 @@ taxa_get_taxonomic_tree(taxa)
 \item{taxa}{The vector of names, already resolved}
 }
 \value{
-A newick string
+A phylo object
 }
 \description{
 Get taxonomic tree from the NCBI
 }
+\examples{
+taxa <- c("Setophaga striata", "Setophaga magnolia",
+     "Setophaga angelae", "Setophaga plumbea",
+     "Setophaga virens")
+phy <- taxa_get_taxonomic_tree(taxa)
+plot(phy)
+}
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the interface of phyloT \url{http://phylot.biobyte.de/}
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phyloT \url{http://phylot.biobyte.de/}
 }

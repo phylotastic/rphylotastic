@@ -17,6 +17,10 @@ A vector of scientific names
 \description{
 Function to pull scientific names from web pages
 }
+\examples{
+URL <- "https://en.wikipedia.org/wiki/Plain_pigeon"
+print(url_get_scientific_names(URL))
+}
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 }

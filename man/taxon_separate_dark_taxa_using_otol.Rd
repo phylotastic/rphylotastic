@@ -19,5 +19,5 @@ A list containing a vector of dark names, a vector of known names, and fraction.
 Separate dark from known taxa on OpenTree of Life
 }
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 }

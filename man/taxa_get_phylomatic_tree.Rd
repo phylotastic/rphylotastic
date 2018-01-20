@@ -10,11 +10,16 @@ taxa_get_phylomatic_tree(taxa)
 \item{taxa}{The vector of names, already resolved}
 }
 \value{
-A newick string
+A phylo object
 }
 \description{
 Get phylomatic subtree
 }
+\examples{
+phy <- taxa_get_phylomatic_tree(c("Panthera leo", "Panthera onca",
+         "Panthera tigris", "Panthera uncia"))
+plot(phy)
+}
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the interface of phylomatic \url{http://phylodiversity.net/phylomatic/}
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phylomatic \url{http://phylodiversity.net/phylomatic/}
 }

@@ -15,6 +15,11 @@ A vector of corrected names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
 \description{
 Resolve Scientific Names with Open Tree TNRS
 }
+\examples{
+my.species.raw <- c("Formica polyctena", "Formica exsectoides", "Formica pecefica")
+my.species.corrected <- taxa_resolve_names_with_otol(my.species.raw)
+print(my.species.corrected)
+}
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md} or the rotl package, another interface to Open Tree of Life, or the taxize package for name resolution in general.
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life, or the taxize package for name resolution in general.
 }

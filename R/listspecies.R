@@ -19,7 +19,7 @@
 #'           phylum="",nomenclature_code="ICZN",
 #'           order="Anseriformes",class="") ))
 #'   insert_species_in_list(userid, listObj)
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 
 insert_species_in_list <- function(userid, listObj) {
@@ -51,7 +51,7 @@ insert_species_in_list <- function(userid, listObj) {
 #'   vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""))
 #'   replace_species_in_list(userid, access_token, list_id, speciesObj)
 #'   }
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 replace_species_in_list <- function(userid, access_token, list_id, speciesObj) {
   url <- paste(get_list_server_url(), 'replace_species', sep="")
@@ -81,7 +81,7 @@ replace_species_in_list <- function(userid, access_token, list_id, speciesObj) {
 #'             list_keywords=c("bird","Everglades"))
 #'   update_species_in_list(userid, access_token, list_id, listObj)
 #' }
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 update_species_in_list <- function(userid, access_token, list_id, listObj) {
   url <- paste(get_list_server_url(), 'update_list', sep="")
@@ -112,7 +112,7 @@ update_species_in_list <- function(userid, access_token, list_id, listObj) {
 #'   content = FALSE
 #'   get_species_from_list(userid, access_token, list_id, verbose, content)
 #'   }
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 get_species_from_list <- function(userid, access_token, list_id, verbose=FALSE, content=TRUE) {
   result <- jsonlite::fromJSON(paste(get_list_server_url(), 'get_list?user_id=', userid, '&access_token=', access_token, '&list_id=', list_id, "&verbose=", verbose, "&content=", content, sep=""))
@@ -135,7 +135,7 @@ get_species_from_list <- function(userid, access_token, list_id, verbose=FALSE, 
 #'   list_id = 12
 #'   remove_species_from_list(userid, access_token, list_id)
 #'   }
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 remove_species_from_list <- function(userid, access_token, list_id) {
   result <- jsonlite::fromJSON(paste(get_list_server_url(), 'remove_list?user_id=', userid, '&access_token=', access_token, '&list_id=', list_id, sep=""))

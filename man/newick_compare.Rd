@@ -7,7 +7,7 @@
 newick_compare(trees)
 }
 \arguments{
-\item{trees}{A character vector of two newick trees}
+\item{trees}{A multiphylo object of two newick trees}
 }
 \value{
 A named list with are_same_tree property set to either TRUE or FALSE
@@ -15,6 +15,9 @@ A named list with are_same_tree property set to either TRUE or FALSE
 \description{
 Compare two phylogenetic trees
 }
+\examples{
+are_same <- newick_compare(c(ape::rcoal(5), ape::rcoal(5)))
+}
 \seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
+\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 }
