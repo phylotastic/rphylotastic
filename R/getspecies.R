@@ -3,6 +3,8 @@
 #' @param taxon A taxon to get all species for
 #' @param filters A character vector of strings to exclude
 #' @return A vector of names
+#' @examples
+#' print(taxon_get_species("Vulpes"))
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxon_get_species <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {

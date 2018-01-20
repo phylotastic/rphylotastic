@@ -17,6 +17,9 @@ A vector of names
 \description{
 Get all species from a taxon
 }
+\examples{
+print(taxon_get_species("Vulpes"))
+}
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 }
