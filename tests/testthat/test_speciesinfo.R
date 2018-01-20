@@ -5,7 +5,7 @@ test_that("Get species info works", {
 })
 
 test_that("Get image metadata of species works", {
-  results <- GetImageDataSpecies(c('Myrmecocystus mexicanus'))
+  results <- species_get_image_data(c('Myrmecocystus mexicanus'))
   #results[1,3] is total_images
   expect_lte(results[1,3], 5)
   expect_equal(results[1,1][[1]]$eolMediaURL[[1]], "http://media.eol.org/content/2014/11/22/12/30536_orig.jpg")
