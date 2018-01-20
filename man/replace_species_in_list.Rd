@@ -22,12 +22,16 @@ A list with the old species and new species list
 Replace a list of species
 }
 \examples{
+  # This gives you the syntax, but since the access token expires after one hour,
+  # this particular example will not work.
+  \dontrun{
   userid = "abusalehmdtayeen@gmail.com"
   access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
   list_id = 12
   speciesObj = list( list(family="",scientific_name="Aix sponsa",scientific_name_authorship="",
   vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""))
   replace_species_in_list(userid, access_token, list_id, speciesObj)
+  }
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}

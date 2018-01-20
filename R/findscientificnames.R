@@ -36,7 +36,7 @@ taxa_resolve_names_with_otol <- function(taxa) {
   if(nrow(results$resolvedNames)==0) {
     warning("No names matched")
   } else {
-    final.names <- results$resolvedNames$matched_name
+    final.names <- unlist(lapply(results$resolvedNames$matched_results, "[[", "matched_name"))
     if(length(final.names) < length(taxa)) {
       warning("Fewer names were found than were given; missing taxa were dropped.")
     }

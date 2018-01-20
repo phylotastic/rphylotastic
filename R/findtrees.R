@@ -40,7 +40,7 @@ taxa_get_taxonomic_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/pt/get_tree?taxa=', taxa.string, sep=""))
 
-  tree <- results$tree_newick
+  tree <- results$newick
 
   return(tree)
 }

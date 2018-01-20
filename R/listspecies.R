@@ -41,12 +41,16 @@ insert_species_in_list <- function(userid, listObj) {
 #' @param speciesObj A species object to replace with
 #' @return A list with the old species and new species list
 #' @examples
+#'   # This gives you the syntax, but since the access token expires after one hour,
+#'   # this particular example will not work.
+#'   \dontrun{
 #'   userid = "abusalehmdtayeen@gmail.com"
 #'   access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
 #'   list_id = 12
 #'   speciesObj = list( list(family="",scientific_name="Aix sponsa",scientific_name_authorship="",
 #'   vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""))
 #'   replace_species_in_list(userid, access_token, list_id, speciesObj)
+#'   }
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
 replace_species_in_list <- function(userid, access_token, list_id, speciesObj) {
@@ -67,12 +71,16 @@ replace_species_in_list <- function(userid, access_token, list_id, speciesObj) {
 #' @param listObj A list object to update with
 #' @return A list with modified list metadata
 #' @examples
+#'   # This gives you the syntax, but since the access token expires after one hour,
+#'   # this particular example will not work.
+#'   \dontrun{
 #'   userid = "abusalehmdtayeen@gmail.com"
 #'   access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
 #'   list_id = 12
 #'   listObj = list(list_description="A sublist on the bird species",
 #'             list_keywords=c("bird","Everglades"))
 #'   update_species_in_list(userid, access_token, list_id, listObj)
+#' }
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
 update_species_in_list <- function(userid, access_token, list_id, listObj) {
@@ -94,12 +102,16 @@ update_species_in_list <- function(userid, access_token, list_id, listObj) {
 #' @param content (optional)By default TRUE and shows the species collection of the list
 #' @return An existing list with metadata and content based on parameters
 #' @examples
+#'   # This gives you the syntax, but since the access token expires after one hour,
+#'   # this particular example will not work.
+#'   \dontrun{
 #'   userid = "abusalehmdtayeen@gmail.com"
 #'   access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
 #'   list_id = 12
 #'   verbose = TRUE
 #'   content = FALSE
 #'   get_species_from_list(userid, access_token, list_id, verbose, content)
+#'   }
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
 get_species_from_list <- function(userid, access_token, list_id, verbose=FALSE, content=TRUE) {
@@ -115,10 +127,14 @@ get_species_from_list <- function(userid, access_token, list_id, verbose=FALSE, 
 #' @param list_id An integer id of the list to retrieve
 #' @return A list with the id of the list removed
 #' @examples
+#'   # This gives you the syntax, but since the access token expires after one hour,
+#'   # this particular example will not work.
+#'   \dontrun{
 #'   userid = "abusalehmdtayeen@gmail.com"
 #'   access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
 #'   list_id = 12
 #'   remove_species_from_list(userid, access_token, list_id)
+#'   }
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
 #' @export
 remove_species_from_list <- function(userid, access_token, list_id) {

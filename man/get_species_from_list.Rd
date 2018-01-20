@@ -25,12 +25,16 @@ An existing list with metadata and content based on parameters
 Get existing list/lists of species
 }
 \examples{
+  # This gives you the syntax, but since the access token expires after one hour,
+  # this particular example will not work.
+  \dontrun{
   userid = "abusalehmdtayeen@gmail.com"
   access_token = "ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"
   list_id = 12
   verbose = TRUE
   content = FALSE
   get_species_from_list(userid, access_token, list_id, verbose, content)
+  }
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md}
