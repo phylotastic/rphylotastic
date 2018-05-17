@@ -1,10 +1,10 @@
 ---
 title: "Vignette Title"
-author: "Vignette Author"
+author: "Brian O'Meara"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{rphylotastic usage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,50 +16,22 @@ knitr::opts_chunk$set(
 )
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+`rphylotastic` connects to Phylotastic web services, which themselves wrap and process multiple other services as well as have unique services of their own.
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+# Getting trees
 
-## Vignette Info
+The main use for `rphylotastic` is getting phylogenetic trees. These can come from Open Tree of Life (topology only, many polytomies), Phylomatic (has branch lengths, but only plants), or NCBI taxonomy (even more polytomies than Open Tree's tree). See also the `treebase` and `rotl` packages for getting individual trees, or `datelife` for getting chronograms (a single synthetic one or individual ones).
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r}
+taxa <- c("Crabronidae", "Ophiocordyceps", "Megalyridae",
+          "Formica polyctena", "Tetramorium caespitum",
+          "Pseudomyrmex", "Carebara diversa", "Formicinae")
+phy <- taxa_get_otol_tree(taxa)
+plot(phy)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+# Citing
 
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+The phylotastic manuscript is still being written.
