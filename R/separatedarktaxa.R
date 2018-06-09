@@ -6,7 +6,7 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxon_separate_dark_taxa_using_otol <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment")) {
-  results <- unique(jsonlite::fromJSON(paste(get_base_url(), 'ts/all_species?taxon=', utils::URLencode(taxon), sep=""))$species)
+  results <- unique(jsonlite::fromJSON(paste0(get_base_url(), 'ts/all_species?taxon=', utils::URLencode(taxon)))$species)
   results.dark <- c()
   results.known <- results
   for (i in sequence(length(filters))) {
@@ -48,14 +48,14 @@ taxon_separate_dark_taxa_using_genbank <- function(taxon, filters=c("environment
   search.results <- rentrez::entrez_search("taxonomy", term =paste0(taxon,"[subtree] AND species[Rank] "), use_history=TRUE)
   Sys.sleep(sleep)
   if(verbose) {
-    print(paste("There are", search.results$count, "species for taxon", taxon))
+    message(paste("There are", search.results$count, "species for taxon", taxon))
   }
   if(search.results$count>0) {
   #  search.fetch <- entrez_fetch(db="taxonomy", web_history=search.results$web_history, rettype="xml", parsed=TRUE)
     taxa.returns <- rentrez::entrez_summary(db="taxonomy", web_history=search.results$web_history, version=c("1.0"))
     Sys.sleep(sleep)
     if(verbose) {
-      print(paste("Initially found", length(taxa.returns), "species for taxon", taxon))
+      message(paste("Initially found", length(taxa.returns), "species for taxon", taxon))
     }
     all.taxa.returns <- rentrez::extract_from_esummary(taxa.returns, "ScientificName")
     loop.count <- 1
@@ -65,7 +65,7 @@ taxon_separate_dark_taxa_using_genbank <- function(taxon, filters=c("environment
       loop.count <- loop.count + 1
       all.taxa.returns <- c(all.taxa.returns, rentrez::extract_from_esummary(taxa.returns, "ScientificName"))
       if(verbose) {
-        print(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",length(all.taxa.returns),"species in total, which represents", 100*length(all.taxa.returns) / search.results$count, "percent of all"))
+        message(paste("Found", length(taxa.returns), "more for taxon", taxon, "with",length(all.taxa.returns),"species in total, which represents", 100*length(all.taxa.returns) / search.results$count, "percent of all"))
       }
     }
     results <- unique(all.taxa.returns)

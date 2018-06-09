@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 The main use for `rphylotastic` is getting phylogenetic trees. These can come from Open Tree of Life (topology only, many polytomies), Phylomatic (has branch lengths, but only plants), or NCBI taxonomy (even more polytomies than Open Tree's tree). See also the `treebase` and `rotl` packages for getting individual trees, or `datelife` for getting chronograms (a single synthetic one or individual ones).
 
 ```{r}
+library(rphylotastic)
 taxa <- c("Crabronidae", "Ophiocordyceps", "Megalyridae",
           "Formica polyctena", "Tetramorium caespitum",
           "Pseudomyrmex", "Carebara diversa", "Formicinae")

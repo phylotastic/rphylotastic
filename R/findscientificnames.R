@@ -9,7 +9,7 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 url_get_scientific_names <- function(URL, search_engine=0) {
-  results <- jsonlite::fromJSON(paste(get_base_url(), 'fn/names_url?url=', URL, '&engine=', search_engine, sep=""))
+  results <- jsonlite::fromJSON(paste0(get_base_url(), 'fn/names_url?url=', URL, '&engine=', search_engine))
   return(results$scientificNames)
 }
 
@@ -27,7 +27,7 @@ url_get_scientific_names <- function(URL, search_engine=0) {
 #' @export
 text_get_scientific_names <- function(text, search_engine=0) {
   #results <- jsonlite::fromJSON(utils::URLencode(paste(get_base_url(), 'fn/names_url?url=', text, '&engine=', search_engine, sep="")))
-  results <- jsonlite::fromJSON((paste(get_base_url(), 'fn/names_text?text=', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '&engine=', search_engine, sep="")))
+  results <- jsonlite::fromJSON((paste0(get_base_url(), 'fn/names_text?text=', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '&engine=', search_engine)))
   return(results$scientificNames)
 }
 
@@ -43,7 +43,7 @@ text_get_scientific_names <- function(text, search_engine=0) {
 #' @export
 taxa_resolve_names_with_otol <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(get_base_url(), 'tnrs/ot/resolve?names=', taxa.string, sep=""))
+  results <- jsonlite::fromJSON(paste0(get_base_url(), 'tnrs/ot/resolve?names=', taxa.string))
   final.names <- c()
   if(nrow(results$resolvedNames)==0) {
     warning("No names matched")

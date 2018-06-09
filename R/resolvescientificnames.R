@@ -6,7 +6,7 @@
 #' @export
 taxa_resolve_names_with_gnr <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(get_base_url(), 'tnrs/gnr/resolve?names=', taxa.string, sep=""))
+  results <- jsonlite::fromJSON(paste0(get_base_url(), 'tnrs/gnr/resolve?names=', taxa.string))
   final.names <- c()
   final.names <- unlist(lapply(results$resolvedNames$matched_results, "[[", "matched_name"))
 

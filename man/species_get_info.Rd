@@ -2,7 +2,7 @@
 % Please edit documentation in R/getspeciesinfo.R
 \name{species_get_info}
 \alias{species_get_info}
-\title{Get information of a list of species}
+\title{Get information from Encyclopedia of Life of a list of species}
 \usage{
 species_get_info(species)
 }
@@ -10,10 +10,10 @@ species_get_info(species)
 \item{species}{A vector of names}
 }
 \value{
-A data frame of info about species
+A data frame of species information from Encyclopedia of Life. Type of information available varies among species.
 }
 \description{
-Get information of a list of species
+Get information from Encyclopedia of Life of a list of species
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or \url{https://eol.org/api/}

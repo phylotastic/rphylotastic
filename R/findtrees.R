@@ -12,8 +12,8 @@
 #' @export
 taxa_get_otol_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string, sep=""))$newick
-  tmp.file <- paste(tempdir(), "/tmp.tre", sep="")
+  results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string))$newick
+  tmp.file <- paste0(tempdir(), "/tmp.tre")
   cat(results, file=tmp.file)
   tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
   return(tree)
@@ -32,7 +32,7 @@ taxa_get_otol_tree <- function(taxa) {
 #' @export
 taxa_get_phylomatic_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string, sep=""))
+  results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string))
 
   tree <- ape::read.tree(text=results$newick)
 
@@ -54,7 +54,7 @@ taxa_get_phylomatic_tree <- function(taxa) {
 #' @export
 taxa_get_taxonomic_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste(get_base_url(), 'gt/pt/get_tree?taxa=', taxa.string, sep=""))
+  results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pt/get_tree?taxa=', taxa.string))
 
   tree <- ape::read.tree(text=results$newick)
 

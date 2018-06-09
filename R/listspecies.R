@@ -24,7 +24,7 @@
 
 insert_species_in_list <- function(userid, listObj) {
   #body <- list(user_id = "abusalehmdtayeen@gmail.com", list = list(list_extra_info="", list_description="A sublist on the bird species added", list_keywords=c("bird", "endangered species", "Everglades"),list_curator="HD Laughinghouse", list_origin="webapp", list_curation_date="02-24-2016", list_source="des", list_focal_clade="Aves", list_title="Bird Species List", list_author=c("Bass", "O. & Cunningham", "R."),  list_date_published="01-01-2017", is_list_public=TRUE, list_species=list(list(family="",scientific_name="Aix sponsa",scientific_name_authorship="", vernacular_name="Wood Duck",phylum="",nomenclature_code="ICZN",order="Anseriformes",class=""), list(family="",scientific_name="Anas strepera",scientific_name_authorship="", vernacular_name="Gadwall",phylum="",nomenclature_code="ICZN",order="Anseriformes",class="") )))
-  url <- paste(get_list_server_url(), 'insert_list', sep="")
+  url <- paste0(get_list_server_url(), 'insert_list')
   body <- list(user_id = userid, list = listObj)
   response <- httr::POST(url, body = body, encode = "json")
   result <- httr::content(response,"parsed")
@@ -54,7 +54,7 @@ insert_species_in_list <- function(userid, listObj) {
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 replace_species_in_list <- function(userid, access_token, list_id, speciesObj) {
-  url <- paste(get_list_server_url(), 'replace_species', sep="")
+  url <- paste0(get_list_server_url(), 'replace_species')
   body <- list(user_id = userid, access_token = access_token, list_id = list_id, species = speciesObj)
   response <- httr::POST(url, body = body, encode = "json")
   result <- httr::content(response,"parsed")
@@ -84,7 +84,7 @@ replace_species_in_list <- function(userid, access_token, list_id, speciesObj) {
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 update_species_in_list <- function(userid, access_token, list_id, listObj) {
-  url <- paste(get_list_server_url(), 'update_list', sep="")
+  url <- paste0(get_list_server_url(), 'update_list')
   body <- list(user_id = userid, access_token = access_token, list_id = list_id, list = listObj)
   response <- httr::POST(url, body = body, encode = "json")
   result <- httr::content(response,"parsed")
@@ -115,7 +115,7 @@ update_species_in_list <- function(userid, access_token, list_id, listObj) {
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 get_species_from_list <- function(userid, access_token, list_id, verbose=FALSE, content=TRUE) {
-  result <- jsonlite::fromJSON(paste(get_list_server_url(), 'get_list?user_id=', userid, '&access_token=', access_token, '&list_id=', list_id, "&verbose=", verbose, "&content=", content, sep=""))
+  result <- jsonlite::fromJSON(paste0(get_list_server_url(), 'get_list?user_id=', userid, '&access_token=', access_token, '&list_id=', list_id, "&verbose=", verbose, "&content=", content))
   return(result)
 }
 
@@ -138,6 +138,6 @@ get_species_from_list <- function(userid, access_token, list_id, verbose=FALSE, 
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 remove_species_from_list <- function(userid, access_token, list_id) {
-  result <- jsonlite::fromJSON(paste(get_list_server_url(), 'remove_list?user_id=', userid, '&access_token=', access_token, '&list_id=', list_id, sep=""))
+  result <- jsonlite::fromJSON(paste0(get_list_server_url(), 'remove_list?user_id=', userid, '&access_token=', access_token, '&list_id=', list_id))
   return(result)
 }
