@@ -40,23 +40,23 @@ taxa_get_phylomatic_tree <- function(taxa) {
 }
 
 
-#' Get taxonomic tree from the NCBI
-#'
-#' @param taxa The vector of names, already resolved
-#' @return A phylo object
-#' @examples
-#' taxa <- c("Setophaga striata", "Setophaga magnolia",
-#'      "Setophaga angelae", "Setophaga plumbea",
-#'      "Setophaga virens")
-#' phy <- taxa_get_taxonomic_tree(taxa)
-#' plot(phy)
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phyloT \url{http://phylot.biobyte.de/}
-#' @export
-taxa_get_taxonomic_tree <- function(taxa) {
-  taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pt/get_tree?taxa=', taxa.string))
-
-  tree <- ape::read.tree(text=results$newick)
-
-  return(tree)
-}
+# #' Get taxonomic tree from the NCBI
+# #'
+# #' @param taxa The vector of names, already resolved
+# #' @return A phylo object
+# #' @examples
+# #' taxa <- c("Setophaga striata", "Setophaga magnolia",
+# #'      "Setophaga angelae", "Setophaga plumbea",
+# #'      "Setophaga virens")
+# #' phy <- taxa_get_taxonomic_tree(taxa)
+# #' plot(phy)
+# #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phyloT \url{http://phylot.biobyte.de/}
+# #' @export
+# taxa_get_taxonomic_tree <- function(taxa) {
+#   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
+#   results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pt/get_tree?taxa=', taxa.string))
+#
+#   tree <- ape::read.tree(text=results$newick)
+#
+#   return(tree)
+# }

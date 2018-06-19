@@ -1,6 +1,6 @@
 Package: rphylotastic
 Title: Interface to 'Phylotastic' Web Services
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: c(
     person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre")),
     person("Abu Saleh", "Md Tayeen", email = "abusalehmdtayeen@gmail.com", role = "aut"))

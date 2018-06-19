@@ -12,8 +12,8 @@ test_that("Loading a tree from Phylomatic", {
 })
 
 
-test_that("Loading a tree from NCBI taxonomy", {
-  taxa <- c("Setophaga striata","Setophaga magnolia","Setophaga angelae","Setophaga plumbea","Setophaga virens")
-  tree <- taxa_get_taxonomic_tree(taxa)
-  expect_equal("phylo", class(tree))
-})
+# test_that("Loading a tree from NCBI taxonomy", {
+#   taxa <- c("Setophaga striata","Setophaga magnolia","Setophaga angelae","Setophaga plumbea","Setophaga virens")
+#   tree <- taxa_get_taxonomic_tree(taxa)
+#   expect_equal("phylo", class(tree))
+# })
