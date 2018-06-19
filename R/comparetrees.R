@@ -1,18 +1,27 @@
 #' Compare two phylogenetic trees
 #'
-#' @param trees A multiphylo object of two newick trees
+#' @param phylo1 A multiphylo object with two trees to be compared between them or a single phylo object to be compared to phylo2
+#' @param phylo2 A phylo object to be compared to phylo1
 #' @return A named list with are_same_tree property set to either TRUE or FALSE
 #' @examples
-#' are_same <- newick_compare(c(ape::rcoal(5), ape::rcoal(5)))
+#' are_same <- phylo_compare(c(ape::rcoal(5), ape::rcoal(5)))
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 
-newick_compare <- function(trees) {
+phylo_compare <- function(phylo1, phylo2 = NULL) {
   url <- "http://phylo.cs.nmsu.edu:5006/phylotastic_ws/compare_trees"
+  if(is.list(phylo1) & length(phylo1) == 2){
+    trees <- phylo1
+  } else {
+    if(inherits(phylo1, "phylo") & inherits(phylo2, "phylo")){
+      trees <- list(phylo1, phylo2)
+      # class(trees) <- "multiPhylo"  # this is unnecessary
+    }
+  }
   if(length(trees)!=2) {
     stop("Can only have two trees as input")
   }
-  body <- list(tree1_nwk = ape::write.tree(trees[1]), tree2_nwk = ape::write.tree(trees[2]))
+  body <- list(tree1_nwk = ape::write.tree(trees[[1]]), tree2_nwk = ape::write.tree(trees[[2]]))
   response <- httr::POST(url, body = body, encode = "json")
   result <- httr::content(response,"parsed")
 

@@ -10,10 +10,13 @@ taxa_resolve_names_with_gnr(taxa)
 \item{taxa}{The vector of names}
 }
 \value{
-A vector of corrected names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
+A vector of correct names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
 }
 \description{
 Resolve Scientific Names with GNR TNRS
+}
+\details{
+Mispelled or incorrect names will be dropped.
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life, or the taxize package for name resolution in general.

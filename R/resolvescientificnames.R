@@ -1,8 +1,9 @@
 #' Resolve Scientific Names with GNR TNRS
 #'
 #' @param taxa The vector of names
-#' @return A vector of corrected names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
+#' @return A vector of correct names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life, or the taxize package for name resolution in general.
+#' @details Mispelled or incorrect names will be dropped.
 #' @export
 taxa_resolve_names_with_gnr <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))

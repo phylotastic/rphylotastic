@@ -4,7 +4,7 @@ test_that("Get species works", {
 })
 
 test_that("Get country species works", {
-  results <- taxon_get_species_and_country("Felidae", "Nepal")
+  results <- taxon_get_species_from_country("Felidae", "Nepal")
   expect_gte(length(results), 10)
   expect_equal(grepl("Prionailurus viverrinus", results), c(FALSE, FALSE, TRUE,FALSE, FALSE,FALSE, FALSE,FALSE, FALSE,FALSE, FALSE))
 })
