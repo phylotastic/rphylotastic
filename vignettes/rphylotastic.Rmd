@@ -27,28 +27,34 @@ library(rphylotastic)
 taxon_names <- c("Crabronidae", "Ophiocordyceps", "Megalyridae",
           "Formica polyctena", "Tetramorium caespitum",
           "Pseudomyrmex", "Carebara diversa", "Formicinae")
+taxon_names <- c("Asteraceae", "Cephalotus", "Byblis",
+          "Drosera", "Sarracenia",
+          "Utricularia", "Catopsis berteroniana", "Roridulaceae")
+phy1 <- taxa_get_otol_tree(taxa = taxon_names)
+phy1
+plot(phy1)
+# phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)  # this service is not working for now (2018.06.21)
 
-# phy1 <- taxa_get_otol_tree(taxa = taxon_names)
-#
-# phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)
-#
-# phy3 <- taxa_get_taxonomic_tree(taxa = taxon_names)
+# phy3 <- taxa_get_taxonomic_tree(taxa = taxon_names) # this service is not working either (2018.06.21); function commented out
 
-source_tree <- c("Open Tree of Life", "Phylomatic", "taxonomic tree")
+source_tree <- c("Open Tree of Life")
+# source_tree <- c("Open Tree of Life", "Phylomatic", "NCBI taxonomy")
+
+trees <- c(phy1)
+# trees <- c(phy1, phy2, phy3)
+
 library(ape)
-# par(xpd = FALSE, mfrow = c(1, 3), mai = c(0.1, 0.1, 1, 0.1), oma = c(0, 0, 3, 0))
-# for (i in c(phy1, phy2, phy3)){
-# for (i in 1:3){
-#   plot(i, cex = 0.5, label.offset = 0.1)
-#   mtext(paste("from", source_tree[i]), cex = 2)
-# }
-# mtext("Some ant species trees", outer = T, side = 3, cex = 3)
+par(xpd = FALSE, mfrow = c(1, length(trees)), mai = c(0.1, 0.1, 1, 0.1), oma = c(0, 0, 3, 0))
+for (i in 1:length(trees)){
+  plot(trees[[i]], cex = 0.5, label.offset = 0.1)
+  mtext(paste("from", source_tree[i]), cex = 2)
+}
+mtext("Carnivorous plant tree", outer = T, side = 3, cex = 3)
 
 ```
 With `rphylotastic`, you can also check if trees are equal
 ```{r}
-# phylo_compare(phy1, phy2)
-# phylo_compare(phy2, phy3)
+phylo_compare(phy1, phy1)
 ```
 
 # Getting scientific names
@@ -121,6 +127,7 @@ Or other miscelanous info:
 some_info <- species_get_info(species = c("Homo sapiens", "Felis catus"))
 ```
 
+# Managing your lists of species
 
 # Citing
 
