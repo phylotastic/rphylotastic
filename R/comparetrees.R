@@ -19,7 +19,7 @@ phylo_compare <- function(phylo1, phylo2 = NULL) {
     }
   }
   if(length(trees)!=2) {
-    stop("Can only have two trees as input")
+    stop("Must have two trees as input")
   }
   body <- list(tree1_nwk = ape::write.tree(trees[[1]]), tree2_nwk = ape::write.tree(trees[[2]]))
   response <- httr::POST(url, body = body, encode = "json")

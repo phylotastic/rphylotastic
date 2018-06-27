@@ -16,7 +16,7 @@ A vector of corrected names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
 Resolve Scientific Names with Open Tree TNRS
 }
 \examples{
-my.species.raw <- c("Formica polyctena", "Formica exsectoides", "Formica pecefica")
+my.species.raw <- c("Formica polyctena", "Formica exsectoides", "Farmica pacifica")
 my.species.corrected <- taxa_resolve_names_with_otol(my.species.raw)
 print(my.species.corrected)
 }

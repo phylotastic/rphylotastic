@@ -10,6 +10,7 @@ Description: This wraps the 'Phylotastic' services APIs described on Web Service
 URL: https://github.com/phylotastic/rphylotastic
 Depends: R (>= 3.3.0)
 Imports:
+    brranching,
     httr,
     jsonlite,
     ape,

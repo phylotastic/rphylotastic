@@ -25,7 +25,7 @@ test_that("Separating dark species works for OToL", {
 
 
 test_that("Separating dark species works for NCBI", {
-  results <- taxon_separate_dark_taxa_using_otol("Poa")
+  results <- taxon_separate_dark_taxa_using_genbank("Poa")
   expect_gte(length(results$dark), 5)
   expect_gte(length(results$known), 5)
   expect_gte(length(results$fraction.dark), 0)

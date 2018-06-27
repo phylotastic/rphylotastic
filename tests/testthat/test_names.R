@@ -21,4 +21,5 @@ test_that("Resolving names with OToL works", {
   taxa <- c("Setophaga striata", "Setophaga megnolia", "Setophaga angilae", "Setophaga plumbea", "Setophaga virens")
   expect_warning(taxa.new <- taxa_resolve_names_with_otol(taxa))
   expect_gte(length(taxa.new), 3)
+  expect_warning(taxa.new <- taxa_resolve_names_with_otol(letters[1:3]))
 })

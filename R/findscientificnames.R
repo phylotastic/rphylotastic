@@ -36,7 +36,7 @@ text_get_scientific_names <- function(text, search_engine=0) {
 #' @param taxa The vector of names
 #' @return A vector of corrected names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
 #' @examples
-#' my.species.raw <- c("Formica polyctena", "Formica exsectoides", "Formica pecefica")
+#' my.species.raw <- c("Formica polyctena", "Formica exsectoides", "Farmica pacifica")
 #' my.species.corrected <- taxa_resolve_names_with_otol(my.species.raw)
 #' print(my.species.corrected)
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life, or the taxize package for name resolution in general.
@@ -45,9 +45,10 @@ taxa_resolve_names_with_otol <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'tnrs/ot/resolve?names=', taxa.string))
   final.names <- c()
-  if(nrow(results$resolvedNames)==0) {
-    warning("No names matched")
-  } else {
+  message(results$message)
+  if(length(results$resolvedNames)==0) {  # if no names can be resolved we get an empty list
+    warning("Result is empty.")
+  } else {  # if at least one taxon is resolved, we get a data.frame
     final.names <- unlist(lapply(results$resolvedNames$matched_results, "[[", "matched_name"))
     if(length(final.names) < length(taxa)) {
       warning("Fewer names were found than were given; missing taxa were dropped.")
