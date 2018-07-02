@@ -25,7 +25,7 @@ The main use for `rphylotastic` is getting phylogenetic trees for a set of taxa 
 If we would like to know about north american endemic carnivorous plants such as the venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and the cobra lily (_Darlingtonia californica_) in relation to other plants with similar behaviour such as the popular _Drosera_ sundues, _Pinguicula_ butterworts and the aquatic carnivorous _Utricularia_ bladderworts, which have a wider range of distribution:
 
 ```{r, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
-devtools::install_github("phylotastic/rphylotastic/")  # temporary, until new version is on cran
+devtools::install_github("phylotastic/rphylotastic")  # temporary, until new version is on cran
 library(rphylotastic)
 
 taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
