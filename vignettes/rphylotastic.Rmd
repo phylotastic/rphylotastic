@@ -28,14 +28,14 @@ install.packages("rphylotastic")
 
 Or development version:
 
-```{r devtools, include=TRUE, eval=TRUE}
+```{r devtools, include=TRUE, eval=FALSE}
 library(devtools)
 devtools::install_github("phylotastic/rphylotastic")
 ```
 
 Then load the package:
 
-```{r load, include=TRUE}
+```{r load, include=FALSE}
 library(rphylotastic)
 ```
 
