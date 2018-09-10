@@ -22,12 +22,14 @@ knitr::opts_chunk$set(
 
 The main use for `rphylotastic` is getting phylogenetic trees for a set of taxa of interest. Trees can come from Open Tree of Life (topology only, many polytomies), Phylomatic (has branch lengths, but only plants and mammals), or NCBI taxonomy (even more polytomies than Open Tree's tree). See also the `treebase` and `rotl` packages for getting individual trees, or `datelife` for getting chronograms (a single synthetic one or individual ones).
 
-If we would like to know about north american endemic carnivorous plants such as the venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and the cobra lily (_Darlingtonia californica_) in relation to other plants with similar behaviour such as the popular _Drosera_ sundues, _Pinguicula_ butterworts and the aquatic carnivorous _Utricularia_ bladderworts, which have a wider range of distribution:
+Would you like to know about north american endemic carnivorous plants and their relationship to other plants with the same behaviour?
+The venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and the cobra lily (_Darlingtonia californica_) can only be found in North America. The popular _Drosera_ sundues, _Pinguicula_ butterworts and the aquatic carnivorous _Utricularia_ bladderworts, have a wider range of distribution. What are their phylogenetic relationships?
 
 ```{r, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
 # library(rphylotastic)
 devtools::load_all("~/Desktop/rphylotastic/")  # temporary, until new version is on cran
 
+# http://floranorthamerica.org/files/imported/Outreach/FNAfs_carnivory.pdf
 taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
           "Drosera", "Pinguicula", "Utricularia", "Roridulaceae")
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
@@ -48,7 +50,7 @@ for (i in 1:length(trees)){
   plot(ladderize(trees[[i]]), cex = 0.5, label.offset = 0.3)
   mtext(paste("from", source_tree[i]), cex = 1, side = 3, line = 1)
 }
-mtext("Carnivorous plant tree", outer = T, side = 3, cex = 1.5, line =0)
+mtext("Carnivorous plant tree", outer = T, side = 3, cex = 1.5, line = 0)
 
 ```
 
@@ -110,13 +112,13 @@ length(spp_with_genome)
 head(spp_with_genome)
 ```
 # Checking your scientific names
-You may already have a list of names, but you want to check if they all are good scientific names. `rphylotastic` calls Global Name Resolver and the Taxonomic Name Resolution Service to verify names. This function will keep correct names only.
+You may already have a list of names, but you want to check if they all are good scientific names. `rphylotastic` calls Global Name Resolver (GNR) and the Taxonomic Name Resolution Service (TNRS) to verify names. This function will keep correct names only.
 
 ```{r}
 species <- c("Delphinus delphus", "Homo sepiens")
 taxa_resolve_names_with_otol(taxa = species)
 ```
-Alternatively, you can use services from `rotl` and `taxize` packages to clean your names:
+Alternatively, you can use one of the many services from `rotl` and `taxize` packages to clean your names:
 
 ```{r}
 library(taxize)

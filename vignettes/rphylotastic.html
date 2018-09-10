@@ -12,7 +12,7 @@
 
 <meta name="author" content="Brian O’Meara and Luna L. Sánchez-Reyes" />
 
-<meta name="date" content="2018-06-27" />
+<meta name="date" content="2018-06-29" />
 
 <title>rphylotastic package</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">rphylotastic package</h1>
 <h4 class="author"><em>Brian O’Meara and Luna L. Sánchez-Reyes</em></h4>
-<h4 class="date"><em>2018-06-27</em></h4>
+<h4 class="date"><em>2018-06-29</em></h4>
 
 
 
@@ -78,11 +78,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="getting-trees" class="section level1">
 <h1>Getting trees</h1>
 <p>The main use for <code>rphylotastic</code> is getting phylogenetic trees for a set of taxa of interest. Trees can come from Open Tree of Life (topology only, many polytomies), Phylomatic (has branch lengths, but only plants and mammals), or NCBI taxonomy (even more polytomies than Open Tree’s tree). See also the <code>treebase</code> and <code>rotl</code> packages for getting individual trees, or <code>datelife</code> for getting chronograms (a single synthetic one or individual ones).</p>
-<p>If we would like to know about north american endemic carnivorous plants such as the venus flytrap (<em>Dionaea muscipula</em>), pitcher plants (<em>Sarracenia</em> genus) and the cobra lily (<em>Darlingtonia californica</em>) in relation to other plants with similar behaviour such as the popular <em>Drosera</em> sundues, <em>Pinguicula</em> butterworts and the aquatic carnivorous <em>Utricularia</em> bladderworts, which have a wider range of distribution:</p>
+<p>Would you like to know about north american endemic carnivorous plants and their relationship to other plants with the same behaviour? The venus flytrap (<em>Dionaea muscipula</em>), pitcher plants (<em>Sarracenia</em> genus) and the cobra lily (<em>Darlingtonia californica</em>) can only be found in North America. The popular <em>Drosera</em> sundues, <em>Pinguicula</em> butterworts and the aquatic carnivorous <em>Utricularia</em> bladderworts, have a wider range of distribution. What are their phylogenetic relationships?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library(rphylotastic)</span>
 devtools::<span class="kw">load_all</span>(<span class="st">&quot;~/Desktop/rphylotastic/&quot;</span>)  <span class="co"># temporary, until new version is on cran</span>
 <span class="co"># &gt; Loading rphylotastic</span>
 
+<span class="co"># http://floranorthamerica.org/files/imported/Outreach/FNAfs_carnivory.pdf</span>
 taxon_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Dionaea muscipula&quot;</span>, <span class="st">&quot;Sarracenia&quot;</span>, <span class="st">&quot;Darlingtonia californica&quot;</span>,
           <span class="st">&quot;Drosera&quot;</span>, <span class="st">&quot;Pinguicula&quot;</span>, <span class="st">&quot;Utricularia&quot;</span>, <span class="st">&quot;Roridulaceae&quot;</span>)
 phy1 &lt;-<span class="st"> </span><span class="kw">taxa_get_otol_tree</span>(<span class="dt">taxa =</span> taxon_names)
@@ -134,7 +135,7 @@ for (i in <span class="dv">1</span>:<span class="kw">length</span>(trees)){
 <p>One very cool feature of <code>rphylotastic</code> is the ability to scrape scientific names from documents or web pages. For example, you can get all latin names from a wikipedia article on primates:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sci_names &lt;-<span class="st"> </span><span class="kw">url_get_scientific_names</span>(<span class="dt">URL =</span> <span class="st">&quot;https://en.wikipedia.org/wiki/Primate&quot;</span>)
 <span class="kw">length</span>(sci_names)
-<span class="co"># &gt; [1] 168</span>
+<span class="co"># &gt; [1] 169</span>
 <span class="kw">head</span>(sci_names)
 <span class="co"># &gt; [1] &quot;Daubentoniidae&quot; &quot;Tarsiidae&quot;      &quot;Lemuridae&quot;      &quot;Lorisidae&quot;     </span>
 <span class="co"># &gt; [5] &quot;Cebidae&quot;        &quot;Callitrichidae&quot;</span></code></pre></div>
@@ -188,14 +189,14 @@ spp_with_genome &lt;-<span class="st"> </span><span class="kw">taxon_get_species
 </div>
 <div id="checking-your-scientific-names" class="section level1">
 <h1>Checking your scientific names</h1>
-<p>You may already have a list of names, but you want to check if they all are good scientific names. <code>rphylotastic</code> calls Global Name Resolver and the Taxonomic Name Resolution Service to verify names. This function will keep correct names only.</p>
+<p>You may already have a list of names, but you want to check if they all are good scientific names. <code>rphylotastic</code> calls Global Name Resolver (GNR) and the Taxonomic Name Resolution Service (TNRS) to verify names. This function will keep correct names only.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">species &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Delphinus delphus&quot;</span>, <span class="st">&quot;Homo sepiens&quot;</span>)
 <span class="kw">taxa_resolve_names_with_otol</span>(<span class="dt">taxa =</span> species)
 <span class="co"># &gt; Success</span>
 <span class="co"># &gt; Warning in taxa_resolve_names_with_otol(taxa = species): Fewer names were</span>
 <span class="co"># &gt; found than were given; missing taxa were dropped.</span>
 <span class="co"># &gt; [1] &quot;Delphinus delphus&quot;</span></code></pre></div>
-<p>Alternatively, you can use services from <code>rotl</code> and <code>taxize</code> packages to clean your names:</p>
+<p>Alternatively, you can use one of the many services from <code>rotl</code> and <code>taxize</code> packages to clean your names:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(taxize)
 species_gnr &lt;-<span class="st"> </span><span class="kw">gnr_resolve</span>(<span class="dt">names =</span> species)
 <span class="kw">nrow</span>(species_gnr)
@@ -213,7 +214,7 @@ species_gnr[!<span class="kw">duplicated</span>(species_gnr$matched_name),<span 
 <span class="co"># &gt; 34       Homo sepiens     Homo sapiens ssp. 'Denisova'</span>
 
 <span class="kw">tnrs</span>(<span class="dt">query =</span> species)
-<span class="co"># &gt; Calling http://taxosaurus.org/retrieve/8f36a60f7fb37fdec70f1cae73186a95</span>
+<span class="co"># &gt; Calling http://taxosaurus.org/retrieve/6c44efb24b3610310b103a81e4e3dd23</span>
 <span class="co"># &gt;       submittedname acceptedname    sourceid score  matchedname authority</span>
 <span class="co"># &gt; 1 Delphinus delphus   Delphinium iPlant_TNRS  0.48   Delphinium        L.</span>
 <span class="co"># &gt; 2      Homo sepiens              iPlant_TNRS  0.53 Hoya serpens          </span>
