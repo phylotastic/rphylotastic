@@ -31,6 +31,21 @@ text_get_scientific_names <- function(text, search_engine=0) {
   return(results$scientificNames)
 }
 
+#' Function to pull scientific names from file
+#'
+#' @param file_name The file to extract names from
+#' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
+#' @return A vector of scientific names
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
+#' @export
+file_get_scientific_names <- function(file_name, search_engine=0) {
+
+  # results <- jsonlite::fromJSON(httr::POST(paste0(get_base_url(), 'fn/names_file'), body=list(inputFile=httr::upload_file(file_name), engine=search_engine)))  #not working -- returns 200 and valid json, but no names
+  results <- jsonlite::fromJSON(system(paste0("curl -X POST http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/names_file -F 'inputFile=@", file_name, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
+
+  return(results$scientificNames)
+}
+
 #' Resolve Scientific Names with Open Tree TNRS
 #'
 #' @param taxa The vector of names

@@ -18,6 +18,27 @@ knitr::opts_chunk$set(
 
 `rphylotastic` connects to Phylotastic web services, which themselves wrap and process multiple other services as well as have unique services of their own.
 
+You first need to install and load the package:
+
+CRAN version:
+
+```{r cran, include=TRUE, eval=FALSE}
+install.packages("rphylotastic")
+```
+
+Or development version:
+
+```{r devtools, include=TRUE, eval=FALSE}
+library(devtools)
+devtools::install_github("phylotastic/rphylotastic")
+```
+
+Then load the package:
+
+```{r load, include=FALSE}
+library(rphylotastic)
+```
+
 # Getting trees
 
 The main use for `rphylotastic` is getting phylogenetic trees for a set of taxa of interest. Trees can come from Open Tree of Life (topology only, many polytomies), Phylomatic (has branch lengths, but only plants and mammals), or NCBI taxonomy (even more polytomies than Open Tree's tree). See also the `treebase` and `rotl` packages for getting individual trees, or `datelife` for getting chronograms (a single synthetic one or individual ones).
@@ -26,8 +47,6 @@ Would you like to know about north american endemic carnivorous plants and their
 The venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and the cobra lily (_Darlingtonia californica_) can only be found in North America. The popular _Drosera_ sundues, _Pinguicula_ butterworts and the aquatic carnivorous _Utricularia_ bladderworts, have a wider range of distribution. What are their phylogenetic relationships?
 
 ```{r, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
-# library(rphylotastic)
-devtools::load_all("~/Desktop/rphylotastic/")  # temporary, until new version is on cran
 
 # http://floranorthamerica.org/files/imported/Outreach/FNAfs_carnivory.pdf
 taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
