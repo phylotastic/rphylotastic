@@ -1,5 +1,5 @@
 Package: rphylotastic
-Title: Interface to 'Phylotastic' Web Services
+Title: An R interface to 'Phylotastic' Web Services
 Version: 0.0.5
 Authors@R: c(
     person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre")),
@@ -27,5 +27,5 @@ Suggests:
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 VignetteBuilder: knitr

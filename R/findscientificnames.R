@@ -33,7 +33,7 @@ text_get_scientific_names <- function(text, search_engine=0) {
 
 #' Function to pull scientific names from file
 #'
-#' @param file_name The file to extract names from
+#' @param file_name The file path and name to extract names from
 #' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
 #' @return A vector of scientific names
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}

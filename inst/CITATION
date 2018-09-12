@@ -1,0 +1,31 @@
+citHeader("To cite package 'rphylotastic' in publications, please use:")
+
+ # year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+ year <- format(Sys.time(), "%Y")
+ vers <- paste("R package version", meta$Version)
+
+ citEntry(entry="Manual",
+		  title = "rphylotastic: An R interface to 'Phylotastic' Web Services",
+		  author = personList(person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre")),
+          person("Abu Saleh", "Md Tayeen", email = "abusalehmdtayeen@gmail.com", role = "aut"),
+          person("Luna L.", "Sanchez Reyes", email = "sanchez.reyes.luna@gmail.com", role = "aut")),
+		  year = year,
+		  note = vers,
+		  textVersion =
+		  paste("Brian O'Meara, Abu Saleh Md Tayeen, Luna L. Sanchez-Reyes (",
+				year,
+				"). rphylotastic: An R interface to 'Phylotastic' Web Services.",
+				vers, ".", sep=""))
+
+
+# citEntry(entry = "Article",
+#          author = "Brandon LeBeau",
+#          title = "{pdfsearch}: Search Tools for PDF Files",
+#          journal = "Journal of Open Source Software",
+#          year = "2018",
+#          volume = "3",
+#          issue = "27",
+#          pages = "668",
+#          doi = "10.21105/joss.00668",
+#          textVersion = "Brandon LeBeau, (2018). pdfsearch: Search Tools for PDF Files. Journal of Open Source Software, 3(27), 668, https://doi.org/10.21105/joss.00668"
+# )

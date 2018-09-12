@@ -23,3 +23,8 @@ test_that("Resolving names with OToL works", {
   expect_gte(length(taxa.new), 3)
   expect_warning(taxa.new <- taxa_resolve_names_with_otol(letters[1:3]))
 })
+
+test_that("Getting names from txt and pdf files works correctly", {
+  names_txt <- file_get_scientific_names(file_name = "subset2.txt")
+  names_pdf <- file_get_scientific_names(file_name = "Appendix_D_Table_D-1.pdf")
+})

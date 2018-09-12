@@ -1,10 +1,10 @@
 ---
-title: "rphylotastic package"
+title: "rphylotastic"
 author: "Brian O'Meara and Luna L. Sánchez-Reyes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{rphylotastic usage}
+  %\VignetteIndexEntry{rphylotastic}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -51,7 +51,8 @@ The venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and
 # http://floranorthamerica.org/files/imported/Outreach/FNAfs_carnivory.pdf
 taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
           "Drosera", "Pinguicula", "Utricularia", "Roridulaceae")
-phy1 <- taxa_get_otol_tree(taxa = taxon_names)
+# phy1 <- taxa_get_otol_tree(taxa = taxon_names)
+phy1 <- taxa_get_phylomatic_tree(taxa = c("elephas maximus", "felis silvestris", "homo sapiens"))
 
 phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)
 
@@ -84,15 +85,22 @@ phylo_compare(phy1, phy2)
 One very cool feature of `rphylotastic` is the ability to scrape scientific names from documents or web pages. For example, you can get all latin names from a wikipedia article on primates:
 
 ```{r}
-sci_names <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Primate")
-length(sci_names)
-head(sci_names)
+names_url <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Primate")
+length(names_url)
+head(names_url)
 ```
 
-You can also extract all scientific names from a text you are studying:
+You can also extract all scientific names from a text you are studying, that you can insert as a character vector into R if it is short:
 ```{r}
-sci_names <- text_get_scientific_names(text = "The domestic cat (Felis silvestris catus or Felis catus) is a small, typically furry, carnivorous mammal.")
-head(sci_names)
+names_text <- text_get_scientific_names(text = "The domestic cat (Felis silvestris catus or Felis catus) is a small, typically furry, carnivorous mammal.")
+head(names_text)
+```
+
+or get from a file in your compputer if i=the text is too long:
+```{r, eval = FALSE}
+names_txt <- file_get_scientific_names(file_name = "path/to/your/file/species.txt")
+names_pdf <- file_get_scientific_names(file_name = "path/to/your/file/species.pdf")
+head(names_txt)
 ```
 
 

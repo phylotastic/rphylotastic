@@ -7,7 +7,7 @@
 file_get_scientific_names(file_name, search_engine = 0)
 }
 \arguments{
-\item{file_name}{The file to extract names from}
+\item{file_name}{The file path and name to extract names from}
 
 \item{search_engine}{1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both}
 }

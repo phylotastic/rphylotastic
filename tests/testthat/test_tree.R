@@ -9,6 +9,11 @@ test_that("Loading a tree from Phylomatic", {
   taxa <- c("Panthera leo","Panthera onca","Panthera tigris","Panthera uncia")
   tree <- taxa_get_phylomatic_tree(taxa)
   expect_equal("phylo", class(tree))
+  tree2 <- taxa_get_phylomatic_tree(taxa = c("elephas maximus", "felis silvestris", "homo sapiens", "delphinus delphus"))
+  expect_true(any(grepl("Homo", tree2$tip.label)))
+  tree3 <- taxa_get_phylomatic_tree(taxa = c("elephas", "felis", "homo", "delphinus"))
+  # for some reason when using only genusnames tip.label names are empty and the following is failing
+  expect_true(any(grepl("Homo", tree3$tip.label)))
 })
 
 
