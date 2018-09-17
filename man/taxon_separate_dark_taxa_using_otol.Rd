@@ -5,7 +5,8 @@
 \title{Separate dark from known taxa on OpenTree of Life}
 \usage{
 taxon_separate_dark_taxa_using_otol(taxon, filters = c("environmental",
-  "sp\\\\.", "cf\\\\.", "uncultured", "unidentified", " clone", " enrichment"))
+  "sp\\\\.", "cf\\\\.", "uncultured", "unidentified", " clone",
+  " enrichment"))
 }
 \arguments{
 \item{taxon}{A taxon to get all species for}

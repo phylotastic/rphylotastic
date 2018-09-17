@@ -16,6 +16,8 @@ of the package and its utilities.
 Useful links:
 \itemize{
   \item \url{https://github.com/phylotastic/rphylotastic}
+  \item \url{www.phylotastic.org}
+  \item Report bugs at \url{https://github.com/phylotastic/rphylotastic/issues}
 }
 
 }

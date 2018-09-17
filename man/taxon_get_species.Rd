@@ -4,7 +4,8 @@
 \alias{taxon_get_species}
 \title{Get all species from a taxon}
 \usage{
-taxon_get_species(taxon, filters = c("environmental", "sp\\\\.", "cf\\\\."))
+taxon_get_species(taxon, filters = c("environmental", "sp\\\\.",
+  "cf\\\\."))
 }
 \arguments{
 \item{taxon}{A taxon to get all species for}

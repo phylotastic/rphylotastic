@@ -31,7 +31,7 @@ taxa_get_otol_tree <- function(taxa) {
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phylomatic \url{http://phylodiversity.net/phylomatic/}
 #' @export
 taxa_get_phylomatic_tree <- function(taxa) {
-  taxa.string <- brranching::phylomatic_names(taxa, format = "isubmit")  # this step is necessary to clean names for phylomatic
+  taxa.string <- suppressMessages(brranching::phylomatic_names(taxa, format = "isubmit"))  # this step is necessary to clean names for phylomatic
   taxa.string <- utils::URLencode(paste(taxa.string, collapse="|"))  # this is crucial to process query
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string))
 

@@ -4,9 +4,9 @@
 \alias{taxon_separate_dark_taxa_using_genbank}
 \title{Separate dark from known taxa on another database}
 \usage{
-taxon_separate_dark_taxa_using_genbank(taxon, filters = c("environmental",
-  "sp\\\\.", "cf\\\\.", "uncultured", "unidentified", " clone", " enrichment"),
-  verbose = TRUE, sleep = 0)
+taxon_separate_dark_taxa_using_genbank(taxon,
+  filters = c("environmental", "sp\\\\.", "cf\\\\.", "uncultured",
+  "unidentified", " clone", " enrichment"), verbose = TRUE, sleep = 0)
 }
 \arguments{
 \item{taxon}{A taxon to get all species for}

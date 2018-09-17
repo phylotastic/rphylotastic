@@ -4,8 +4,8 @@
 \alias{taxon_get_species_from_country}
 \title{Get all species filtered by country from a taxon}
 \usage{
-taxon_get_species_from_country(taxon, country, filters = c("environmental",
-  "sp\\\\.", "cf\\\\."))
+taxon_get_species_from_country(taxon, country,
+  filters = c("environmental", "sp\\\\.", "cf\\\\."))
 }
 \arguments{
 \item{taxon}{A taxon to get subset of species that are established in a particular country}
