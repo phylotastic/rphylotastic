@@ -25,6 +25,9 @@ test_that("Resolving names with OToL works", {
 })
 
 test_that("Getting names from txt and pdf files works correctly", {
-  names_txt <- file_get_scientific_names(file_name = testthat::test_path("subset2.txt"))
-  names_pdf <- file_get_scientific_names(file_name = testthat::test_path("Appendix_D_Table_D-1.pdf"))
+  original.dir <- getwd()
+  setwd(testthat::test_path)
+  names_txt <- file_get_scientific_names(file_name = "subset2.txt")
+  names_pdf <- file_get_scientific_names(file_name = "Appendix_D_Table_D-1.pdf")
+  setwd(original.dir)
 })
