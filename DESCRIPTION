@@ -1,5 +1,5 @@
 Package: rphylotastic
-Title: An R interface to 'Phylotastic' Web Services
+Title: An R Interface to 'Phylotastic' Web Services
 Version: 0.0.6
 Authors@R: c(
     person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre")),
@@ -7,7 +7,7 @@ Authors@R: c(
     person("Luna L.", "Sanchez Reyes", email = "sanchez.reyes.luna@gmail.com", role = "aut"))
 Maintainer: Brian O'Meara <omeara.brian@gmail.com>
 Description: This wraps the 'Phylotastic' services APIs described on Web Services at <www.phylotastic.org>. The main use case is to return a phylogenetic tree for a set of species, but the services also include ways to extract species names from web pages, perform taxonomic name resolution, retrieve a list of all descendant species of a taxon, find images of a species, and more.
-URL: https://github.com/phylotastic/rphylotastic, www.phylotastic.org
+URL: https://github.com/phylotastic/rphylotastic
 BugReports: https://github.com/phylotastic/rphylotastic/issues
 Depends: R (>= 3.3.0)
 Imports:
