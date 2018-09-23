@@ -4,7 +4,7 @@
 \name{rphylotastic-package}
 \alias{rphylotastic}
 \alias{rphylotastic-package}
-\title{rphylotastic: An R interface to 'Phylotastic' Web Services}
+\title{rphylotastic: An R Interface to 'Phylotastic' Web Services}
 \description{
 This wraps the 'Phylotastic' services APIs described on Web Services at <www.phylotastic.org>. The main use case is to return a phylogenetic tree for a set of species, but the services also include ways to extract species names from web pages, perform taxonomic name resolution, retrieve a list of all descendant species of a taxon, find images of a species, and more.
 }
@@ -16,7 +16,6 @@ of the package and its utilities.
 Useful links:
 \itemize{
   \item \url{https://github.com/phylotastic/rphylotastic}
-  \item \url{www.phylotastic.org}
   \item Report bugs at \url{https://github.com/phylotastic/rphylotastic/issues}
 }
 
