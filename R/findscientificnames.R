@@ -41,8 +41,12 @@ text_get_scientific_names <- function(text, search_engine=0) {
 file_get_scientific_names <- function(file_name, search_engine=0) {
 
   # results <- jsonlite::fromJSON(httr::POST(paste0(get_base_url(), 'fn/names_file'), body=list(inputFile=httr::upload_file(file_name), engine=search_engine)))  #not working -- returns 200 and valid json, but no names
-  results <- jsonlite::fromJSON(system(paste0("curl -X POST http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/names_file -F 'inputFile=@", file_name, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
-
+  original_dir <- getwd()
+  newdir <- dirname(file_name)
+  setwd(newdir)
+  file_name_only <- basename(file_name)
+  results <- jsonlite::fromJSON(system(paste0("curl -X POST http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/names_file -F 'inputFile=@", file_name_only, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
+  setwd(original_dir)
   return(results$scientificNames)
 }
 
