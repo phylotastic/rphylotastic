@@ -8,12 +8,12 @@ taxon_get_species(taxon, filters = c("environmental", "sp\\\\.",
   "cf\\\\."))
 }
 \arguments{
-\item{taxon}{A taxon to get all species for}
+\item{taxon}{A character vector with the taxon name to get all species for. If vector is longer than 1, it will only take the first element and ignore all other names.}
 
-\item{filters}{A character vector of strings to exclude}
+\item{filters}{A character vector of strings to exclude.}
 }
 \value{
-A vector of names
+A vector of species names.
 }
 \description{
 Get all species from a taxon

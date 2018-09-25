@@ -1,8 +1,8 @@
 #' Get all species from a taxon
 #'
-#' @param taxon A taxon to get all species for
-#' @param filters A character vector of strings to exclude
-#' @return A vector of names
+#' @param taxon A character vector with the taxon name to get all species for. If vector is longer than 1, it will only take the first element and ignore all other names.
+#' @param filters A character vector of strings to exclude.
+#' @return A vector of species names.
 #' @examples
 #' print(taxon_get_species("Vulpes"))
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
