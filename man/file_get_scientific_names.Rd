@@ -15,7 +15,10 @@ file_get_scientific_names(file_name, search_engine = 0)
 A vector of scientific names
 }
 \description{
-Function to pull scientific names from file
+This uploads a file (a PDF, Microsoft Word document, plain text file, etc.) and extracts all scientific names from it. For example, you can input a PDF of a scientific article and it will return all the scientific names in that article.
+}
+\details{
+It requires that curl is installed on your system.
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}

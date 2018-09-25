@@ -15,6 +15,8 @@ url_get_scientific_names <- function(URL, search_engine=0) {
 
 #' Function to pull scientific names from text
 #'
+#' This takes a string of text and extracts any scientific names in the text. Other words in the text are ignored.
+#'
 #' @param text The text string to extract names from
 #' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
 #' @return A vector of scientific names
@@ -32,6 +34,10 @@ text_get_scientific_names <- function(text, search_engine=0) {
 }
 
 #' Function to pull scientific names from file
+#'
+#' This uploads a file (a PDF, Microsoft Word document, plain text file, etc.) and extracts all scientific names from it. For example, you can input a PDF of a scientific article and it will return all the scientific names in that article.
+#'
+#' It requires that curl is installed on your system.
 #'
 #' @param file_name The file path and name to extract names from
 #' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both

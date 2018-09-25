@@ -15,7 +15,7 @@ text_get_scientific_names(text, search_engine = 0)
 A vector of scientific names
 }
 \description{
-Function to pull scientific names from text
+This takes a string of text and extracts any scientific names in the text. Other words in the text are ignored.
 }
 \examples{
 text <- "Formica polyctena is a species of European red wood ant in
