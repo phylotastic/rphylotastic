@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove an existing list of species — remove_species_from_list • rphylotastic</title>
+<title>rphylotastic: An R Interface to 'Phylotastic' Web Services — rphylotastic-package • rphylotastic</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Remove an existing list of species — remove_species_from_list" />
+<meta property="og:title" content="rphylotastic: An R Interface to 'Phylotastic' Web Services — rphylotastic-package" />
 
-<meta property="og:description" content="Remove an existing list of species" />
+<meta property="og:description" content="This wraps the 'Phylotastic' services APIs described on Web Services at &amp;lt;www.phylotastic.org&amp;gt;. The main use case is to return a phylogenetic tree for a set of species, but the services also include ways to extract species names from web pages, perform taxonomic name resolution, retrieve a list of all descendant species of a taxon, find images of a species, and more." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,67 +100,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove an existing list of species</h1>
-    <small class="dont-index">Source: <a href='https://github.com/phylotastic/rphylotastic/blob/master/R/listspecies.R'><code>R/listspecies.R</code></a></small>
-    <div class="hidden name"><code>remove_species_from_list.Rd</code></div>
+    <h1>rphylotastic: An R Interface to 'Phylotastic' Web Services</h1>
+    <small class="dont-index">Source: <a href='https://github.com/phylotastic/rphylotastic/blob/master/R/rphylotastic.R'><code>R/rphylotastic.R</code></a></small>
+    <div class="hidden name"><code>rphylotastic-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Remove an existing list of species</p>
+    <p>This wraps the 'Phylotastic' services APIs described on Web Services at &lt;www.phylotastic.org&gt;. The main use case is to return a phylogenetic tree for a set of species, but the services also include ways to extract species names from web pages, perform taxonomic name resolution, retrieve a list of all descendant species of a taxon, find images of a species, and more.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>remove_species_from_list</span>(<span class='no'>userid</span>, <span class='no'>access_token</span>, <span class='no'>list_id</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>userid</th>
-      <td><p>A valid gmail address of the user</p></td>
-    </tr>
-    <tr>
-      <th>access_token</th>
-      <td><p>Access token of the gmail address</p></td>
-    </tr>
-    <tr>
-      <th>list_id</th>
-      <td><p>An integer id of the list to retrieve</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A list with the id of the list removed</p>
+    <p>See `vignette("rphylotastic", package = "rphylotastic")` for an overview
+of the package and its utilities.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription'>https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription</a></p></div>
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://github.com/phylotastic/rphylotastic'>https://github.com/phylotastic/rphylotastic</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/phylotastic/rphylotastic/issues'>https://github.com/phylotastic/rphylotastic/issues</a></p></li>
+</ul></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>  # This gives you the syntax, but since the access token expires after one hour,
-  # this particular example will not work.
-  </div><span class='co'># NOT RUN {</span>
-  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
-  <span class='no'>access_token</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
-  <span class='no'>list_id</span> <span class='kw'>=</span> <span class='fl'>12</span>
-  <span class='fu'>remove_species_from_list</span>(<span class='no'>userid</span>, <span class='no'>access_token</span>, <span class='no'>list_id</span>)
-
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
+
+    <h2>Author</h2>
+    
+<strong>Maintainer</strong>: Brian O'Meara <a href='mailto:omeara.brian@gmail.com'>omeara.brian@gmail.com</a>
+
+Authors:
+<ul>
+<li><p>Abu Saleh Md Tayeen <a href='mailto:abusalehmdtayeen@gmail.com'>abusalehmdtayeen@gmail.com</a></p></li>
+<li><p>Luna L. Sanchez Reyes <a href='mailto:sanchez.reyes.luna@gmail.com'>sanchez.reyes.luna@gmail.com</a></p></li>
+</ul>
+
 
   </div>
 </div>

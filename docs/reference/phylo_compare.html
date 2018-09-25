@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove an existing list of species — remove_species_from_list • rphylotastic</title>
+<title>Compare two phylogenetic trees — phylo_compare • rphylotastic</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Remove an existing list of species — remove_species_from_list" />
+<meta property="og:title" content="Compare two phylogenetic trees — phylo_compare" />
 
-<meta property="og:description" content="Remove an existing list of species" />
+<meta property="og:description" content="Compare two phylogenetic trees" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,39 +100,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove an existing list of species</h1>
-    <small class="dont-index">Source: <a href='https://github.com/phylotastic/rphylotastic/blob/master/R/listspecies.R'><code>R/listspecies.R</code></a></small>
-    <div class="hidden name"><code>remove_species_from_list.Rd</code></div>
+    <h1>Compare two phylogenetic trees</h1>
+    <small class="dont-index">Source: <a href='https://github.com/phylotastic/rphylotastic/blob/master/R/comparetrees.R'><code>R/comparetrees.R</code></a></small>
+    <div class="hidden name"><code>phylo_compare.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Remove an existing list of species</p>
+    <p>Compare two phylogenetic trees</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>remove_species_from_list</span>(<span class='no'>userid</span>, <span class='no'>access_token</span>, <span class='no'>list_id</span>)</pre>
+    <pre class="usage"><span class='fu'>phylo_compare</span>(<span class='no'>phylo1</span>, <span class='kw'>phylo2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>userid</th>
-      <td><p>A valid gmail address of the user</p></td>
+      <th>phylo1</th>
+      <td><p>A multiphylo object with two trees to be compared between them or a single phylo object to be compared to phylo2</p></td>
     </tr>
     <tr>
-      <th>access_token</th>
-      <td><p>Access token of the gmail address</p></td>
-    </tr>
-    <tr>
-      <th>list_id</th>
-      <td><p>An integer id of the list to retrieve</p></td>
+      <th>phylo2</th>
+      <td><p>A phylo object to be compared to phylo1</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with the id of the list removed</p>
+    <p>A named list with are_same_tree property set to either TRUE or FALSE</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -140,15 +136,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>  # This gives you the syntax, but since the access token expires after one hour,
-  # this particular example will not work.
-  </div><span class='co'># NOT RUN {</span>
-  <span class='no'>userid</span> <span class='kw'>=</span> <span class='st'>"abusalehmdtayeen@gmail.com"</span>
-  <span class='no'>access_token</span> <span class='kw'>=</span> <span class='st'>"ya29..zQLmLjbyujJjwV6RVSM2sy-mkeaKu-9"</span>
-  <span class='no'>list_id</span> <span class='kw'>=</span> <span class='fl'>12</span>
-  <span class='fu'>remove_species_from_list</span>(<span class='no'>userid</span>, <span class='no'>access_token</span>, <span class='no'>list_id</span>)
-
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='no'>are_same</span> <span class='kw'>&lt;-</span> <span class='fu'>phylo_compare</span>(<span class='fu'>c</span>(<span class='kw pkg'>ape</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ape/topics/rtree'>rcoal</a></span>(<span class='fl'>5</span>), <span class='kw pkg'>ape</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ape/topics/rtree'>rcoal</a></span>(<span class='fl'>5</span>)))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
