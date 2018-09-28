@@ -8,7 +8,7 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxon_get_species <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {
-  if(length(taxa) > 1){
+  if(length(taxon) > 1){
     message("there is more than one name in taxon argument, only the first name will be searched")
   }
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'ts/all_species?taxon=', utils::URLencode(taxon)))$species
