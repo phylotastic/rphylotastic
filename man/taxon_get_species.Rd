@@ -2,7 +2,7 @@
 % Please edit documentation in R/getspecies.R
 \name{taxon_get_species}
 \alias{taxon_get_species}
-\title{Get all species from a taxon}
+\title{Get all species from a taxon from Open Tree of Life taxonomy.}
 \usage{
 taxon_get_species(taxon, filters = c("environmental", "sp\\\\.",
   "cf\\\\."))
@@ -16,7 +16,7 @@ taxon_get_species(taxon, filters = c("environmental", "sp\\\\.",
 A vector of species names.
 }
 \description{
-Get all species from a taxon
+Get all species from a taxon from Open Tree of Life taxonomy.
 }
 \examples{
 print(taxon_get_species("Vulpes"))

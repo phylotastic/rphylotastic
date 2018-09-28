@@ -1,4 +1,4 @@
-#' Get all species from a taxon
+#' Get all species from a taxon from Open Tree of Life taxonomy.
 #'
 #' @param taxon A character vector with the taxon name to get all species for. If vector is longer than 1, it will only take the first element and ignore all other names.
 #' @param filters A character vector of strings to exclude.
@@ -8,6 +8,9 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxon_get_species <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.")) {
+  if(length(taxa) > 1){
+    message("there is more than one name in taxon argument, only the first name will be searched")
+  }
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'ts/all_species?taxon=', utils::URLencode(taxon)))$species
   for (i in sequence(length(filters))) {
     results <- results[!grepl(filters[i], results)]
