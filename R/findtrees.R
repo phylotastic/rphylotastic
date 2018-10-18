@@ -34,9 +34,12 @@ taxa_get_phylomatic_tree <- function(taxa) {
   taxa.string <- suppressMessages(brranching::phylomatic_names(taxa, format = "isubmit"))  # this step is necessary to clean names for phylomatic
   taxa.string <- utils::URLencode(paste(taxa.string, collapse="|"))  # this is crucial to process query
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string))
-
-  tree <- ape::read.tree(text=results$newick)
-
+  tree <- tryCatch(ape::read.tree(text=results$newick), error = function(e){
+    # we could use phytools::read.newick instead, it is better also for handling singleton nodes
+    # but if text has one tip only, it just stays running forever, so we will stay with ape::read.tree for now.
+    warning("\n Phylomatic returned a tree with one tip only.\n taxa_get_phylomatic_tree output is not a phylo object.")
+    results$newick
+  })
   return(tree)
 }
 

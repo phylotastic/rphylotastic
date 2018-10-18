@@ -3,6 +3,15 @@ test_that("Get species works", {
   expect_gte(length(results), 10)
 })
 
+test_that("Mus higher-taxon search is giving species back", {
+  skip("skipping Mus")
+  expect_true(length(rphylotastic::taxon_get_species("Mus")) > 0)
+})
+
+test_that("species acting up with opentree of life APIv3 are ok", {
+  taxon_get_species("Ceratopogon slossonae")
+})
+
 test_that("Get country species works", {
   results <- taxon_get_species_from_country("Felidae", "Nepal")
   expect_gte(length(results), 10)
