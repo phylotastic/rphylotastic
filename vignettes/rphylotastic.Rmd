@@ -54,23 +54,23 @@ taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
 # phy1 <- taxa_get_phylomatic_tree(taxa = c("elephas maximus", "felis silvestris", "homo sapiens"))
 
-phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)
+#phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)
 
 # phy3 <- taxa_get_taxonomic_tree(taxa = taxon_names) # this service is giving Error in open.connection(con, "rb") : HTTP error 500. (2018.06.21)
 
-source_tree <- c("Open Tree of Life", "Phylomatic")
+#source_tree <- c("Open Tree of Life", "Phylomatic")
 # source_tree <- c("Open Tree of Life", "Phylomatic", "NCBI taxonomy")
 
-trees <- c(phy1, phy2)
+#trees <- c(phy1, phy2)
 # trees <- c(phy1, phy2, phy3)
 
-library(ape)
-par(xpd = FALSE, mfrow = c(1, length(trees)), mai = c(0.1, 0.1, 0.5, 0.1), oma = c(0, 1, 2, 1))
-for (i in 1:length(trees)){
-  plot(ladderize(trees[[i]]), cex = 0.5, label.offset = 0.3)
-  mtext(paste("from", source_tree[i]), cex = 1, side = 3, line = 1)
-}
-mtext("Carnivorous plant tree", outer = T, side = 3, cex = 1.5, line = 0)
+#library(ape)
+#par(xpd = FALSE, mfrow = c(1, length(trees)), mai = c(0.1, 0.1, 0.5, 0.1), oma = c(0, 1, 2, 1))
+#for (i in 1:length(trees)){
+#  plot(ladderize(trees[[i]]), cex = 0.5, label.offset = 0.3)
+#  mtext(paste("from", source_tree[i]), cex = 1, side = 3, line = 1)
+#}
+#mtext("Carnivorous plant tree", outer = T, side = 3, cex = 1.5, line = 0)
 
 ```
 
@@ -168,7 +168,7 @@ Package `brranching` has a very nice function that allows choosing among multipl
 
 ```{r, eval = FALSE}
 library(brranching)
-phylomatic_names("Byblis")
+#phylomatic_names("Byblis")
 # [1] "byblidaceae/byblis/byblis"
 ```
 
