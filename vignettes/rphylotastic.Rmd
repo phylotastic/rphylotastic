@@ -46,7 +46,7 @@ The main use for `rphylotastic` is getting phylogenetic trees for a set of taxa 
 Would you like to know about north american endemic carnivorous plants and their relationship to other plants with the same behaviour?
 The venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and the cobra lily (_Darlingtonia californica_) can only be found in North America. The popular _Drosera_ sundues, _Pinguicula_ butterworts and the aquatic carnivorous _Utricularia_ bladderworts, have a wider range of distribution. What are their phylogenetic relationships?
 
-```{r, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
+```{r, eval=FALSE, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
 
 # http://floranorthamerica.org/files/imported/Outreach/FNAfs_carnivory.pdf
 taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
@@ -54,28 +54,28 @@ taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
 # phy1 <- taxa_get_phylomatic_tree(taxa = c("elephas maximus", "felis silvestris", "homo sapiens"))
 
-#phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)
+phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)
 
 # phy3 <- taxa_get_taxonomic_tree(taxa = taxon_names) # this service is giving Error in open.connection(con, "rb") : HTTP error 500. (2018.06.21)
 
-#source_tree <- c("Open Tree of Life", "Phylomatic")
+source_tree <- c("Open Tree of Life", "Phylomatic")
 # source_tree <- c("Open Tree of Life", "Phylomatic", "NCBI taxonomy")
 
-#trees <- c(phy1, phy2)
+trees <- c(phy1, phy2)
 # trees <- c(phy1, phy2, phy3)
 
-#library(ape)
-#par(xpd = FALSE, mfrow = c(1, length(trees)), mai = c(0.1, 0.1, 0.5, 0.1), oma = c(0, 1, 2, 1))
-#for (i in 1:length(trees)){
-#  plot(ladderize(trees[[i]]), cex = 0.5, label.offset = 0.3)
-#  mtext(paste("from", source_tree[i]), cex = 1, side = 3, line = 1)
-#}
-#mtext("Carnivorous plant tree", outer = T, side = 3, cex = 1.5, line = 0)
+library(ape)
+par(xpd = FALSE, mfrow = c(1, length(trees)), mai = c(0.1, 0.1, 0.5, 0.1), oma = c(0, 1, 2, 1))
+for (i in 1:length(trees)){
+  plot(ladderize(trees[[i]]), cex = 0.5, label.offset = 0.3)
+  mtext(paste("from", source_tree[i]), cex = 1, side = 3, line = 1)
+}
+mtext("Carnivorous plant tree", outer = T, side = 3, cex = 1.5, line = 0)
 
 ```
 
 With `rphylotastic`, you can also check if any two trees are exactly equal.
-```{r}
+```{r, eval=FALSE}
 
 phylo_compare(phy1, phy1)
 
@@ -168,18 +168,20 @@ Package `brranching` has a very nice function that allows choosing among multipl
 
 ```{r, eval = FALSE}
 library(brranching)
-#phylomatic_names("Byblis")
+phylomatic_names("Byblis")
 # [1] "byblidaceae/byblis/byblis"
 ```
 
 # Getting data from Encyclopedia of Life
 You can also get some images:
 
-```{r}
+```{r, eval=FALSE}
 some_images <- species_get_image_data(species = c("Homo sapiens", "Felis catus"))
 ```
+
 Or other miscelanous info:
-```{r}
+
+```{r, eval=FALSE}
 some_info <- species_get_info(species = c("Homo sapiens", "Felis catus"))
 ```
 
