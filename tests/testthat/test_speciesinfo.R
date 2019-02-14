@@ -1,7 +1,7 @@
 test_that("Get species info from EOL works", {
   results <- species_get_info(c('Myrmecocystus mexicanus'))
   expect_equal(results[1,2:3]$eol_id, 461196)
-  expect_equal(results[1,1], "http://eol.org/461196?action=overview&controller=taxa")
+  expect_equal(results[1,1], "https://eol.org/pages/461196")
 })
 
 test_that("Get image metadata of species works", {

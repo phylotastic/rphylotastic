@@ -46,7 +46,7 @@ The main use for `rphylotastic` is getting phylogenetic trees for a set of taxa 
 Would you like to know about north american endemic carnivorous plants and their relationship to other plants with the same behaviour?
 The venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and the cobra lily (_Darlingtonia californica_) can only be found in North America. The popular _Drosera_ sundues, _Pinguicula_ butterworts and the aquatic carnivorous _Utricularia_ bladderworts, have a wider range of distribution. What are their phylogenetic relationships?
 
-```{r, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
+```{r, eval=FALSE, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
 
 # http://floranorthamerica.org/files/imported/Outreach/FNAfs_carnivory.pdf
 taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
@@ -75,7 +75,7 @@ mtext("Carnivorous plant tree", outer = T, side = 3, cex = 1.5, line = 0)
 ```
 
 With `rphylotastic`, you can also check if any two trees are exactly equal.
-```{r}
+```{r, eval=FALSE}
 
 phylo_compare(phy1, phy1)
 
@@ -175,11 +175,13 @@ phylomatic_names("Byblis")
 # Getting data from Encyclopedia of Life
 You can also get some images:
 
-```{r}
+```{r, eval=FALSE}
 some_images <- species_get_image_data(species = c("Homo sapiens", "Felis catus"))
 ```
+
 Or other miscelanous info:
-```{r}
+
+```{r, eval=FALSE}
 some_info <- species_get_info(species = c("Homo sapiens", "Felis catus"))
 ```
 

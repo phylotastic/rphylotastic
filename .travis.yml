@@ -1,3 +1,7 @@
+addons:
+  apt:
+    packages:
+      - libmagick++-dev
 language: r
 sudo: false
 cache: packages
