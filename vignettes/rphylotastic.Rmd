@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 `rphylotastic` connects to Phylotastic web services, which themselves wrap and process multiple other services as well as have unique services of their own.
 
-You first need to install and load the package:
+To use `rphylotastic`, you first need to install and load the package:
 
 CRAN version:
 
@@ -99,7 +99,7 @@ names_text <- text_get_scientific_names(text = "The domestic cat (Felis silvestr
 head(names_text)
 ```
 
-or get from a file in your compputer if i=the text is too long:
+or get from a file in your computer if the text is too long:
 ```{r, eval = FALSE}
 names_txt <- file_get_scientific_names(file_name = "path/to/your/file/species.txt")
 names_pdf <- file_get_scientific_names(file_name = "path/to/your/file/species.pdf")
@@ -184,7 +184,7 @@ some_info <- species_get_info(species = c("Homo sapiens", "Felis catus"))
 ```
 
 # Managing your lists of names
-You can get an phylotastic! user ID by registering with your gmail address on the portal. Then, you can get a temporary token sent to you email to help you manage your lists from the R console. Here are a few examples, but they won't work for you since th etoken expire afer a few hours.
+You can get a phylotastic! user ID by registering with your gmail address on the portal. Then, you can get a temporary token sent to you email to help you manage your lists from the R console. Here are a few examples, but they won't work for you since th etoken expire afer a few hours.
 ```{r, eval = FALSE}
 get_species_from_list()
 update_species_in_list()

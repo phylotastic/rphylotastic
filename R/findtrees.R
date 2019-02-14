@@ -13,6 +13,7 @@
 taxa_get_otol_tree <- function(taxa) {
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string))$newick
+  # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/tree?taxa=', taxa.string))$newick
   tmp.file <- paste0(tempdir(), "/tmp.tre")
   cat(results, file=tmp.file)
   tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
