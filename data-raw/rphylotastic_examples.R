@@ -11,5 +11,6 @@ plot(phy1)
 phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)
 # Error: '{"error":"API rate limit exceeded","api-key":"160.36.155.220","count":"4","limit":"3"}
 # ' does not exist in current working directory ('/Users/luna/Desktop/rphylotastic').
+# this is an error from brranching::phylomatic_names
 plot(phy2)
 # 5. Now contextualize the plants of interest in the tree of all plants, just a sample of them

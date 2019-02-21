@@ -9,7 +9,7 @@
 #' @export
 
 phylo_compare <- function(phylo1, phylo2 = NULL) {
-  url <- "http://phylo.cs.nmsu.edu:5006/phylotastic_ws/compare_trees"
+  url <- paste0(get_base_url(), "compare_trees")
   if(is.list(phylo1) & length(phylo1) == 2){
     trees <- phylo1
   } else {

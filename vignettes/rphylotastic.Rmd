@@ -46,7 +46,7 @@ The main use for `rphylotastic` is getting phylogenetic trees for a set of taxa 
 Would you like to know about north american endemic carnivorous plants and their relationship to other plants with the same behaviour?
 The venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and the cobra lily (_Darlingtonia californica_) can only be found in North America. The popular _Drosera_ sundues, _Pinguicula_ butterworts and the aquatic carnivorous _Utricularia_ bladderworts, have a wider range of distribution. What are their phylogenetic relationships?
 
-```{r, eval=FALSE, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
+```{r, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
 
 # http://floranorthamerica.org/files/imported/Outreach/FNAfs_carnivory.pdf
 taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
@@ -54,7 +54,7 @@ taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
 # phy1 <- taxa_get_phylomatic_tree(taxa = c("elephas maximus", "felis silvestris", "homo sapiens"))
 
-phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names)
+phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names) # this is giving sometimes an error from brranching::phylomatic _names
 
 # phy3 <- taxa_get_taxonomic_tree(taxa = taxon_names) # this service is giving Error in open.connection(con, "rb") : HTTP error 500. (2018.06.21)
 
@@ -75,7 +75,7 @@ mtext("Carnivorous plant tree", outer = T, side = 3, cex = 1.5, line = 0)
 ```
 
 With `rphylotastic`, you can also check if any two trees are exactly equal.
-```{r, eval=FALSE}
+```{r}
 
 phylo_compare(phy1, phy1)
 
@@ -88,9 +88,9 @@ phylo_compare(phy1, phy2)
 One very cool feature of `rphylotastic` is the ability to scrape scientific names from documents or web pages. For example, you can get all latin names from a wikipedia article on primates:
 
 ```{r}
-# names_url <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Primate") # this was failing 2018.09.17
-# length(names_url)
-# head(names_url)
+names_url <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Primate") # this was failing 2018.09.17
+length(names_url)
+head(names_url)
 ```
 
 You can also extract all scientific names from a text you are studying, that you can insert as a character vector into R if it is short:
@@ -102,8 +102,9 @@ head(names_text)
 or get from a file in your computer if the text is too long:
 ```{r, eval = FALSE}
 names_txt <- file_get_scientific_names(file_name = "path/to/your/file/species.txt")
-names_pdf <- file_get_scientific_names(file_name = "path/to/your/file/species.pdf")
-head(names_txt)
+names_pdf <- file_get_scientific_names(file_name = "~/Desktop/rphylotastic/data-raw/Primate - Wikipedia.pdf")
+length(names_pdf)
+head(names_pdf)
 ```
 
 
@@ -175,13 +176,11 @@ phylomatic_names("Byblis")
 # Getting data from Encyclopedia of Life
 You can also get some images:
 
-```{r, eval=FALSE}
+```{r}
 some_images <- species_get_image_data(species = c("Homo sapiens", "Felis catus"))
 ```
-
 Or other miscelanous info:
-
-```{r, eval=FALSE}
+```{r}
 some_info <- species_get_info(species = c("Homo sapiens", "Felis catus"))
 ```
 

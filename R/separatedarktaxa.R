@@ -6,7 +6,7 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxon_separate_dark_taxa_using_otol <- function(taxon, filters=c("environmental", "sp\\.", "cf\\.", "uncultured", "unidentified", " clone", " enrichment")) {
-  results <- unique(jsonlite::fromJSON(paste0(get_base_url(), 'ts/all_species?taxon=', utils::URLencode(taxon)))$species)
+  results <- unique(jsonlite::fromJSON(paste0(get_base_url(), 'ts/ot/all_species?taxon=', utils::URLencode(taxon)))$species)
   results.dark <- c()
   results.known <- results
   for (i in sequence(length(filters))) {

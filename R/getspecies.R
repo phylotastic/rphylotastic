@@ -11,7 +11,7 @@ taxon_get_species <- function(taxon, filters=c("environmental", "sp\\.", "cf\\."
   if(length(taxon) > 1){
     message("there is more than one name in taxon argument, only the first name will be searched")
   }
-  results <- jsonlite::fromJSON(paste0(get_base_url(), 'ts/all_species?taxon=', utils::URLencode(taxon)))$species
+  results <- jsonlite::fromJSON(paste0(get_base_url(), 'ts/ot/all_species?taxon=', utils::URLencode(taxon)))$species
   for (i in sequence(length(filters))) {
     results <- results[!grepl(filters[i], results)]
   }
@@ -27,7 +27,7 @@ taxon_get_species <- function(taxon, filters=c("environmental", "sp\\.", "cf\\."
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxon_get_species_from_country <- function(taxon, country, filters=c("environmental", "sp\\.", "cf\\.")) {
-  results <- jsonlite::fromJSON(paste0(get_base_url(), 'ts/country_species?taxon=', utils::URLencode(taxon), '&country=', utils::URLencode(country)))$species
+  results <- jsonlite::fromJSON(paste0(get_base_url(), 'ts/ot/country_species?taxon=', utils::URLencode(taxon), '&country=', utils::URLencode(country)))$species
   for (i in sequence(length(filters))) {
     results <- results[!grepl(filters[i], results)]
   }
