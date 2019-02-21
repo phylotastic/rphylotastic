@@ -8,7 +8,8 @@ test_that("Get image metadata of species works", {
   results <- species_get_image_data(c('Myrmecocystus mexicanus'))
   #results[1,3] is total_images
   expect_lte(results[1,3], 5)
-  expect_equal(results[1,1][[1]]$eolMediaURL[[1]], "http://media.eol.org/content/2014/11/22/12/30536_orig.jpg")
+  # the following two lines are a bad test because they can change through time in eol...
+  expect_equal(results[1,1][[1]]$eolMediaURL[[1]], "https://content.eol.org/data/media/72/66/fa/537.11636218.jpg")
   #result[1,1][[1]] is a dataframe
-  expect_equal(results[1,1][[1]]$eolThumbnailURL[[1]], "http://media.eol.org/content/2014/11/22/12/30536_98_68.jpg")
+  expect_equal(results[1,1][[1]]$eolThumbnailURL[[1]], "https://content.eol.org/data/media/72/66/fa/537.11636218.98x68.jpg")
 })
