@@ -54,7 +54,7 @@ taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
 # phy1 <- taxa_get_phylomatic_tree(taxa = c("elephas maximus", "felis silvestris", "homo sapiens"))
 
-phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names) # this is giving sometimes an error from brranching::phylomatic _names
+phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names) # this is giving sometimes an error from brranching::phylomatic_names
 
 # phy3 <- taxa_get_taxonomic_tree(taxa = taxon_names) # this service is giving Error in open.connection(con, "rb") : HTTP error 500. (2018.06.21)
 

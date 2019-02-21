@@ -3,7 +3,11 @@
 # let's try carnivorous plants:
 names_url <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Carnivorous_plant")
 # 3. Resolve your scientific names
-taxon_names <- taxa_resolve_names_with_otol(taxa = names_url[1:10]) 
+taxon_names <- taxa_resolve_names_with_otol(taxa = names_url[1:10])
+write(paste(taxon_names, collapse = '", "'), file = "data-raw/test.txt")
+taxon_names <- c("Drosera glanduligera", "Sarracenia", "Sarraceniaceae", "Triphyophyllum",
+    "Nepenthes lowii", "Heliamphora chimantensis", "Darlingtonia", "Darlingtonia",
+    "Darlingtonia", "Heliamphora")
 # using all names gave an error, so trying with just 10 for now
 # 4. Get the tree
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
