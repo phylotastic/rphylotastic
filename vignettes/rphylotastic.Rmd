@@ -49,6 +49,7 @@ The venus flytrap (_Dionaea muscipula_), pitcher plants (_Sarracenia_ genus) and
 ```{r, fig.align = 'center', fig.retina = 2, fig.margin = TRUE, fig.width = 6}
 
 # http://floranorthamerica.org/files/imported/Outreach/FNAfs_carnivory.pdf
+# IMPORTANT: CHOOSE NAMES THAT ARE UNAMBIGUOS IN PHYLOMATIC, OTHERWISE VIGNETTE RENDERING WILL NOT WORK BC IT WILL REQUIER EUSER INPUT TO RESOLVE PHYLOMATIC NAMES!!!!
 taxon_names <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
           "Drosera", "Pinguicula", "Utricularia", "Roridulaceae")
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)

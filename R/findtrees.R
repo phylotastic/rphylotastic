@@ -11,23 +11,26 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxa_get_otol_tree <- function(taxa) {
-  # taxa.string <- utils::URLencode(paste(taxa, collapse='", "'))
-  taxa.string <- paste(taxa, collapse='", "')
-  postcall <- paste0('{"taxa": ["', taxa.string, '"]}')
+    # GET method; chokes with mor ethan 105 taxa:
+  # taxa.string <- utils::URLencode(paste(taxa, collapse='"|"'))
   # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string))$newick
-  curl -X POST "https://phylo.cs.nmsu.edu/phylotastic_ws/gt/ot/tree" -H "content-type:application/json" -d '{"taxa": ["Setophaga striata","Setophaga magnolia","Setophaga angelae","Setophaga plumbea","Setophaga virens"]}'
-  postcall <- paste0("curl -X POST '", get_base_url(), "gt/ot/tree' -H 'content-type:application/json' -d '", postcall, "'")
-  results <- jsonlite::fromJSON(system(postcall, intern=TRUE))
   # tmp.file <- paste0(tempdir(), "/tmp.tre")
   # cat(results, file=tmp.file)
   # tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
+  # POST method; works well so far:
+  taxa.string <- paste(taxa, collapse='", "')
+  postcall <- paste0('{"taxa": ["', taxa.string, '"]}')
+   postcall <- paste0("curl -X POST '", get_base_url(), "gt/ot/tree' -H 'content-type:application/json' -d '", postcall, "'")
+  results <- jsonlite::fromJSON(system(postcall, intern=TRUE))
   tree <- tryCatch(ape::read.tree(text=results$newick), error = function(e){
     # we could use phytools::read.newick instead, it is better also for handling singleton nodes
     # but if text has one tip only, it just stays running forever, so we will stay with ape::read.tree for now.
-    message("\n Phylomatic returned a tree with one tip only.\n taxa_get_phylomatic_tree output is not a phylo object.")
+    message("\n Provided taxa are not in otol tree.\n")
     results$newick
   })
-  tree <- ape::reorder.phylo(ape::collapse.singles(tree))
+  if(inherits(tree, "phylo")){
+      tree <- ape::reorder.phylo(ape::collapse.singles(tree))
+  }
   return(tree)
 }
 
@@ -43,29 +46,46 @@ taxa_get_otol_tree <- function(taxa) {
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phylomatic \url{http://phylodiversity.net/phylomatic/}
 #' @export
 taxa_get_phylomatic_tree <- function(taxa) {
-    taxa.string <- vector(mode = "character", length = length(taxa))
-    progression <- utils::txtProgressBar(min = 0, max = length(taxa), style = 3)
-    for(i in seq_along(taxa)){
-        taxa.string[i] <- suppressMessages(brranching::phylomatic_names(taxa[i], format = "isubmit")) # this step is necessary to clean names for phylomatic
+    # taxa.string <- vector(mode = "character", length = length(taxa))
+    # progression <- utils::txtProgressBar(min = 0, max = length(taxa), style = 3)
+    # for(i in seq_along(taxa)){
+        taxa.string <- brranching::phylomatic_names(taxa, format = "isubmit")
+        # taxa.string[i] <- suppressMessages(brranching::phylomatic_names(taxa[i], format = "isubmit")) # this step is necessary to clean names for phylomatic
         # it's giving trouble at taxize::tax_name:
         # Error: '{"error":"API rate limit exceeded","api-key":"160.36.155.220","count":"4","limit":"3"}
         # ' does not exist in current working directory ('/Users/luna/Desktop/rphylotastic').
         # so adding sys.sleep to limit calls to ncbi api
-        Sys.sleep(0.33)
-        utils::setTxtProgressBar(progression, i)
-    }
-    cat("\n")
-  # taxon_names <- c("Drosera glanduligera", "Sarracenia", "Sarraceniaceae", "Triphyophyllum",
-  #     "Nepenthes lowii", "Heliamphora chimantensis", "Darlingtonia", "Darlingtonia",
-  #     "Darlingtonia", "Heliamphora")
-  taxa.string <- utils::URLencode(paste(taxa.string, collapse="|"))  # this is crucial to process query
-  results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string))
+    #     Sys.sleep(0.33)
+    #     utils::setTxtProgressBar(progression, i)
+    # }
+    # cat("\n")
+    # it was giving trouble because I used suppressMessages and taxon matching decisions would not be shown, exceeding wait time for the function...
+    taxa.string2 <- taxa.string
+    taxa.string <- taxa.string2[1:100]
+  # get method; chokes with more than 105 names too:
+  # taxa.string <- utils::URLencode(paste(taxa.string, collapse="|"))  # this is crucial to process query
+  # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string))
+  # tree <- tryCatch(ape::read.tree(text=results$newick), error = function(e){
+  #   # we could use phytools::read.newick instead, it is better also for handling singleton nodes
+  #   # but if text has one tip only, it just stays running forever, so we will stay with ape::read.tree for now.
+  #   message("\n Phylomatic returned a tree with one tip only.\n taxa_get_phylomatic_tree output is not a phylo object.")
+  #   results$newick
+  # })
+  # Post method: it works, but it is behaving weirdly:
+  # try code in rphylotastic_examples to see how
+  taxa.string <- paste(taxa.string, collapse='", "')
+  postcall <- paste0('{"taxa": ["', taxa.string, '"]}')
+  postcall <- paste0("curl -X POST '", get_base_url(), "gt/pm/tree' -H 'content-type:application/json' -d '", postcall, "'")
+  results <- jsonlite::fromJSON(system(postcall, intern=TRUE))
   tree <- tryCatch(ape::read.tree(text=results$newick), error = function(e){
     # we could use phytools::read.newick instead, it is better also for handling singleton nodes
     # but if text has one tip only, it just stays running forever, so we will stay with ape::read.tree for now.
-    message("\n Phylomatic returned a tree with one tip only.\n taxa_get_phylomatic_tree output is not a phylo object.")
+    message("\n Provided taxa are not enough to get a phylomatic tree.\n")
     results$newick
   })
+  if(inherits(tree, "phylo")){
+      tree <- ape::reorder.phylo(ape::collapse.singles(tree))
+  }
   return(tree)
 }
 

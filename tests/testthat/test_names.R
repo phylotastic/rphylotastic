@@ -19,9 +19,10 @@ test_that("Loading names from a text string works correctly", {
 
 test_that("Resolving names with OToL works", {
   taxa <- c("Setophaga striata", "Setophaga megnolia", "Setophaga angilae", "Setophaga plumbea", "Setophaga virens")
-  expect_warning(taxa.new <- taxa_resolve_names_with_otol(taxa))
-  expect_gte(length(taxa.new), 3)
-  expect_warning(taxa.new <- taxa_resolve_names_with_otol(letters[1:3]))
+  taxa.new <- taxa_resolve_names_with_otol(taxa)
+  expect_gte(length(taxa.new), length(taxa))  # because it has fuzzy matching now
+  expect_message(taxa.new <- taxa_resolve_names_with_otol(letters[1:3]))
+  expect_true(is.null(taxa.new))
 })
 
 test_that("Getting names from txt and pdf files works correctly", {
