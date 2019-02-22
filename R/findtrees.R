@@ -11,12 +11,23 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxa_get_otol_tree <- function(taxa) {
-  taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
-  results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string))$newick
-  # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/tree?taxa=', taxa.string))$newick
-  tmp.file <- paste0(tempdir(), "/tmp.tre")
-  cat(results, file=tmp.file)
-  tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
+  # taxa.string <- utils::URLencode(paste(taxa, collapse='", "'))
+  taxa.string <- paste(taxa, collapse='", "')
+  postcall <- paste0('{"taxa": ["', taxa.string, '"]}')
+  # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string))$newick
+  curl -X POST "https://phylo.cs.nmsu.edu/phylotastic_ws/gt/ot/tree" -H "content-type:application/json" -d '{"taxa": ["Setophaga striata","Setophaga magnolia","Setophaga angelae","Setophaga plumbea","Setophaga virens"]}'
+  postcall <- paste0("curl -X POST '", get_base_url(), "gt/ot/tree' -H 'content-type:application/json' -d '", postcall, "'")
+  results <- jsonlite::fromJSON(system(postcall, intern=TRUE))
+  # tmp.file <- paste0(tempdir(), "/tmp.tre")
+  # cat(results, file=tmp.file)
+  # tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
+  tree <- tryCatch(ape::read.tree(text=results$newick), error = function(e){
+    # we could use phytools::read.newick instead, it is better also for handling singleton nodes
+    # but if text has one tip only, it just stays running forever, so we will stay with ape::read.tree for now.
+    message("\n Phylomatic returned a tree with one tip only.\n taxa_get_phylomatic_tree output is not a phylo object.")
+    results$newick
+  })
+  tree <- ape::reorder.phylo(ape::collapse.singles(tree))
   return(tree)
 }
 
