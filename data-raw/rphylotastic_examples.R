@@ -1,4 +1,4 @@
-load_all("~/Desktop/datelife")
+# load_all("~/Desktop/datelife")
 # rphylotastic examples
 # 1. extract names of species with certain characteristics from a pdf or a wikipedia page
 # let's try it with blue flowers:
