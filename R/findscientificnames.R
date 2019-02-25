@@ -51,7 +51,7 @@ file_get_scientific_names <- function(file_name, search_engine=0) {
   setwd(newdir)
   file_name_only <- basename(file_name)
   # results <- jsonlite::fromJSON(system(paste0("curl -X POST http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/names_file -F 'inputFile=@", file_name_only, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
-  results <- jsonlite::fromJSON(system(paste0("curl -X POST ", get_base_ulr(), "/fn/names_file -F 'inputFile=@", file_name_only, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
+  results <- jsonlite::fromJSON(system(paste0("curl -X POST ", get_base_url(), "/fn/names_file -F 'inputFile=@", file_name_only, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
   setwd(original_dir)
   return(results$scientificNames)
 }
