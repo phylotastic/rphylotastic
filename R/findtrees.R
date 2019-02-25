@@ -11,7 +11,7 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
 #' @export
 taxa_get_otol_tree <- function(taxa) {
-    # GET method; chokes with mor ethan 105 taxa:
+    # GET method; chokes with more than 105 taxa:
   # taxa.string <- utils::URLencode(paste(taxa, collapse='"|"'))
   # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string))$newick
   # tmp.file <- paste0(tempdir(), "/tmp.tre")
@@ -30,6 +30,9 @@ taxa_get_otol_tree <- function(taxa) {
   })
   if(inherits(tree, "phylo")){
       tree <- ape::reorder.phylo(ape::collapse.singles(tree))
+      # To remove ott number from tip labels
+      # tree$tip.label <- gsub("_ott.*", "", tree$tip.label)
+      # tree$tip.label <- gsub("\\(.*", "", tree$tip.label)
   }
   return(tree)
 }
