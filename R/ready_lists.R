@@ -24,8 +24,8 @@
 #' @format A character vector
 #' @keywords otol magnoliophyta
 #' @details
-#' terrestrial_plant_orders <- datelife::get_ott_children(ott_ids = 99252, ott_rank = "order")
+#' terrestrial_plant_orders <- datelife::get_ott_children(ott_ids = 56610, ott_rank = "order")
 #' terrestrial_plant_orders <- terrestrial_plant_orders[[1]]
 #' terrestrial_plant_orders <- rownames(terrestrial_plant_orders)[as.character(terrestrial_plant_orders[,"rank"]) == "order"]
-#' usethis::use_data(flower_plant_fams, overwrite = TRUE)
+#' usethis::use_data(terrestrial_plant_orders, overwrite = TRUE)
 "terrestrial_plant_orders"
