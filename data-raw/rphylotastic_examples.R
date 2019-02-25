@@ -24,11 +24,12 @@ ape::Ntip(phy1)  # only 31 spp are in otol tree
 phy1$tip.label
 # we're not using phylomatic bc it's behaving weirdly; see tests
 # 5. Now contextualize the plants of interest in the tree of angiosperms, just a sample of them:
-data(flower_plant_fams)
-all_names <- c(flower_plant_fams, taxon_names)
+# data(flower_plant_fams)
+# all_names <- c(flower_plant_fams, taxon_names)
+data(terrestrial_plant_orders)
+all_names <- c(terrestrial_plant_orders, taxon_names)
 phyall <- taxa_get_otol_tree(taxa = all_names)
 plot(phyall, cex = 0.5)
-phyall <- ape::reorder.phylo(ape::collapse.singles(phyall))
 phyall$tip.label <- gsub("_ott.*", "", phyall$tip.label)
 phyall$tip.label <- gsub("\\(.*", "", phyall$tip.label)
 
