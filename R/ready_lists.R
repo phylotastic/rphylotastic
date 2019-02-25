@@ -11,5 +11,5 @@
 #' flower_plant_fams <- datelife::get_ott_children(ott_ids = 99252, ott_rank = "family")
 #' flower_plant_fams <- flower_plant_fams[[1]]
 #' flower_plant_fams <- rownames(flower_plant_fams)[as.character(flower_plant_fams[,"rank"]) == "family"]
-#' usethis::use_data(flower_plant_fams)
+#' usethis::use_data(flower_plant_fams, overwrite = TRUE)
 "flower_plant_fams"

@@ -17,22 +17,10 @@ mm1 <- match(gsub(" ", "_", taxon_names), phy1$tip.label)
 taxon_names[is.na(mm1)]  #25 spp are not in otol tree
 ape::Ntip(phy1)  #59
 plot(phy1)
-
-# we're not using phylomatic bc it's behaving weirdly:
-phy2 <- taxa_get_phylomatic_tree(taxa = taxon_names) # results in one name: Tupaia montana
-phy3 <- taxa_get_phylomatic_tree(taxa = taxon_names[1:10]) # result is a tree with 10 tips
-
-plot(phy3)
-# 5. Now contextualize the plants of interest in the tree of all plants, just a sample of them:
-# I already have a list of plants from different families to contextualize
-install_github("LunaSare/phunding")
-library(phunding)
-data(plant_tree_orders)
-str(plant_tree_orders)
-
-taxa_convert_common_to_scientific(taxa = "eudicots")
-taxa_convert_common_to_scientific(taxa = "flowering plants")
-all_names <- c(plant_tree_orders$tip.label, taxon_names)
+# we're not using phylomatic bc it's behaving weirdly; see tests
+# 5. Now contextualize the plants of interest in the tree of angiosperms, just a sample of them:
+data(flower_plant_fams)
+all_names <- c(flower_plant_fams, taxon_names)
 phyall <- taxa_get_otol_tree(taxa = all_names)
 if(inherits(phyall, "phylo")){
     phyall <- ape::reorder.phylo(ape::collapse.singles(phyall))
