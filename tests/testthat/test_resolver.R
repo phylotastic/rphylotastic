@@ -4,3 +4,9 @@ test_that("Resolving names with GNR works", {
   taxa <- c("Fake Species", "Another fake species")
   expect_warning(taxa.new <- taxa_resolve_names_with_gnr(taxa))
 })
+
+test_that("taxa_convert_common_to_scientific"){
+    # the following is not working:
+    taxa_convert_common_to_scientific(taxa = "eudicots")
+    taxa_convert_common_to_scientific(taxa = "flowering plants")
+}
