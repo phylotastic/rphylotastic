@@ -14,9 +14,8 @@ genera <- unique(sapply(strsplit(names_url, " "), "[", 1)) # there are 38 genera
 # 3. Resolve your scientific names
 taxon_names <- taxa_resolve_names_with_otol(taxa = genera)
 # taxon_names <- taxa_resolve_names_with_gnr(taxa = names_url)
-length(taxon_names) # 36 are found in ott
+length(taxon_names) # 36 are resolved with ott
 # write(paste(taxon_names, collapse = '", "'), file = "data-raw/test.txt")
-# using all names gave an error, so trying with just 10 for now
 # 4. Get the tree of the carnivorous genera
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
 plot(phy1)
@@ -28,6 +27,9 @@ phy1$tip.label
 # all_names <- c(flower_plant_fams, taxon_names)
 data(terrestrial_plant_orders)
 all_names <- c(terrestrial_plant_orders, taxon_names)
+# save names to upload to portal, for comparison:
+write(paste(all_names), file = "data-raw/all_names_list.txt")
+# now get the tree from otol
 phyall <- taxa_get_otol_tree(taxa = all_names)
 plot(phyall, cex = 0.5)
 phyall$tip.label <- gsub("_ott.*", "", phyall$tip.label)
