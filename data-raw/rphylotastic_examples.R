@@ -8,8 +8,10 @@
 # not good enough data
 # names_url <- file_get_scientific_names(file_name = "~/Desktop/rphylotastic/data-raw/FNAfs_carnivory.pdf")
 names_url <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/List_of_carnivorous_plants")
+
 names_url <- unique(names_url)
 length(names_url) # > 1000
+
 genera <- unique(sapply(strsplit(names_url, " "), "[", 1)) # there are 38 genera
 # 3. Resolve your scientific names
 taxon_names <- taxa_resolve_names_with_otol(taxa = genera)
@@ -26,6 +28,9 @@ phy1$tip.label
 # data(flower_plant_fams)
 # all_names <- c(flower_plant_fams, taxon_names)
 data(terrestrial_plant_orders)
+length(terrestrial_plant_orders)
+phy2 <- taxa_get_otol_tree(taxa = terrestrial_plant_orders)
+phy2$tip.label
 all_names <- c(terrestrial_plant_orders, taxon_names)
 # save names to upload to portal, for comparison:
 write(paste(all_names), file = "data-raw/all_names_list.txt")
@@ -37,10 +42,17 @@ phyall$tip.label <- gsub("\\(.*", "", phyall$tip.label)
 
 mrca_index <- grep("mrcaott", phyall$tip.label)
 # find the actual scientific name of mrca ott names:
-mrca_ottids <- gsub("mrcaott.*ott", "", phyall$tip.label[mrca_index])
-mrca_lin <- datelife::get_ott_lineage(ott_ids = as.numeric(mrca_ottids))
-mrca_famnames <- sapply(seq_along(mrca_lin), function(i) rownames(mrca_lin[[i]])[mrca_lin[[i]][ ,"ott_ranks"] == "family"])
-phyall$tip.label[mrca_index] <- mrca_famnames
+mrca_ottids1 <- gsub("mrcaott", "", phyall$tip.label[mrca_index])
+mrca_ottids1 <- gsub("ott.*", "", mrca_ottids1)
+mrca_ottids2 <- gsub("mrcaott.*ott", "", phyall$tip.label[mrca_index])
+mrca_lin <- datelife::get_ott_lineage(ott_ids = as.numeric(mrca_ottids1))
+mrca_lin2 <- datelife::get_ott_lineage(ott_ids = as.numeric(mrca_ottids2))
+
+mrca_ordernames <- sapply(seq_along(mrca_lin), function(i) rownames(mrca_lin[[i]])[mrca_lin[[i]][ ,"ott_ranks"] == "order"])
+# the latter works bc we know original names were orders, but mrca might not have a rank, or we might not know what the original rank was
+# so we use the next line:
+mrca_ordernames <- unlist(lapply(phyall$tip.label[mrca_index], datelife::recover_mrcaott))
+phyall$tip.label[mrca_index] <- names(mrca_ordernames)
 tipcol <- rep("black", ape::Ntip(phyall))
 mm <- match(gsub(" ", "_", taxon_names), phyall$tip.label)
 sum(is.na(mm))

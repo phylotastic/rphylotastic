@@ -9,23 +9,8 @@
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life, or the taxize package for name resolution in general.
 #' @export
 taxa_resolve_names_with_otol <- function(taxa) {
-    # too slow
-    # final.names <- vector(mode = "character", length = length(taxa))
-    # progression <- utils::txtProgressBar(min = 0, max = length(taxa), style = 3)
-    # for(i in seq(length(taxa))){
-    #     taxa.string <- utils::URLencode(paste(taxa[i], collapse="|"))
-    #     results <- jsonlite::fromJSON(paste0(get_base_url(), 'tnrs/ot/resolve?names=', taxa.string))
-    #     # message(results$message)
-    #      if(length(results$resolvedNames) > 0){
-    #          # print(length(results$resolvedNames) > 0)
-    #          final.names[i] <- unlist(lapply(results$resolvedNames$matched_results, "[[", "matched_name"))
-    #      }
-    #      utils::setTxtProgressBar(progression, i)
-    # }
-    # cat("\n") # just to make the progress bar look better
-    # final.names <- final.names[final.names !=""]
-
-    # try with POST:
+    # we used GET previously, but POST is faster and has no limits to taxon names input:
+    taxa <- genera # from carnivorous plants examples
     taxa.string <- paste(taxa, collapse='", "')
     postcall <- paste0('{"scientificNames": ["', taxa.string, '"], "fuzzy_match":true}')
     # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string))$newick
