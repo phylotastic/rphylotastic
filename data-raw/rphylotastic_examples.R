@@ -12,17 +12,17 @@ names_url <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/List_
 # not necessary to do unique
 # how many names did we extract from web page?
 length(names_url) # > 1000
-# reduce your list to most inclusive clade:
-genera <- unique(sapply(strsplit(names_url, " "), "[", 1)) # there are 38 genera
+# 2. reduce your list to least inclusive clade above species:
+names_url_reduced <- taxa_reduce_species(names_url)# there are 52 lineages
 # 3. Resolve your scientific names
-taxon_names <- taxa_resolve_names_with_otol(taxa = genera)
+taxon_names <- taxa_resolve_names_with_otol(taxa = names_url_reduced)
 # taxon_names <- taxa_resolve_names_with_gnr(taxa = names_url)
-length(taxon_names) # 36 are resolved with ott
+length(taxon_names) # 42 are resolved with ott
 # write(paste(taxon_names, collapse = '", "'), file = "data-raw/test.txt")
 # 4. Get the tree of carnivorous lineages
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
 plot(phy1)
-ape::Ntip(phy1)  # only 31 spp are in otol tree
+ape::Ntip(phy1)  # only 31 names are in otol tree
 phy1$tip.label
 # we're not using phylomatic bc it's behaving weirdly; see tests
 # 5. Now contextualize the plants of interest in the tree of angiosperms, just a sample of them:

@@ -10,7 +10,6 @@
 #' @export
 taxa_resolve_names_with_otol <- function(taxa) {
     # we used GET previously, but POST is faster and has no limits to taxon names input:
-    taxa <- genera # from carnivorous plants examples
     taxa.string <- paste(taxa, collapse='", "')
     postcall <- paste0('{"scientificNames": ["', taxa.string, '"], "fuzzy_match":true}')
     # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/ot/get_tree?taxa=', taxa.string))$newick

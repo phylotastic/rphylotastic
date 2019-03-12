@@ -17,11 +17,13 @@ taxa_get_otol_tree <- function(taxa) {
   # tmp.file <- paste0(tempdir(), "/tmp.tre")
   # cat(results, file=tmp.file)
   # tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
-  # POST method; works well so far:
+  # POST method; works well so far
+  # taxa <- c("Drosera", "Tonella", "Circus", "Zamora", "Catopsis", "Pinguicula", "Triphyophyllum", "Ibicella", "Brocchinia", "Nepenthes", "Drymocallis", "Correa", "Saccolaria", "Drosophyllum", "Capsella", "Sarraceniaceae", "Utricularia", "Cephalotus", "Droseridites", "Byblis", "Dionaea", "Wattius", "Dioncophyllum", "Proboscidea", "Phyllamphora", "Carabini", "Lathraea", "Genlisea", "Sarracenia", "Colura", "Aracamunia", "Tamin", "Roridula", "Droseridites", "Darlingtonia", "Passiflora", "Philcoxia", "Paepalanthus", "Dipsacus", "Aldrovanda", "Heliamphora", "Stylidium")
   taxa.string <- paste(taxa, collapse='", "')
   postcall <- paste0('{"taxa": ["', taxa.string, '"]}')
    postcall <- paste0("curl -X POST '", get_base_url(), "gt/ot/tree' -H 'content-type:application/json' -d '", postcall, "'")
   results <- jsonlite::fromJSON(system(postcall, intern=TRUE))
+  results$newick <- gsub(" ", "_", results$newick)
   tree <- tryCatch(ape::read.tree(text=results$newick), error = function(e){
     # we could use phytools::read.newick instead, it is better also for handling singleton nodes
     # but if text has one tip only, it just stays running forever, so we will stay with ape::read.tree for now.
@@ -30,9 +32,12 @@ taxa_get_otol_tree <- function(taxa) {
   })
   if(inherits(tree, "phylo")){
       tree <- ape::reorder.phylo(ape::collapse.singles(tree))
+      # add vector of ott numbers:
+      tree$ott_ids <- as.numeric(gsub(".*_ott", "", tree$tip.label))
       # To remove ott number from tip labels
-      # tree$tip.label <- gsub("_ott.*", "", tree$tip.label)
-      # tree$tip.label <- gsub("\\(.*", "", tree$tip.label)
+      # in phylotastic portal this is done in an independent step, it is not included in API
+      # that's why we're cleaning the names here too
+      tree$tip.label <- gsub("_ott.*", "", tree$tip.label)      
   }
   return(tree)
 }
