@@ -8,7 +8,7 @@ taxon_get_species_with_genome(taxon, filters = c("environmental",
   "sp\\\\.", "cf\\\\."))
 }
 \arguments{
-\item{taxon}{A taxon to get subset of species having genome sequence}
+\item{taxon}{A character vector of length 1. Specify the taxon name to get a subset of species having genome sequence}
 
 \item{filters}{A character vector of strings to exclude}
 }

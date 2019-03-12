@@ -1,8 +1,8 @@
 #' Get all species from a taxon from Open Tree of Life taxonomy.
 #'
-#' @param taxon A character vector with the taxon name to get all species for. If vector is longer than 1, it will only take the first element and ignore all other names.
+#' @param taxon A character vector of length 1. Specify the taxon name to get all species for. If vector is longer than 1, it will only take the first element and ignore all other names.
 #' @param filters A character vector of strings to exclude.
-#' @return A vector of species names.
+#' @return A character vector of species names.
 #' @examples
 #' print(taxon_get_species("Vulpes"))
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life
@@ -20,7 +20,7 @@ taxon_get_species <- function(taxon, filters=c("environmental", "sp\\.", "cf\\."
 
 #' Get all species filtered by country from a taxon
 #'
-#' @param taxon A taxon to get subset of species that are established in a particular country
+#' @param taxon A character vector of length 1. Specify the taxon name to get a subset of species that are established in a particular country
 #' @param country A country name where species of the input taxon are established.
 #' @param filters A character vector of strings to exclude
 #' @return A vector of names
@@ -36,7 +36,7 @@ taxon_get_species_from_country <- function(taxon, country, filters=c("environmen
 
 #' Get all species that have genome sequence in NCBI from a taxon
 #'
-#' @param taxon A taxon to get subset of species having genome sequence
+#' @param taxon A character vector of length 1. Specify the taxon name to get a subset of species having genome sequence
 #' @param filters A character vector of strings to exclude
 #' @return A vector of names
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the rotl package, another interface to Open Tree of Life

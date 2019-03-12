@@ -1,24 +1,25 @@
 # load_all("~/Desktop/datelife")
 # rphylotastic examples
-# 1. extract names of species with certain characteristics from a pdf or a wikipedia page
+# 1. extract names of species with characteristics of interest from a pdf, a wikipedia page, etc.
 # let's try it with blue flowers:
 # names_url <- url_get_scientific_names(URL = "https://www.kapsenbergdesign.com/garden/byflowblue_bot.php")
 # Error in open.connection(con, "rb") : HTTP error 500.
 # names_url <- url_get_scientific_names(URL = "https://www.hunker.com/12000239/what-flowers-are-naturally-blue")
 # not good enough data
+# try with carnivorous plants
 # names_url <- file_get_scientific_names(file_name = "~/Desktop/rphylotastic/data-raw/FNAfs_carnivory.pdf")
 names_url <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/List_of_carnivorous_plants")
-
-names_url <- unique(names_url)
+# not necessary to do unique
+# how many names did we extract from web page?
 length(names_url) # > 1000
-
+# reduce your list to most inclusive clade:
 genera <- unique(sapply(strsplit(names_url, " "), "[", 1)) # there are 38 genera
 # 3. Resolve your scientific names
 taxon_names <- taxa_resolve_names_with_otol(taxa = genera)
 # taxon_names <- taxa_resolve_names_with_gnr(taxa = names_url)
 length(taxon_names) # 36 are resolved with ott
 # write(paste(taxon_names, collapse = '", "'), file = "data-raw/test.txt")
-# 4. Get the tree of the carnivorous genera
+# 4. Get the tree of carnivorous lineages
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
 plot(phy1)
 ape::Ntip(phy1)  # only 31 spp are in otol tree

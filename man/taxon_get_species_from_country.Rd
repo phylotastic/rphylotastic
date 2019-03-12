@@ -8,7 +8,7 @@ taxon_get_species_from_country(taxon, country,
   filters = c("environmental", "sp\\\\.", "cf\\\\."))
 }
 \arguments{
-\item{taxon}{A taxon to get subset of species that are established in a particular country}
+\item{taxon}{A character vector of length 1. Specify the taxon name to get a subset of species that are established in a particular country}
 
 \item{country}{A country name where species of the input taxon are established.}
 

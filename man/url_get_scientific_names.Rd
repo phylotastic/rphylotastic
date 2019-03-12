@@ -12,7 +12,7 @@ url_get_scientific_names(URL, search_engine = 0)
 \item{search_engine}{1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both}
 }
 \value{
-A vector of scientific names
+A vector of scientific names. It returns unique matches.
 }
 \description{
 Function to pull scientific names from web pages

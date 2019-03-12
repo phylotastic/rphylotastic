@@ -2,7 +2,7 @@
 #'
 #' @param URL The URL to extract names from
 #' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
-#' @return A vector of scientific names
+#' @return A vector of scientific names. It returns unique matches.
 #' @examples
 #' URL <- "https://en.wikipedia.org/wiki/Plain_pigeon"
 #' print(url_get_scientific_names(URL))
@@ -10,7 +10,7 @@
 #' @export
 url_get_scientific_names <- function(URL, search_engine=0) {
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'fn/names_url?url=', URL, '&engine=', search_engine))
-  return(results$scientificNames)
+  return(unique(results$scientificNames))
 }
 
 #' Function to pull scientific names from text

@@ -8,12 +8,12 @@ taxon_get_species(taxon, filters = c("environmental", "sp\\\\.",
   "cf\\\\."))
 }
 \arguments{
-\item{taxon}{A character vector with the taxon name to get all species for. If vector is longer than 1, it will only take the first element and ignore all other names.}
+\item{taxon}{A character vector of length 1. Specify the taxon name to get all species for. If vector is longer than 1, it will only take the first element and ignore all other names.}
 
 \item{filters}{A character vector of strings to exclude.}
 }
 \value{
-A vector of species names.
+A character vector of species names.
 }
 \description{
 Get all species from a taxon from Open Tree of Life taxonomy.
