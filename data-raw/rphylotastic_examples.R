@@ -9,6 +9,7 @@
 # try with carnivorous plants
 # names_url <- file_get_scientific_names(file_name = "~/Desktop/rphylotastic/data-raw/FNAfs_carnivory.pdf")
 names_url <- url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/List_of_carnivorous_plants")
+names2 <- url_get_scientific_names("https://en.wikipedia.org/wiki/List_of_medicinal_plants_of_the_American_West")
 # not necessary to do unique
 # how many names did we extract from web page?
 length(names_url) # > 1000
@@ -16,47 +17,55 @@ length(names_url) # > 1000
 names_url_reduced <- taxa_reduce_species(names_url)# there are 52 lineages
 # 3. Resolve your scientific names
 taxon_names <- taxa_resolve_names_with_otol(taxa = names_url_reduced)
-# taxon_names <- taxa_resolve_names_with_gnr(taxa = names_url)
 length(taxon_names) # 42 are resolved with ott
 # write(paste(taxon_names, collapse = '", "'), file = "data-raw/test.txt")
 # 4. Get the tree of carnivorous lineages
 phy1 <- taxa_get_otol_tree(taxa = taxon_names)
 plot(phy1)
 ape::Ntip(phy1)  # only 31 names are in otol tree
-phy1$tip.label
 # we're not using phylomatic bc it's behaving weirdly; see tests
 # 5. Now contextualize the plants of interest in the tree of angiosperms, just a sample of them:
-# data(flower_plant_fams)
-# all_names <- c(flower_plant_fams, taxon_names)
 data(terrestrial_plant_orders)
 length(terrestrial_plant_orders)
-phy2 <- taxa_get_otol_tree(taxa = terrestrial_plant_orders)
-phy2$tip.label
 all_names <- c(terrestrial_plant_orders, taxon_names)
-# save names to upload to portal, for comparison:
-write(paste(all_names), file = "data-raw/all_names_list.txt")
+# add list to portal's preloaded lists, for comparison:
+# write(paste(all_names), file = "data-raw/all_names_list.txt")
 # now get the tree from otol
 phyall <- taxa_get_otol_tree(taxa = all_names)
 plot(phyall, cex = 0.5)
-phyall$tip.label <- gsub("_ott.*", "", phyall$tip.label)
-phyall$tip.label <- gsub("\\(.*", "", phyall$tip.label)
 
-mrca_index <- grep("mrcaott", phyall$tip.label)
-# find the actual scientific name of mrca ott names:
-mrca_ottids1 <- gsub("mrcaott", "", phyall$tip.label[mrca_index])
-mrca_ottids1 <- gsub("ott.*", "", mrca_ottids1)
-mrca_ottids2 <- gsub("mrcaott.*ott", "", phyall$tip.label[mrca_index])
-mrca_lin <- datelife::get_ott_lineage(ott_ids = as.numeric(mrca_ottids1))
-mrca_lin2 <- datelife::get_ott_lineage(ott_ids = as.numeric(mrca_ottids2))
-
-mrca_ordernames <- sapply(seq_along(mrca_lin), function(i) rownames(mrca_lin[[i]])[mrca_lin[[i]][ ,"ott_ranks"] == "order"])
-# the latter works bc we know original names were orders, but mrca might not have a rank, or we might not know what the original rank was
-# so we use the next line:
-mrca_ordernames <- unlist(lapply(phyall$tip.label[mrca_index], datelife::recover_mrcaott))
-phyall$tip.label[mrca_index] <- names(mrca_ordernames)
 tipcol <- rep("black", ape::Ntip(phyall))
 mm <- match(gsub(" ", "_", taxon_names), phyall$tip.label)
 sum(is.na(mm))
 taxon_names[!is.na(mm)]
 tipcol[mm[!is.na(mm)]] <- "blue"
 plot(phyall, cex = 0.25, tip.color = tipcol)
+
+bioblitz_species <- url_get_scientific_names(URL ="https://www.inaturalist.org/observations?project_id=24453&place_id=any&verifiable=any&captive=any&view=species")
+
+yellowstone_birds <- url_get_scientific_names(URL="https://www.nps.gov/yell/learn/nature/upload/BirdChecklist2014.pdf")
+us_birds <- taxon_get_species_from_country("Aves", country="US")
+yellowstone_tree <- taxa_get_otol_tree(yellowstone_birds)
+library(xml2)
+library(rvest)
+library(stringr)
+
+birds="https://www.audubon.org/climate/national-parks/yellowstone-national-park"
+doc <- read_html(birds)  %>% html_nodes("a")
+common_names <- stringr::str_extract(as.character(doc), "/field-guide/bird/.*\"")
+common_names <- common_names[!is.na(common_names)]
+common_names <- gsub("/field-guide/bird/", "", common_names)
+common_names <- gsub("\"", "", common_names)
+common_names <- gsub("-", " ", common_names)
+sci_names <- gsub(" ", "_", sapply(common_names[1:4], taxa_convert_common_to_scientific))
+tip.colors <- rep("black", length(yellowstone_tree$tip.label))
+tip.colors[yellowstone_tree$tip.label %in% sci_names] <- "red"
+ape::plot.phylo(yellowstone_tree, tip.color=tip.colors, cex=0.2)
+
+
+birds_I_saw <- taxa_convert_common_to_scientific(c("Osprey", "House sparrow", "Mallard duck", "American Robin"))
+yellowstone_bird_tree <- taxa_get_otol_tree(url_get_scientific_names(URL="https://www.nps.gov/yell/learn/nature/upload/BirdChecklist2014.pdf"))
+#tip.colors <- rep("black", length(yellowstone_bird_tree$tip.label))
+#ip.colors[yellowstone_bird_tree$tip.label %in% sci_names] <- "red"
+#ape::plot.phylo(yellowstone_bird_tree, tip.color=tip.colors, cex=0.2)
+ape::plot.phylo(yellowstone_bird_tree, tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"), cex=0.2)

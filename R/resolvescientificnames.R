@@ -71,7 +71,7 @@ taxa_convert_common_to_scientific <- function(taxa, service="NCBI", multiple=FAL
   service <- tolower(service)
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'cs/', service, '/get_scientific_names?commonnames=', taxa.string))
   final.names <- c()
-  final.names <- unlist(lapply(results$resolvedNames$matched_results, "[[", "matched_name"))
+  final.names <- sapply(results$result$matched_names, "[[", "scientific_name")
 
   if(length(final.names) < length(taxa)) {
       warning("Fewer names were found than were given; missing taxa were dropped.")
