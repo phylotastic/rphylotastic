@@ -4,12 +4,14 @@
 \alias{url_get_scientific_names}
 \title{Function to pull scientific names from web pages}
 \usage{
-url_get_scientific_names(URL, search_engine = 0)
+url_get_scientific_names(URL, search_engine = 0, above_species = FALSE)
 }
 \arguments{
 \item{URL}{The URL to extract names from. Can be a pdf url.}
 
 \item{search_engine}{1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both}
+
+\item{above_species}{Boolean. Default to FALSE. If TRUE it will only return scientific names above the species level.}
 }
 \value{
 A vector of scientific names. It returns unique matches.

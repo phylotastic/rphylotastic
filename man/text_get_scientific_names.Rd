@@ -4,12 +4,15 @@
 \alias{text_get_scientific_names}
 \title{Function to pull scientific names from text}
 \usage{
-text_get_scientific_names(text, search_engine = 0)
+text_get_scientific_names(text, search_engine = 0,
+  above_species = FALSE)
 }
 \arguments{
 \item{text}{The text string to extract names from}
 
 \item{search_engine}{1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both}
+
+\item{above_species}{Boolean. Default to FALSE. If TRUE it will only return scientific names above the species level.}
 }
 \value{
 A vector of scientific names

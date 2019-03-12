@@ -7,7 +7,7 @@
 taxa_common_to_scientific(taxa, service = "NCBI", multiple = FALSE)
 }
 \arguments{
-\item{taxa}{A character vector of common names.}
+\item{taxa}{A character vector of common names. Binomials can be spaced with underscore or white space.}
 
 \item{service}{Which service to use: NCBI, ITIS, or TROPICOS}
 
@@ -20,9 +20,9 @@ A vector of scientific names. Output order may not correspond to input order.
 Convert common names to scientific names.
 }
 \examples{
-taxa <- c("blue whale", "swordfish", "killer whale")
-common <- taxa_common_to_scientific(taxa)
-print(common)
+taxa <- c("blue_whale", "swordfish", "killer whale")
+scientific <- taxa_common_to_scientific(taxa)
+print(scientific)
 }
 \seealso{
 taxize package for name resolution in general and its sci2comm function.
