@@ -36,8 +36,7 @@ taxa_get_otol_tree <- function(taxa) {
       mrca_index <- grep("mrcaott", tree$tip.label)
       if(length(mrca_index) > 0){
           mrca_names <- unlist(lapply(tree$tip.label[mrca_index], datelife::recover_mrcaott))
-          tree$tip.label[mrca_index] <- names(mrca_names)
-          tree$ott_ids[mrca_index] <- as.numeric(mrca_names)
+          tree$tip.label[mrca_index] <- paste0(names(mrca_names), "_ott", mrca_names)
       }
       # add vector of ott numbers:
       tree$ott_ids <- as.numeric(gsub(".*_ott", "", tree$tip.label))
