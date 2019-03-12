@@ -68,11 +68,11 @@ taxa_resolve_names_with_gnr <- function(taxa) {
 #' @export
 taxa_common_to_scientific <- function(taxa, service="NCBI", multiple=FALSE) {
   # taxa <- c("Osprey", "House sparrow", "Mallard duck", "American Robin")
+  # taxa <- c("venus flytrap", "pitcher plant", "cobra lily", "sundew")
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   service <- tolower(service)
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'cs/', service, '/get_scientific_names?commonnames=', taxa.string))
-  final.names <- c()
-  final.names <- sapply(results$result$matched_names, "[[", "scientific_name")
+  final.names <- as.character(sapply(results$result$matched_names, "[[", "scientific_name"))
   names(final.names) <- tolower(sapply(results$result$matched_names, "[[", "common_name"))
   if(length(final.names) < length(taxa)) {
       warning("Fewer names were found than were given; missing taxa were dropped.")

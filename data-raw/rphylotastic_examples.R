@@ -62,10 +62,10 @@ tip.colors <- rep("black", length(yellowstone_tree$tip.label))
 tip.colors[yellowstone_tree$tip.label %in% sci_names] <- "red"
 ape::plot.phylo(yellowstone_tree, tip.color=tip.colors, cex=0.2)
 
-
 birds_I_saw <- taxa_common_to_scientific(c("Osprey", "House sparrow", "Mallard duck", "American Robin"))
 yellowstone_bird_tree <- taxa_get_otol_tree(url_get_scientific_names(URL="https://www.nps.gov/yell/learn/nature/upload/BirdChecklist2014.pdf"))
-#tip.colors <- rep("black", length(yellowstone_bird_tree$tip.label))
-#ip.colors[yellowstone_bird_tree$tip.label %in% sci_names] <- "red"
-#ape::plot.phylo(yellowstone_bird_tree, tip.color=tip.colors, cex=0.2)
 ape::plot.phylo(yellowstone_bird_tree, tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"), cex=0.2)
+ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree), tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"), cex=0.5, type = "fan")
+# ape::is.binary(yellowstone_bird_tree)
+
+plants_I_own <- taxa_common_to_scientific(c("venus flytrap", "pitcher plant", "california pitcherplant", "sundew"))
