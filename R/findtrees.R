@@ -32,12 +32,19 @@ taxa_get_otol_tree <- function(taxa) {
   })
   if(inherits(tree, "phylo")){
       tree <- ape::reorder.phylo(ape::collapse.singles(tree))
+      # fix names of poliphyletic taxa in otol:
+      mrca_index <- grep("mrcaott", tree$tip.label)
+      if(length(mrca_index) > 0){
+          mrca_names <- unlist(lapply(tree$tip.label[mrca_index], datelife::recover_mrcaott))
+          tree$tip.label[mrca_index] <- names(mrca_names)
+          tree$ott_ids[mrca_index] <- as.numeric(mrca_names)
+      }
       # add vector of ott numbers:
       tree$ott_ids <- as.numeric(gsub(".*_ott", "", tree$tip.label))
       # To remove ott number from tip labels
       # in phylotastic portal this is done in an independent step, it is not included in API
       # that's why we're cleaning the names here too
-      tree$tip.label <- gsub("_ott.*", "", tree$tip.label)      
+      tree$tip.label <- gsub("_ott.*", "", tree$tip.label)
   }
   return(tree)
 }
