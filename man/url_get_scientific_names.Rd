@@ -7,7 +7,7 @@
 url_get_scientific_names(URL, search_engine = 0)
 }
 \arguments{
-\item{URL}{The URL to extract names from}
+\item{URL}{The URL to extract names from. Can be a pdf url.}
 
 \item{search_engine}{1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both}
 }
@@ -18,8 +18,10 @@ A vector of scientific names. It returns unique matches.
 Function to pull scientific names from web pages
 }
 \examples{
-URL <- "https://en.wikipedia.org/wiki/Plain_pigeon"
-print(url_get_scientific_names(URL))
+# get scientific names from a wikipedia web page:
+url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Plain_pigeon")
+# get scientific names from a pdf URL:
+url_get_scientific_names(URL = "http://darwin-online.org.uk/converted/pdf/1897_Insectivorous_F1229.pdf")
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}

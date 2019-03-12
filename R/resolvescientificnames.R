@@ -54,27 +54,26 @@ taxa_resolve_names_with_gnr <- function(taxa) {
     return(final.names)
 }
 
-#' Convert common names to scientific names
+#' Convert common names to scientific names.
 #'
-#' @param taxa The vector of names
+#' @param taxa A character vector of common names.
 #' @param service Which service to use: NCBI, ITIS, or TROPICOS
 #' @param multiple  If TRUE, then the service will return multiple matches (if available) for each common name in the input list.
-#' @return A vector of correct names. THE ORDER MAY NOT CORRESPOND TO YOUR INPUT ORDER.
+#' @return A vector of scientific names. Output order may not correspond to input order.
 #' @seealso taxize package for name resolution in general and its sci2comm function.
 #' @examples
-#' taxa <- c("blue whale", "swordfish","killer whale")
-#' common <- taxa_convert_common_to_scientific(taxa)
+#' taxa <- c("blue whale", "swordfish", "killer whale")
+#' common <- taxa_common_to_scientific(taxa)
 #' print(common)
 #' @export
-taxa_convert_common_to_scientific <- function(taxa, service="NCBI", multiple=FALSE) {
+taxa_common_to_scientific <- function(taxa, service="NCBI", multiple=FALSE) {
+  taxa <- c("Osprey", "House sparrow", "Mallard duck", "American Robin")
   taxa.string <- utils::URLencode(paste(taxa, collapse="|"))
   service <- tolower(service)
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'cs/', service, '/get_scientific_names?commonnames=', taxa.string))
-  final.names <- c()
   final.names <- sapply(results$result$matched_names, "[[", "scientific_name")
-
   if(length(final.names) < length(taxa)) {
       warning("Fewer names were found than were given; missing taxa were dropped.")
   }
-  return(final.names)
+  return(gsub(" ", "_", final.names))
 }

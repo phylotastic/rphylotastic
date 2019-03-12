@@ -30,4 +30,4 @@
 #' usethis::use_data(terrestrial_plant_orders, overwrite = TRUE)
 "terrestrial_plant_orders"
 
-xx <- datelife::get_ott_children(ott_ids = 56610, ott_rank = "genus")
+# xx <- datelife::get_ott_children(ott_ids = 56610, ott_rank = "genus")
