@@ -120,19 +120,19 @@ for(i in seq(length(tipsies))){
             tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
             cex=0.3, type = "fan", edge.width = EW, label.offset = LO)
     if(length(tipsies[[i]]) > 1){
-        arclabels(tree = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]], orientation = "curved",
+        arclabels(tree = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]], orientation = "horizontal",
                                 lab.offset = 1.3,ln.offset=1.2, cex = 0.5)
     }
     dev.off()
 }
-
-
-arc_label_offset <- rep(1.6, length(tipsies))
-arc_label_offset[c(1,4)] <- 1.4
-arc_label_offset[19] <- 1.35
-arc_label_offset[22] <- 1.33
-arc_colors <- sample(rainbow(n = length(tipsies)), length(tipsies))
 pdf(paste0("data-raw/yellowstone_bird_tree_plot_test_all.pdf"), height = 5.5, width = 5.5)
+arc_ln_offset <- rep(1.51, length(tipsies))
+arc_label_offset <- arc_ln_offset+0.05
+arc_label_offset[29] <- arc_label_offset[29]-0.01
+arc_label_offset[30] <- arc_label_offset[30]+0.05
+arc_label_offset[31] <- arc_label_offset[31]+0.02
+
+arc_colors <- sample(rainbow(n = length(tipsies)), length(tipsies))
 par(xpd = TRUE)
 par(mai = rep(1, 4))
 ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree),
@@ -141,13 +141,54 @@ ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree),
     for(i in seq(length(tipsies))){
         if(length(tipsies[[i]]) > 1){
             cat(i, families[i], "\n")
-            arclabels(tree = yellowstone_bird_tree, text = NULL, tips = tipsies[[i]], orientation = "curved",
+            arclabels(tree = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]], orientation = "horizontal",
+                      col = arc_colors[i], lwd = 4, lab.offset = arc_label_offset[i],ln.offset=arc_ln_offset[i], cex = 0.5)
+        }
+    }
+dev.off()
+pdf(paste0("data-raw/yellowstone_bird_tree_plot_test_all1.pdf"), height = 5.5, width = 5.5)
+arc_ln_offset <- rep(1.51, length(tipsies))
+arc_label_offset <- arc_ln_offset+0.05
+arc_label_offset[29] <- arc_label_offset[29]-0.01
+arc_label_offset[30] <- arc_label_offset[30]+0.05
+arc_label_offset[31] <- arc_label_offset[31]+0.02
+arc_colors <- sample(gray.colors(n = length(tipsies)), length(tipsies))
+par(xpd = TRUE)
+par(mai = rep(1, 4))
+ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree),
+        tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
+        cex=CEX, type = "fan", edge.width = EW, label.offset = LO)
+    for(i in seq(length(tipsies))){
+        if(length(tipsies[[i]]) > 1){
+            cat(i, families[i], "\n")
+            arclabels(tree = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]], orientation = "horizontal",
+                      col = arc_colors[i], lwd = 4, lab.offset = arc_label_offset[i],ln.offset=arc_ln_offset[i], cex = 0.5)
+        }
+    }
+dev.off()
+pdf(paste0("data-raw/yellowstone_bird_tree_plot_test_all2.pdf"), height = 5.5, width = 5.5)
+arc_label_offset <- rep(1.5, length(tipsies))
+arc_label_offset[c(10, 15, 28, 30)] <- 1.45
+arc_label_offset[c(1:4, 11, 19, 21, 23, 29, 34)] <- 1.4
+arc_label_offset[c(22, 26, 38)] <- 1.35
+arc_label_offset[c(12)] <- 1.55
+arc_colors <- sample(gray.colors(n = length(tipsies)), length(tipsies))
+par(xpd = TRUE)
+par(mai = rep(1, 4))
+ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree),
+        tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
+        cex=CEX, type = "fan", edge.width = EW, label.offset = LO)
+    for(i in seq(length(tipsies))){
+        if(length(tipsies[[i]]) > 1){
+            cat(i, families[i], "\n")
+            arclabels(tree = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]], orientation = "horizontal",
                       col = arc_colors[i], lwd = 4, lab.offset = arc_label_offset[i],ln.offset=arc_label_offset[i]-0.05, cex = 0.5)
         }
     }
     # mapply(arclabels, tree = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]], orientation = "curved",
     #                         lab.offset = arc_label_offset[i],ln.offset=arc_label_offset[i]-0.05, cex = 0.5))
 dev.off()
+
 
 
 # other examples:
