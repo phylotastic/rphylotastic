@@ -64,8 +64,93 @@ ape::plot.phylo(yellowstone_tree, tip.color=tip.colors, cex=0.2)
 
 birds_I_saw <- taxa_common_to_scientific(c("Osprey", "House sparrow", "Mallard duck", "American Robin"))
 yellowstone_bird_tree <- taxa_get_otol_tree(url_get_scientific_names(URL="https://www.nps.gov/yell/learn/nature/upload/BirdChecklist2014.pdf"))
-ape::plot.phylo(yellowstone_bird_tree, tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"), cex=0.2)
+# ape::plot.phylo(yellowstone_bird_tree, tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"), cex=0.2)
 ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree), tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"), cex=0.5, type = "fan")
 # ape::is.binary(yellowstone_bird_tree)
+# plotting a small tree:
+yellowstone_bird_fams <- datelife::get_ott_clade(ott_ids = yellowstone_bird_tree$ott_ids, ott_rank = "family")
+keep <- !duplicated(yellowstone_bird_fams$family) | yellowstone_bird_tree$tip.label%in%birds_I_saw
+yellowstone_bird_fams$family[keep]
+yellowstone_bird_fams$family[yellowstone_bird_tree$tip.label%in%birds_I_saw]
+duplicated(yellowstone_bird_fams$family[keep])
+yellowstone_bird_tree_small <- ape::drop.tip(yellowstone_bird_tree, yellowstone_bird_tree$tip.label[!keep])
+pdf("data-raw/yellowstone_bird_tree_small_plot1.pdf", height = 5.5, width = 5.5)
+par(xpd = TRUE)
+par(mai = rep(1, 4))
+ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree_small),
+        tip.color=ifelse(yellowstone_bird_tree_small$tip.label%in%birds_I_saw, "red", "black"),
+        cex=0.5, type = "fan", label.offset = 0.02)
+dev.off()
+# plotting clade labels:
+families <- unique(names(yellowstone_bird_fams$family))
+tipsies <- sapply(families, function(x) yellowstone_bird_tree$tip.label[names(yellowstone_bird_fams$family)%in%x])
+nodes <- sapply(families, function(x)
+                          phytools::findMRCA(tree = yellowstone_bird_tree,
+                                             tips = tipsies[[i]],
+                                             type= "node"))
+# orient <- c("curved", rep("horizontal",3))
 
+source("data-raw/arclabels.R")
+CEX <- 0.28
+EW <- 0.45
+LO <- 0.02
+pdf("data-raw/yellowstone_bird_tree_plot1.pdf", height = 5.5, width = 5.5)
+par(xpd = TRUE)
+par(mai = rep(1, 4))
+ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree),
+        tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
+        cex=CEX, type = "fan", edge.width = EW, label.offset = LO)
+dev.off()
+
+pdf("data-raw/yellowstone_bird_tree_plot2.pdf", height = 6.5, width = 6.5)
+par(xpd = TRUE)
+par(mai = rep(1, 4))
+yellowstone_bird_tree_fams <- yellowstone_bird_tree
+yellowstone_bird_tree_fams$tip.label <- names(yellowstone_bird_fams$family)
+ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree_fams),
+        tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
+        cex=0.3, type = "fan", edge.width = EW, label.offset = LO)
+dev.off()
+
+for(i in seq(length(tipsies))){
+    pdf(paste0("data-raw/yellowstone_bird_tree_plot_test_", i, ".pdf"), height = 5.5, width = 5.5)
+    par(xpd = TRUE)
+    par(mai = rep(1, 4))
+    ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree_fams),
+            tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
+            cex=0.3, type = "fan", edge.width = EW, label.offset = LO)
+    if(length(tipsies[[i]]) > 1){
+        arclabels(tree = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]], orientation = "curved",
+                                lab.offset = 1.3,ln.offset=1.2, cex = 0.5)
+    }
+    dev.off()
+}
+
+
+arc_label_offset <- rep(1.6, length(tipsies))
+arc_label_offset[c(1,4)] <- 1.4
+arc_label_offset[19] <- 1.35
+arc_label_offset[22] <- 1.33
+arc_colors <- sample(rainbow(n = length(tipsies)), length(tipsies))
+pdf(paste0("data-raw/yellowstone_bird_tree_plot_test_all.pdf"), height = 5.5, width = 5.5)
+par(xpd = TRUE)
+par(mai = rep(1, 4))
+ape::plot.phylo(ape::compute.brlen(yellowstone_bird_tree),
+        tip.color=ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
+        cex=CEX, type = "fan", edge.width = EW, label.offset = LO)
+    for(i in seq(length(tipsies))){
+        if(length(tipsies[[i]]) > 1){
+            cat(i, families[i], "\n")
+            arclabels(tree = yellowstone_bird_tree, text = NULL, tips = tipsies[[i]], orientation = "curved",
+                      col = arc_colors[i], lwd = 4, lab.offset = arc_label_offset[i],ln.offset=arc_label_offset[i]-0.05, cex = 0.5)
+        }
+    }
+    # mapply(arclabels, tree = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]], orientation = "curved",
+    #                         lab.offset = arc_label_offset[i],ln.offset=arc_label_offset[i]-0.05, cex = 0.5))
+dev.off()
+
+
+# other examples:
 plants_I_own <- taxa_common_to_scientific(c("venus flytrap", "pitcher plant", "california pitcherplant", "sundew"))
+taxa_common_to_scientific("monocotyledon")
+taxa_common_to_scientific("monocots")
