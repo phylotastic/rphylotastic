@@ -19,6 +19,7 @@ taxa_get_otol_tree <- function(taxa) {
   # tree <- ape::reorder.phylo(ape::collapse.singles(methods::as(phylobase::readNewick(tmp.file), "phylo")))
   # POST method; works well so far
   # taxa <- c("Drosera", "Tonella", "Circus", "Zamora", "Catopsis", "Pinguicula", "Triphyophyllum", "Ibicella", "Brocchinia", "Nepenthes", "Drymocallis", "Correa", "Saccolaria", "Drosophyllum", "Capsella", "Sarraceniaceae", "Utricularia", "Cephalotus", "Droseridites", "Byblis", "Dionaea", "Wattius", "Dioncophyllum", "Proboscidea", "Phyllamphora", "Carabini", "Lathraea", "Genlisea", "Sarracenia", "Colura", "Aracamunia", "Tamin", "Roridula", "Droseridites", "Darlingtonia", "Passiflora", "Philcoxia", "Paepalanthus", "Dipsacus", "Aldrovanda", "Heliamphora", "Stylidium")
+  # taxa <- bird_names
   taxa.string <- paste(taxa, collapse='", "')
   postcall <- paste0('{"taxa": ["', taxa.string, '"]}')
    postcall <- paste0("curl -X POST '", get_base_url(), "gt/ot/tree' -H 'content-type:application/json' -d '", postcall, "'")
