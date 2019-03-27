@@ -3,7 +3,7 @@ get_fams_on_tips <- function(yellowstone_bird_tree, yellowstone_bird_fams){
   return(yellowstone_bird_tree)
 }
 
-write_plot <- function(tree = NULL, file = "1", height = 5.5, width = 5.5,
+write_plot <- function(phy = NULL, file = "1", height = 5.5, width = 5.5,
     mai = c(0.7,0.1,0,0), tip.color =
     ifelse(tree$tip.label%in%birds_I_saw, "red", "black"), ...,
   arclabelspars = NULL){
@@ -13,7 +13,7 @@ write_plot <- function(tree = NULL, file = "1", height = 5.5, width = 5.5,
     par(xpd = TRUE)
     par(mai = mai)
     ape::plot.phylo(tree, tip.color = tip.color, ...)
-    if(!hasArg(type)){
+    if(!methods::hasArg(type)){
         ape::axisPhylo(cex.axis = 0.5)
         mtext("Time (MYA)", at = (max(get("last_plot.phylo",envir =
         .PlotPhyloEnv)$xx) * 0.5), side = 1, line = 2, cex = 0.5)
@@ -26,7 +26,7 @@ write_plot <- function(tree = NULL, file = "1", height = 5.5, width = 5.5,
       arc.line.offset= arclabelspars$arc.line.offset
       for(i in seq(length(tipsies))){
         cat(i, families[i], "\n")
-        arclabels(tree = yellowstone_bird_tree, text = text[i], tips = tips[[i]],
+        arclabels(phy = yellowstone_bird_tree, text = text[i], tips = tips[[i]],
             orientation = "horizontal", col = arc.cols[i], lwd = 4,
             lab.offset = arc.label.offset[i], ln.offset=arc.line.offset[i], cex = 0.5)
       }
@@ -38,14 +38,6 @@ write_plot <- function(tree = NULL, file = "1", height = 5.5, width = 5.5,
     dev.off()
 }
 
-
-
-# orient <- c("curved", rep("horizontal",3))
-#
-# CEX <- 0.28
-# EW <- 0.45
-# LO <- 0.02
-
 graph2_tests <- function(tree, birds_I_saw, families, tipsies){
     for(i in seq(length(tipsies))){
         pdf(paste0("data-raw/yellowstone_bird_tree_plot2_test", i, ".pdf"), height = 5.5, width = 5.5)
@@ -54,7 +46,7 @@ graph2_tests <- function(tree, birds_I_saw, families, tipsies){
         ape::plot.phylo(tree,
             tip.color = ifelse(tree$tip.label%in%birds_I_saw, "red", "black"),
             cex=0.3, type = "fan", edge.width = 0.45, label.offset = 1.5)
-        arclabels(tree = tree, text = families[i], tips = tipsies[[i]],
+        arclabels(phy = tree, text = families[i], tips = tipsies[[i]],
                 orientation = "horizontal", lab.offset = 1.3, ln.offset=1.2, cex = 0.5)
         dev.off()
     }

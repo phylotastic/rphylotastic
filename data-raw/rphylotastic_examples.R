@@ -78,9 +78,9 @@ bird_plan_final <- drake_plan(
         "song sparrow", "mourning dove", "house wren")),
     # alternative function, works slightly worse:
     # taxize::comm2sci(c("wren", "Osprey", "House sparrow", "Mallard duck", "American Robin"))
-    bird_names = url_get_scientific_names(URL =
+    yellowstone_birds = url_get_scientific_names(URL =
       "https://www.nps.gov/yell/learn/nature/upload/BirdChecklist2014.pdf"),
-    yellowstone_bird_tree1 = taxa_get_otol_tree(bird_names),
+    yellowstone_bird_tree1 = taxa_get_otol_tree(yellowstone_birds),
     yellowstone_bird_tree = datelife::datelife_search(yellowstone_bird_tree1,
          summary_format = "phylo_median"),
     # usethis::edit_r_environ() # to set ENTREZ_KEY in file and avoid rate limits

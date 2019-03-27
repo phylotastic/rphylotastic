@@ -28,7 +28,6 @@ insert_species_in_list <- function(userid, listObj) {
   body <- list(user_id = userid, list = listObj)
   response <- httr::POST(url, body = body, encode = "json")
   result <- httr::content(response,"parsed")
-
   return(result)
 }
 
@@ -58,7 +57,6 @@ replace_species_in_list <- function(userid, access_token, list_id, speciesObj) {
   body <- list(user_id = userid, access_token = access_token, list_id = list_id, species = speciesObj)
   response <- httr::POST(url, body = body, encode = "json")
   result <- httr::content(response,"parsed")
-
   return(result)
 }
 
@@ -88,7 +86,6 @@ update_species_in_list <- function(userid, access_token, list_id, listObj) {
   body <- list(user_id = userid, access_token = access_token, list_id = list_id, list = listObj)
   response <- httr::POST(url, body = body, encode = "json")
   result <- httr::content(response,"parsed")
-
   return(result)
 }
 

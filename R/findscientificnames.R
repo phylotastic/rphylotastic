@@ -8,14 +8,15 @@
 #' # get scientific names from a wikipedia web page:
 #' url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Plain_pigeon")
 #' # get scientific names from a pdf URL:
-#' url_get_scientific_names(URL = "http://darwin-online.org.uk/converted/pdf/1897_Insectivorous_F1229.pdf")
+#' url_get_scientific_names(URL =
+#'  "http://darwin-online.org.uk/converted/pdf/1897_Insectivorous_F1229.pdf")
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
 url_get_scientific_names <- function(URL, search_engine=0, above_species = FALSE){
   results <- jsonlite::fromJSON(paste0(get_base_url(), 'fn/names_url?url=', URL, '&engine=', search_engine))
   results <- unique(results$scientificNames)
   if(above_species){
-    results <- taxa_get_above_species(results)
+    results <- taxa_toss_binomials(results)
   }
   return(results)
 }
