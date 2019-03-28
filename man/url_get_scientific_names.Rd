@@ -23,8 +23,8 @@ Function to pull scientific names from web pages
 # get scientific names from a wikipedia web page:
 url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Plain_pigeon")
 # get scientific names from a pdf URL:
-url_get_scientific_names(URL = "http://darwin-online.org.uk/converted/pdf/
-       1897_Insectivorous_F1229.pdf")
+url_get_scientific_names(URL =
+ "http://darwin-online.org.uk/converted/pdf/1897_Insectivorous_F1229.pdf")
 }
 \seealso{
 \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}

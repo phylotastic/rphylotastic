@@ -5,14 +5,14 @@ get_fams_on_tips <- function(yellowstone_bird_tree, yellowstone_bird_fams){
 
 write_plot <- function(phy = NULL, file = "1", height = 5.5, width = 5.5,
     mai = c(0.7,0.1,0,0), tip.color =
-    ifelse(tree$tip.label%in%birds_I_saw, "red", "black"), ...,
+    ifelse(phy$tip.label%in%birds_I_saw, "red", "black"), ...,
   arclabelspars = NULL){
 
     filename <- paste0("data-raw/yellowstone_bird_tree_plot", file, ".pdf")
     pdf(filename, width, height)
     par(xpd = TRUE)
     par(mai = mai)
-    ape::plot.phylo(tree, tip.color = tip.color, ...)
+    ape::plot.phylo(phy, tip.color = tip.color, ...)
     if(!methods::hasArg(type)){
         ape::axisPhylo(cex.axis = 0.5)
         mtext("Time (MYA)", at = (max(get("last_plot.phylo",envir =
@@ -23,12 +23,14 @@ write_plot <- function(phy = NULL, file = "1", height = 5.5, width = 5.5,
       text = arclabelspars$text
       arc.cols = arclabelspars$arc.cols
       arc.label.offset = arclabelspars$arc.label.offset
-      arc.line.offset= arclabelspars$arc.line.offset
+      arc.line.offset = arclabelspars$arc.line.offset
+      label_degree = arclabelspars$label_degree
       for(i in seq(length(tipsies))){
         cat(i, families[i], "\n")
-        arclabels(phy = yellowstone_bird_tree, text = text[i], tips = tips[[i]],
+        arclabels(phy = phy, text = text[i], tips = tips[[i]],
             orientation = "horizontal", col = arc.cols[i], lwd = 4,
-            lab.offset = arc.label.offset[i], ln.offset=arc.line.offset[i], cex = 0.5)
+            lab.offset = arc.label.offset[i], ln.offset = arc.line.offset[i],
+            cex = 0.5, label_degree = label_degree[i])
       }
 
     # nulo <- mapply(arclabels, tree, text = text, tips = tips,
@@ -54,9 +56,11 @@ graph2_tests <- function(tree, birds_I_saw, families, tipsies){
 
 albo <- function(arc.line.offset){
     arc_label_offset <- arc.line.offset+0.05
-    arc_label_offset[29] <- arc_label_offset[29]-0.01
+    arc_label_offset[29] <- arc_label_offset[29]-0.0 #laridae
     arc_label_offset[30] <- arc_label_offset[30]+0.05
-    arc_label_offset[31] <- arc_label_offset[31]+0.02
+    arc_label_offset[31] <- arc_label_offset[31]-0.18 #recurvirostridae
+    arc_label_offset[34] <- arc_label_offset[34]-0.16 #ardeidae
+    arc_label_offset[37] <- arc_label_offset[37]-0.19 #gaviidae
     return(arc_label_offset)
 }
 
@@ -68,4 +72,12 @@ albo2 <- function(arc.line.offset){
   arc_label_offset[c(22, 26, 38)] <- base - 0.15
   arc_label_offset[c(12)] <- base + 0.5
   return(arc_label_offset)
+}
+
+make_label_degree <- function(length, index, degree){
+  deg <- rep(NA, length)
+  for(i in seq(length(index))){
+    deg[index[i]] <- degree[i]
+  }
+  return(deg)
 }

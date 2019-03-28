@@ -26,7 +26,7 @@ arclabels.default <- function (phy = NULL, tips, text, plot_singletons = TRUE,
     ln.offset = 1.02, lab.offset = 1.06,
     cex = 1, orientation = "horizontal", ...){
 
-    # tips <- tipsies[[7]]
+    # tips <- tipsies[[1]]
     obj <- get("last_plot.phylo", envir = .PlotPhyloEnv)
     if (obj$type != "fan")
         stop("method works only for type=\"fan\"")
@@ -47,6 +47,7 @@ arclabels.default <- function (phy = NULL, tips, text, plot_singletons = TRUE,
         n <- list(...)$n
     else n <- 0.05
     if (is.null(phy)) {
+      message("phy argumengt is NULL; tip labels are being replaced by numbers.")
         phy <- list(edge = obj$edge, tip.label = 1:obj$Ntip,
             Nnode = obj$Nnode)
         class(phy) <- "phylo"
@@ -75,6 +76,7 @@ arclabels.default <- function (phy = NULL, tips, text, plot_singletons = TRUE,
             0))
         deg[ii] <- 360 + deg[ii]
         # ln.offset <- 1.16
+        cat("deg", deg, "\n")
         plotrix::draw.arc(x = 0, y = 0, radius = ln.offset * h, deg1 = min(deg),
             deg2 = max(deg), lwd = lwd, col = col, lend = lend, n = n)
         if(!is.null(text)){
@@ -82,12 +84,21 @@ arclabels.default <- function (phy = NULL, tips, text, plot_singletons = TRUE,
                 plotrix::arctext(text, radius = lab.offset * h, middle = stats::median(range(deg *
                     pi/180)), cex = cex, clockwise = clockwise)
             else if (orientation == "horizontal") {
-                x0 <- lab.offset * cos(stats::median(deg) * pi/180) * h
-                y0 <- lab.offset * sin(stats::median(deg) * pi/180) * h
+                if(methods::hasArg(label_degree)){
+                  label_degree <- list(...)$label_degree
+                  print(label_degree)
+                  if(is.null(label_degree) | is.na(label_degree)){
+                    label_degree <- stats::median(deg)
+                  }
+                } else {
+                  label_degree <- stats::median(deg)
+                }
+                x0 <- lab.offset * cos(label_degree * pi/180) * h
+                y0 <- lab.offset * sin(label_degree * pi/180) * h
                 graphics::text(x = x0, y = y0, label = text, adj = c(if (x0 >=
                     0) 0 else 1, if (y0 >= 0) 0 else 1), offset = 0,
                     cex = cex)
-                }
+            }
         }
     }
 }
