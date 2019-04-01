@@ -1,0 +1,12 @@
+---
+output: pdf_document
+fontsize: 12pts
+geometry: margin = 1in
+linestretch: 1
+header-includes:
+    - \usepackage[left]{lineno}
+    # - \linenumbers
+---
+```{r echo = FALSE, warning=FALSE}
+# packages
+```
