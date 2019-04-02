@@ -11,10 +11,3 @@ header-includes:
 ### Table 1. Tools implemented as web services incorporated into the Phylotastic system.
 
 
-```
-## [1] "table1.png"
-## attr(,"class")
-## [1] "knit_image_paths" "knit_asis"       
-## attr(,"dpi")
-## [1] 300
-```
