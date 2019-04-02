@@ -29,6 +29,7 @@ print(knitr::kable(table1, caption = "", row.names = FALSE, format = "latex", bo
     %>% kableExtra::kable_styling(latex_options = "scale_down")
     %>% kableExtra::add_indent(rowsies2)
     %>% column_spec(1, width = "7cm")
-    %>% as_image(file = "table1.png", width = 7)
+    %>% column_spec(2, width = "10cm")
+    %>% as_image(file = "table1.png") #, width = 6
 )
 ```

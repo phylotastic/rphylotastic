@@ -14,5 +14,5 @@ plan_webservice_table <- drake_plan(
   all_descriptions = make_alldescriptions(all_services),
   table1 = make_table1(all_services, all_descriptions),
   report = knitr::knit(knitr_in("webservices_table.Rmd"), file_out("webservices_table.md"), quiet = TRUE),
-  summary_pdf_report = render_pdf("webservices_table", "", "try12")
+  summary_pdf_report = render_pdf("webservices_table", "", "try15")
 )

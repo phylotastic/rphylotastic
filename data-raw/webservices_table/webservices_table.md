@@ -16,5 +16,5 @@ header-includes:
 ## attr(,"class")
 ## [1] "knit_image_paths" "knit_asis"       
 ## attr(,"dpi")
-## [1] 208
+## [1] 300
 ```
