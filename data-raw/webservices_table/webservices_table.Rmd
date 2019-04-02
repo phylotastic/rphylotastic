@@ -1,12 +1,34 @@
 ---
-output: pdf_document
-fontsize: 12pts
+output:
+    pdf_document:
+        keep_tex: true
+fontsize: 10pts
 geometry: margin = 1in
 linestretch: 1
 header-includes:
     - \usepackage[left]{lineno}
-    # - \linenumbers
 ---
+### Table 1. Tools implemented as web services incorporated into the Phylotastic system.
+
 ```{r echo = FALSE, warning=FALSE}
-# packages
+loadd(table1)
+loadd(all_categories)
+loadd(all_services)
+rowsiesfoo <- function(x){
+  res <- length(x[[1]])
+  for(i in 2:length(x)){
+    res <- c(res, res[i-1] + length(x[[i]]))
+  }
+  res
+}
+rowsies <- rowsiesfoo(all_services)
+rowsies2 <- 1:max(rowsies)
+remove <- rowsies-sapply(all_services, length)+1
+rowsies2 <- rowsies2[-remove]
+print(knitr::kable(table1, caption = "", row.names = FALSE, format = "latex", booktabs = T)
+    %>% kableExtra::kable_styling(latex_options = "scale_down")
+    %>% kableExtra::add_indent(rowsies2)
+    %>% column_spec(1, width = "7cm")
+    %>% as_image(file = "table1.png", width = 7)
+)
 ```
