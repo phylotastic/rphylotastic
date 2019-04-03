@@ -86,7 +86,9 @@ make_alldescriptions <- function(all_services){
     return(all_descriptions)
 }
 
-make_table1 <- function(all_services, all_descriptions){
+make_table1 <- function(all_services, all_descriptions, image = TRUE){
+    loadd(all_services)
+    loadd(all_descriptions)
     table1 <- data.frame(Web_Service = unlist(all_services), Description = unlist(all_descriptions))
     rowsiesfoo <- function(x){ # function to get rows that will have an indent
       res <- length(x[[1]])
@@ -101,28 +103,46 @@ make_table1 <- function(all_services, all_descriptions){
     remove <- rowsies-sapply(all_services, length)+1
     rowsies2 <- rowsies2[-remove]
     # line_sep <- rep("", nrow(table1))
-    # line_sep[c(1, (remove[-1]-1))] <- "\\addlinespace" # foudn a better way to specify space between categories with group_rows
-    t1 <- knitr::kable(table1, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
+    # line_sep[c(1, (remove[-1]-1))] <- "\\addlinespace" # found a better way to specify space between categories with group_rows
+    escape_image <- TRUE
+    if(!image){
+        table1 <- dplyr::mutate(table1, Web_Service = cell_spec(Web_Service, "latex", color =
+            ifelse(seq(nrow(table1)) %in% remove, "red", "blue")))
+        escape_image <- FALSE
+    }
+    # escape is used to format specific cells with cell_spec (previous to call to kable)
+    # linesep is used to override the default addition of a space every 5 lines
+    t1 <- knitr::kable(table1, escape = escape_image, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
+    # t1_test <- knitr::kable(t0, escape = T, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
+    # next line only to use with as_image, but not sure how yet
+    if(!image){
+        t1 <- gsub("\\\\_", "\\\\textbackslash{}\\\\_", t1) # to make a backslash literal you need four of them ^^
+    }
     # for(i in seq(length(remove))){
     #     pack_rows(t1, group_label = "", start_row = remove[i], end_row = rowsies[i], indent = FALSE)
-    # } # cannot do it in a loop and it does not work outside the print either for some reason
-    EM <- "0.1em"
-    print(kableExtra::kable_styling(t1, latex_options = "scale_down", full_width = T)
-        %>% kableExtra::add_indent(rowsies2)
-        %>% column_spec(1, width = "6cm")
-        %>% column_spec(2, width = "13cm")
-        %>% collapse_rows(columns = 2, latex_hline = "none", valign = "middle")
-        %>% row_spec(0, bold = TRUE)
-        %>% pack_rows(group_label = "", start_row = remove[1], end_row = rowsies[1], indent = FALSE, latex_gap_space = EM) #, latex_gap_space = "2em"
-        %>% pack_rows(group_label = "", start_row = remove[2], end_row = rowsies[2], indent = FALSE, latex_gap_space = EM)
-        %>% pack_rows(group_label = "", start_row = remove[3], end_row = rowsies[3], indent = FALSE, latex_gap_space = EM)
-        %>% pack_rows(group_label = "", start_row = remove[4], end_row = rowsies[4], indent = FALSE, latex_gap_space = EM)
-        %>% pack_rows(group_label = "", start_row = remove[5], end_row = rowsies[5], indent = FALSE, latex_gap_space = EM)
-        %>% pack_rows(group_label = "", start_row = remove[6], end_row = rowsies[6], indent = FALSE, latex_gap_space = EM)
-        %>% pack_rows(group_label = "", start_row = remove[7], end_row = rowsies[7], indent = FALSE, latex_gap_space = EM)
-        %>% pack_rows(group_label = "", start_row = remove[8], end_row = rowsies[8], indent = FALSE, latex_gap_space = EM)
-        %>% pack_rows(group_label = "", start_row = remove[9], end_row = rowsies[9], indent = FALSE, latex_gap_space = EM)
-        %>% as_image(file = "table1.png") #, width = 6
-    )
-    # return(table1)
+    # } # cannot do pack_rows in a loop and it does not work outside the print either for some reason (may be related to the position of the pipe (has to be at the end of the line not beginning))
+    EM <- "0.5em"
+    # LEN <- unname(sapply(all_descriptions, length))
+    kableExtra::kable_styling(t1, full_width = T, font_size = 7) %>% # latex_options = "scale_down",
+        kableExtra::add_indent(rowsies2) %>%
+        column_spec(1, width = "4cm") %>%
+        column_spec(2, width = "7cm") %>%
+        collapse_rows(columns = 2, latex_hline = "none", valign = "middle") %>%
+        row_spec(0, bold = TRUE) %>%
+        # %>% group_rows(index = c(" " = LEN[1], " " = LEN[2], " " = LEN[6])) # does not work if names are equal
+        pack_rows(group_label = "", start_row = remove[1], end_row = rowsies[1], indent = FALSE, latex_gap_space = EM) %>%
+        pack_rows(group_label = "", start_row = remove[2], end_row = rowsies[2], indent = FALSE, latex_gap_space = EM) %>%
+        pack_rows(group_label = "", start_row = remove[3], end_row = rowsies[3], indent = FALSE, latex_gap_space = EM) %>%
+        pack_rows(group_label = "", start_row = remove[4], end_row = rowsies[4], indent = FALSE, latex_gap_space = EM) %>%
+        pack_rows(group_label = "", start_row = remove[5], end_row = rowsies[5], indent = FALSE, latex_gap_space = EM) %>%
+        pack_rows(group_label = "", start_row = remove[6], end_row = rowsies[6], indent = FALSE, latex_gap_space = EM) %>%
+        pack_rows(group_label = "", start_row = remove[7], end_row = rowsies[7], indent = FALSE, latex_gap_space = EM) %>%
+        pack_rows(group_label = "", start_row = remove[8], end_row = rowsies[8], indent = FALSE, latex_gap_space = EM) %>%
+        pack_rows(group_label = "", start_row = remove[9], end_row = rowsies[9], indent = FALSE, latex_gap_space = EM) ->
+        table1_tex
+    if(image){
+        as_image(table1_tex, file = "table1.png") #, width = 6        
+    }
+    write(table1_tex, file = "webservices_table.txt")
+    return(table1_tex)
 }
