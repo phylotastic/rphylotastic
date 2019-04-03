@@ -15,7 +15,7 @@ make_allservices <- function(all_categories){
         "ITIS_common_name",
         "TROPICOS_common_name",
         "EOL_common_name")
-    all_services[[all_categories[2]]] <- c("GNRD_wrapper_URL",
+    all_services[[all_categories[2]]] <- c("GNRD_wrapper_URL;",
         "GNRD_wrapper_text;",
         "GNRD_wrapper_file",
         "TaxonFinder_wrapper_URL;",
@@ -52,59 +52,76 @@ make_allservices <- function(all_categories){
 make_alldescriptions <- function(all_services){
     all_descriptions <- vector(mode = "list", length(all_services))
     names(all_descriptions) <- all_categories <- names(all_services)
-    all_descriptions[[all_categories[1]]] <- c("Get the scientific name of a species from its common name (vernacular name) using",
-      "NCBI data base",
-      "EBI",
-      "ITIS",
-      "TROPICOS",
-      "EOL")
+    all_descriptions[[all_categories[1]]] <- c("Get the scientific name of a species from its common name",
+      "following the NCBI database",
+      "following EBI services",
+      "following ITIS services",
+      "following TROPICOS services",
+      "following EOL services")
     all_descriptions[[all_categories[2]]] <- c("Scrape scientific names from a URL, text or any tipe of file",
-      "using Global Names Recognition and Discovery (GNRD) services", "", "",
-      "using Taxon Finder", "")
+      rep("using Global Names Recognition and Discovery (GNRD) services", 3),
+      rep("using Taxon Finder",2))
     all_descriptions[[all_categories[3]]] <- c(
-      "Match input scientific names to formal taxonomic names and resolve mismatches",
-      "using the Open Tree of Life tool taxonomy",
-      "using the Global Names Resolver tool at http://resolver.globalnames.org which includes several taxonomies",
-      "using iPlant collaborative services from https://tnrs.iplantcollaborative.org"
+      "Match scientific names to authorative taxonomies and resolve mismatches",
+      "using the Open Tree of Life taxonomy",
+      "using the Global Names Resolver tool (several taxonomies)",
+      "using iPlant collaborative services"
     )
-    all_descriptions[[all_categories[4]]] <- c("Get scientific names of species that belong to a given higher taxon name",
-      "",
-      "and are found in a given country following iNaturalist data base",
-      "and have a genome sequence submitted in NCBI",
+    all_descriptions[[all_categories[4]]] <- c("Get all scientific names of species that:",
+      "belong to a given higher taxon name",
+      "and are found in a given country (using iNaturalist database)",
+      "and have a genome sequence (deposited in NCBI)",
       "and match the most popular species within the taxon using OneZoom tool")
     all_descriptions[[all_categories[5]]] <- c("Get various information of a species such as",
       "image urls and corresponding license information using EOL",
       "information urls from EOL",
       "conservation status from ECO services")
     all_descriptions[[all_categories[6]]] <- c("Get phylogenetic trees from a list of taxa",
-      "from OToL and the supporting studies", "", "from Phylomatic", "from TreeBase", "using supersmart")
+      "from Open Tree of Life synthetic tree", "and all supporting studies", "from Phylomatic", "from TreeBase", "using supersmart")
     all_descriptions[[all_categories[7]]] <- c("Scale branch lengths of a tree relative to time",
       "using the DateLife service",
       "using OToLs unoficial scaling service")
-    all_descriptions[[all_categories[8]]] <- c("Compare two phylogenetic trees symmetrically", "")
-    all_descriptions[[all_categories[9]]] <- c("Save, publish, access, remove or update lists of names.", rep("", 4))
+    all_descriptions[[all_categories[8]]] <- rep("Compare two phylogenetic trees symmetrically", 2)
+    all_descriptions[[all_categories[9]]] <- rep("Save, publish, access, remove or update lists of names.", 5)
     return(all_descriptions)
 }
 
 make_table1 <- function(all_services, all_descriptions){
-    table1 <- data.frame(Web_Service = unlist(all_services), Description = all_descriptions)
-    rowsiesfoo <- function(x){
+    table1 <- data.frame(Web_Service = unlist(all_services), Description = unlist(all_descriptions))
+    rowsiesfoo <- function(x){ # function to get rows that will have an indent
       res <- length(x[[1]])
       for(i in 2:length(x)){
         res <- c(res, res[i-1] + length(x[[i]]))
       }
       res
     }
-    # get rows that will have an indent
+    # get rows that will have an indent:
     rowsies <- rowsiesfoo(all_services)
-    rowsies2 <- 1:max(rowsies)
+    rowsies2 <- seq(nrow(table1))
     remove <- rowsies-sapply(all_services, length)+1
     rowsies2 <- rowsies2[-remove]
-    print(knitr::kable(table1, caption = "", row.names = FALSE, format = "latex", booktabs = T, linesep = "")
-        %>% kableExtra::kable_styling(latex_options = "scale_down")
+    # line_sep <- rep("", nrow(table1))
+    # line_sep[c(1, (remove[-1]-1))] <- "\\addlinespace" # foudn a better way to specify space between categories with group_rows
+    t1 <- knitr::kable(table1, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
+    # for(i in seq(length(remove))){
+    #     pack_rows(t1, group_label = "", start_row = remove[i], end_row = rowsies[i], indent = FALSE)
+    # } # cannot do it in a loop and it does not work outside the print either for some reason
+    EM <- "0.1em"
+    print(kableExtra::kable_styling(t1, latex_options = "scale_down", full_width = T)
         %>% kableExtra::add_indent(rowsies2)
-        %>% column_spec(1, width = "7cm")
-        %>% column_spec(2, width = "10cm")
+        %>% column_spec(1, width = "6cm")
+        %>% column_spec(2, width = "13cm")
+        %>% collapse_rows(columns = 2, latex_hline = "none", valign = "middle")
+        %>% row_spec(0, bold = TRUE)
+        %>% pack_rows(group_label = "", start_row = remove[1], end_row = rowsies[1], indent = FALSE, latex_gap_space = EM) #, latex_gap_space = "2em"
+        %>% pack_rows(group_label = "", start_row = remove[2], end_row = rowsies[2], indent = FALSE, latex_gap_space = EM)
+        %>% pack_rows(group_label = "", start_row = remove[3], end_row = rowsies[3], indent = FALSE, latex_gap_space = EM)
+        %>% pack_rows(group_label = "", start_row = remove[4], end_row = rowsies[4], indent = FALSE, latex_gap_space = EM)
+        %>% pack_rows(group_label = "", start_row = remove[5], end_row = rowsies[5], indent = FALSE, latex_gap_space = EM)
+        %>% pack_rows(group_label = "", start_row = remove[6], end_row = rowsies[6], indent = FALSE, latex_gap_space = EM)
+        %>% pack_rows(group_label = "", start_row = remove[7], end_row = rowsies[7], indent = FALSE, latex_gap_space = EM)
+        %>% pack_rows(group_label = "", start_row = remove[8], end_row = rowsies[8], indent = FALSE, latex_gap_space = EM)
+        %>% pack_rows(group_label = "", start_row = remove[9], end_row = rowsies[9], indent = FALSE, latex_gap_space = EM)
         %>% as_image(file = "table1.png") #, width = 6
     )
     # return(table1)
