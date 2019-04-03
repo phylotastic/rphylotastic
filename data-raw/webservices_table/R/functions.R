@@ -104,10 +104,11 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
     rowsies2 <- rowsies2[-remove]
     # line_sep <- rep("", nrow(table1))
     # line_sep[c(1, (remove[-1]-1))] <- "\\addlinespace" # found a better way to specify space between categories with group_rows
-    # if(!image){
+    if(!image){
+        # for some reason the command added with the following mess up the figure. It is constructed but it just shows all the 
         table1 <- dplyr::mutate(table1, Web_Service = cell_spec(Web_Service, "latex", color =
             ifelse(seq(nrow(table1)) %in% remove, "red", "blue")))
-    # }
+    }
     # escape is used to format specific cells with cell_spec (previous to call to kable)
     # linesep is used to override the default addition of a space every 5 lines
     t1 <- knitr::kable(table1, escape = image, row.names = FALSE, format = "latex", booktabs = T, linesep = "")

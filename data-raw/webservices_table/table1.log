@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.5.23)  3 APR 2019 00:42
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.5.23)  3 APR 2019 13:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -787,131 +787,12 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 29.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (11.07298pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{NCBI\_common\_name}|  
- []
-
-
-Overfull \hbox (5.39099pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{EBI\_common\_name}|  
- []
-
-
-Overfull \hbox (7.30498pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{ITIS\_common\_name}|  
- []
-
-
-Overfull \hbox (31.10698pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{TROPICOS\_common\_name}|  
- []
-
-
-Overfull \hbox (7.76099pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{EOL\_common\_name}|  
- []
-
-
-Overfull \hbox (14.42097pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{GNRD\_wrapper\_URL;}|  
- []
-
-
-Overfull \hbox (12.13498pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{GNRD\_wrapper\_text;}|  
- []
-
-
-Overfull \hbox (6.72298pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{GNRD\_wrapper\_file}|  
- []
-
-
-Overfull \hbox (33.59097pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{TaxonFinder\_wrapper\_URL;}|  
- []
-
-
-Overfull \hbox (29.19298pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{TaxonFinder\_wrapper\_text}|  
- []
-
-
-Overfull \hbox (13.67699pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{OToL\_TNRS\_wrapper}|  
- []
-
-
-Overfull \hbox (11.56499pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{GNR\_TNRS\_wrapper}|  
- []
-
-
-Overfull \hbox (14.79298pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{iPlant\_TNRS\_wrapper}|  
- []
-
-
-Overfull \hbox (15.48299pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{Taxon\_country\_species}|  
- []
-
-
-Overfull \hbox (14.92497pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{Taxon\_genome\_species}|  
- []
-
-
-Overfull \hbox (15.67497pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{Taxon\_popular\_species}|  
- []
-
-
-Overfull \hbox (1.53299pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{ECOS\_Conservation}|  
- []
-
-
-Overfull \hbox (9.91498pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{OToL\_wrapper\_Tree;}|  
- []
-
-
-Overfull \hbox (21.78899pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{OToL\_supported\_studies}|  
- []
-
-
-Overfull \hbox (25.72498pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{Phylomatic\_wrapper\_Tree}|  
- []
-
-
-Overfull \hbox (26.25298pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{Supersmart\_wrapper\_Tree}|  
- []
-
-
-Overfull \hbox (1.76099pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{Datelife\_scale\_tree}|  
- []
-
-
-Overfull \hbox (8.20499pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{Replace\_species\_list;}|  
- []
-
-
-Overfull \hbox (14.81097pt too wide) in paragraph at lines 133--133
-\TU/lmr/m/n/6 color{blue}{Update\_metadata\_list;}|  
- []
-
 Preview: Tightpage -186467 -186467 186467 186467
 [1] (./table1.aux) ) 
 Here is how much of TeX's memory you used:
  17246 strings out of 493005
  325238 string characters out of 6134596
- 393141 words of memory out of 5000000
+ 392141 words of memory out of 5000000
  21041 multiletter control sequences out of 15000+600000
  6012 words of font info for 32 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
