@@ -104,15 +104,13 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
     rowsies2 <- rowsies2[-remove]
     # line_sep <- rep("", nrow(table1))
     # line_sep[c(1, (remove[-1]-1))] <- "\\addlinespace" # found a better way to specify space between categories with group_rows
-    escape_image <- TRUE
-    if(!image){
+    # if(!image){
         table1 <- dplyr::mutate(table1, Web_Service = cell_spec(Web_Service, "latex", color =
             ifelse(seq(nrow(table1)) %in% remove, "red", "blue")))
-        escape_image <- FALSE
-    }
+    # }
     # escape is used to format specific cells with cell_spec (previous to call to kable)
     # linesep is used to override the default addition of a space every 5 lines
-    t1 <- knitr::kable(table1, escape = escape_image, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
+    t1 <- knitr::kable(table1, escape = image, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
     # t1_test <- knitr::kable(t0, escape = T, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
     # next line only to use with as_image, but not sure how yet
     if(!image){
@@ -123,7 +121,7 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
     # } # cannot do pack_rows in a loop and it does not work outside the print either for some reason (may be related to the position of the pipe (has to be at the end of the line not beginning))
     EM <- "0.5em"
     # LEN <- unname(sapply(all_descriptions, length))
-    kableExtra::kable_styling(t1, full_width = T, font_size = 7) %>% # latex_options = "scale_down",
+    kableExtra::kable_styling(t1, full_width = T, font_size = 6) %>% # latex_options = "scale_down",
         kableExtra::add_indent(rowsies2) %>%
         column_spec(1, width = "4cm") %>%
         column_spec(2, width = "7cm") %>%
@@ -141,7 +139,7 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
         pack_rows(group_label = "", start_row = remove[9], end_row = rowsies[9], indent = FALSE, latex_gap_space = EM) ->
         table1_tex
     if(image){
-        as_image(table1_tex, file = "table1.png") #, width = 6        
+        save_kable(table1_tex, file = "table1.png", keep_tex = TRUE) #, width = 6
     }
     write(table1_tex, file = "webservices_table.txt")
     return(table1_tex)
