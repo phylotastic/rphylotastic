@@ -22,6 +22,12 @@
 #' @return list with a phy and a data object, both pruned to the same taxon set
 #' @export
 data_get_tree <- function(data, tnrs_source="otol", tree_source="otol", prune=TRUE, summary_format="phylo_biggest", ...) {
+  if(is.null(dim(data))) {
+    warning("This function takes in data.frames, not vectors. Trying to convert to data.frame")
+    data2 <- data.frame(trait=data, stringsAsFactors=FALSE)
+    rownames(data2) <- names(data)
+    data <- data2
+  }
   if(nchar(rownames(data)[1])<2) {
     stop("This expects rownames of data to be taxon names")
   }
@@ -39,8 +45,12 @@ data_get_tree <- function(data, tnrs_source="otol", tree_source="otol", prune=TR
     tree_fun <- taxa_get_phylomatic_tree
   }
 
-
-  phy <- ifelse(tree_source=="datelife", datelife::datelife_search(rownames(data), summary_format=summary_format, ...),tree_fun(rownames(data)))
+  phy <- NULL
+  if(tree_source=="datelife") {
+    phy <- datelife::datelife_search(rownames(data), summary_format=summary_format, ...)
+  } else {
+    phy <- tree_fun(rownames(data))
+  }
   if(prune) {
     data <- data[!(rownames(data) %in% phy$tip.label),]
   }
