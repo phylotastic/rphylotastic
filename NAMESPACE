@@ -2,6 +2,7 @@
 
 S3method(arclabels,default)
 export(arclabels)
+export(data_get_tree)
 export(file_get_scientific_names)
 export(get_base_url)
 export(get_species_from_list)

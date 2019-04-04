@@ -5,18 +5,18 @@
 \alias{arclabels.default}
 \title{Add arc labels to tips of a phylogeny; works for non-monophyletic groups and single tip lineages.}
 \usage{
-arclabels(tips, ...)
+arclabels(phy, tips, ...)
 
 \method{arclabels}{default}(phy = NULL, tips, text,
   plot_singletons = TRUE, ln.offset = 1.02, lab.offset = 1.06,
   cex = 1, orientation = "horizontal", ...)
 }
 \arguments{
+\item{phy}{An object of class phylo.}
+
 \item{tips}{A character vector (or a list ?) with the names of the tips that belong to the clade or group. If multiple groups are going to be plotted, tips must be given in the form of a list.}
 
 \item{...}{optional arguments for \code{arc.cladelabels}.}
-
-\item{phy}{An object of class phylo.}
 
 \item{text}{A character vector indicating the desired text to label the arcs.}
 
