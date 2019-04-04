@@ -105,7 +105,7 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
     # line_sep <- rep("", nrow(table1))
     # line_sep[c(1, (remove[-1]-1))] <- "\\addlinespace" # found a better way to specify space between categories with group_rows
     if(!image){
-        # for some reason the command added with the following mess up the figure. It is constructed but it just shows all the 
+        # for some reason the command added with the following mess up the figure. It is constructed but it just shows all the
         table1 <- dplyr::mutate(table1, Web_Service = cell_spec(Web_Service, "latex", color =
             ifelse(seq(nrow(table1)) %in% remove, "red", "blue")))
     }
@@ -124,8 +124,8 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
     # LEN <- unname(sapply(all_descriptions, length))
     kableExtra::kable_styling(t1, full_width = T, font_size = 6) %>% # latex_options = "scale_down",
         kableExtra::add_indent(rowsies2) %>%
-        column_spec(1, width = "4cm") %>%
-        column_spec(2, width = "7cm") %>%
+        column_spec(1, width = "3.8cm") %>%
+        column_spec(2, width = "7.5cm") %>%
         collapse_rows(columns = 2, latex_hline = "none", valign = "middle") %>%
         row_spec(0, bold = TRUE) %>%
         # %>% group_rows(index = c(" " = LEN[1], " " = LEN[2], " " = LEN[6])) # does not work if names are equal
@@ -140,7 +140,7 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
         pack_rows(group_label = "", start_row = remove[9], end_row = rowsies[9], indent = FALSE, latex_gap_space = EM) ->
         table1_tex
     if(image){
-        save_kable(table1_tex, file = "table1.png", keep_tex = TRUE) #, width = 6
+        save_kable(table1_tex, file = "table1.png", keep_tex = TRUE)
     }
     write(table1_tex, file = "webservices_table.txt")
     return(table1_tex)

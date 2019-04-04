@@ -19,13 +19,13 @@ Imports:
     phylobase,
     methods,
     rentrez (>= 1.0.4),
-    datelife,
     plotrix
 Suggests:
     testthat,
     knitr,
     rmarkdown,
     taxize,
+    datelife,
     rotl
 Remotes:
     rphylotastic/datelife
