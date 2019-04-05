@@ -89,7 +89,7 @@ make_alldescriptions <- function(all_services){
 make_table1 <- function(all_services, all_descriptions, image = TRUE){
     loadd(all_services)
     loadd(all_descriptions)
-    table1 <- data.frame(Web_Service = unlist(all_services), Description = unlist(all_descriptions))
+    table1 <- read.csv(file = "table1.csv", header = TRUE, skip = 0, stringsAsFactors = FALSE)
     rowsiesfoo <- function(x){ # function to get rows that will have an indent
       res <- length(x[[1]])
       for(i in 2:length(x)){
@@ -104,27 +104,20 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
     rowsies2 <- rowsies2[-remove]
     # line_sep <- rep("", nrow(table1))
     # line_sep[c(1, (remove[-1]-1))] <- "\\addlinespace" # found a better way to specify space between categories with group_rows
-    if(!image){
-        # for some reason the command added with the following mess up the figure. It is constructed but it just shows all the
-        table1 <- dplyr::mutate(table1, Web_Service = cell_spec(Web_Service, "latex", color =
+    table1 <- dplyr::mutate(table1, Web_Service = cell_spec(Web_Service, "latex", color =
             ifelse(seq(nrow(table1)) %in% remove, "red", "blue")))
-    }
-    # escape is used to format specific cells with cell_spec (previous to call to kable)
+    # escape set to FALSE when using cell_spec
     # linesep is used to override the default addition of a space every 5 lines
-    t1 <- knitr::kable(table1, escape = image, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
-    # t1_test <- knitr::kable(t0, escape = T, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
-    # next line only to use with as_image, but not sure how yet
-    if(!image){
-        t1 <- gsub("\\\\_", "\\\\textbackslash{}\\\\_", t1) # to make a backslash literal you need four of them ^^
-    }
+    t1 <- knitr::kable(table1, escape = FALSE, row.names = FALSE, format = "latex", booktabs = T, linesep = "")
+        t1 <- gsub("\\\\textcolor\\{red\\}", "\\\\textbf", t1)
+        t1 <- gsub("\\\\textcolor\\{blue\\}", "\\\\fontfamily{\\qcr\\}\\\\selectfont ", t1)
     # for(i in seq(length(remove))){
     #     pack_rows(t1, group_label = "", start_row = remove[i], end_row = rowsies[i], indent = FALSE)
     # } # cannot do pack_rows in a loop and it does not work outside the print either for some reason (may be related to the position of the pipe (has to be at the end of the line not beginning))
     EM <- "0.5em"
-    # LEN <- unname(sapply(all_descriptions, length))
-    kableExtra::kable_styling(t1, full_width = T, font_size = 6) %>% # latex_options = "scale_down",
+    kableExtra::kable_styling(t1, full_width = T, font_size = 5) %>% # latex_options = "scale_down",
         kableExtra::add_indent(rowsies2) %>%
-        column_spec(1, width = "3.8cm") %>%
+        column_spec(1, width = "4cm") %>%
         column_spec(2, width = "7.5cm") %>%
         collapse_rows(columns = 2, latex_hline = "none", valign = "middle") %>%
         row_spec(0, bold = TRUE) %>%
@@ -139,9 +132,8 @@ make_table1 <- function(all_services, all_descriptions, image = TRUE){
         pack_rows(group_label = "", start_row = remove[8], end_row = rowsies[8], indent = FALSE, latex_gap_space = EM) %>%
         pack_rows(group_label = "", start_row = remove[9], end_row = rowsies[9], indent = FALSE, latex_gap_space = EM) ->
         table1_tex
-    if(image){
-        save_kable(table1_tex, file = "table1.png", keep_tex = TRUE)
-    }
-    write(table1_tex, file = "webservices_table.txt")
+    table1_tex <- gsub("Web\\_Service", "Web Service", table1_tex)
+    save_kable(table1_tex, file = "table1.png", keep_tex = TRUE)
+    write(table1_tex, file = "table1.txt")
     return(table1_tex)
 }
