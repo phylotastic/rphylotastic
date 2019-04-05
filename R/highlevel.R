@@ -19,7 +19,9 @@
 #' @param prune If TRUE, delete taxa to matching sets only
 #' @param summary_format What format to return from datelife
 #' @param ... Other options to pass to datelife::datelife_search
-#' @return list with a phy and a data object, both pruned to the same taxon set
+#' @return list with a phy and a data object, both pruned to the same taxon set,
+#' as well as citation information for the sources of the taxonomic resolution
+#' and phylogeny (also cite this package and, if you use it, datelife)
 #' @export
 data_get_tree <- function(data, tnrs_source="otol", tree_source="otol", prune=TRUE, summary_format="phylo_biggest", ...) {
   if(is.null(dim(data))) {
@@ -31,28 +33,39 @@ data_get_tree <- function(data, tnrs_source="otol", tree_source="otol", prune=TR
   if(nchar(rownames(data)[1])<2) {
     stop("This expects rownames of data to be taxon names")
   }
+  citation <- "Taxonomic name resolution done with OpenTree: Hinchliff, C. E., et al. (2015). Synthesis of phylogeny and taxonomy into a comprehensive tree of life. Proceedings of the National Academy of Sciences 112.41 (2015): 12764-12769.\n\n"
   resolver_fn <- taxa_resolve_names_with_otol
   if(!is.null(tnrs_source)) {
     if(tnrs_source=="gnr") {
       resolver_fn <- taxa_resolve_names_with_gnr
+      citation <- "Taxonomic name resolution done with Global Names: See http://globalnames.org/bibliography/ for papers.\n\n"
+
     }
     resolved.names <- sapply(rownames(data),resolver_fn)
     data <- data[!sapply(resolved.names, is.null),] #prune TNRS failures
     rownames(data) <- resolved.names[!sapply(resolved.names, is.null)]
   }
   tree_fun <- taxa_get_otol_tree
+  tree_citation <- "Phylogeny from a synthesis from OpenTree: Hinchliff, C. E., et al. (2015). Synthesis of phylogeny and taxonomy into a comprehensive tree of life. Proceedings of the National Academy of Sciences 112.41 (2015): 12764-12769."
   if(tree_source=="phylomatic") {
     tree_fun <- taxa_get_phylomatic_tree
+    tree_citation <- "Phylogeny from a synthesis from Phylomatic: Webb, C.O., and M.J. Donoghue (2005) Phylomatic: tree assembly for applied phylogenetics. Molecular Ecology Notes 5: 181-183."
   }
 
   phy <- NULL
   if(tree_source=="datelife") {
+    data(opentree_chronograms)
     phy <- datelife::datelife_search(rownames(data), summary_format=summary_format, ...)
+    if(summary_format=="phylo_biggest") {
+      tree_citation <- paste("Phylogeny from ", phy$citation, "\n\n", sep="")
+    } else {
+      tree_citation <- paste("Phylogeny information from the following sources:\n", paste(datelife::datelife_search(rownames(data), summary_format="citations", ...), collapse="\n"))
+    }
   } else {
     phy <- tree_fun(rownames(data))
   }
   if(prune) {
     data <- data[!(rownames(data) %in% phy$tip.label),]
   }
-  return(list(data=data, phy=phy))
+  return(list(data=data, phy=phy, citation=paste(citation, tree_citation)))
 }

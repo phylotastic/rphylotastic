@@ -21,7 +21,9 @@ data_get_tree(data, tnrs_source = "otol", tree_source = "otol",
 \item{...}{Other options to pass to datelife::datelife_search}
 }
 \value{
-list with a phy and a data object, both pruned to the same taxon set
+list with a phy and a data object, both pruned to the same taxon set,
+as well as citation information for the sources of the taxonomic resolution
+and phylogeny (also cite this package and, if you use it, datelife)
 }
 \description{
 A common use case is having a set of data for a set of species and wanting to
