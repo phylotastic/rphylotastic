@@ -54,7 +54,7 @@ data_get_tree <- function(data, tnrs_source="otol", tree_source="otol", prune=TR
 
   phy <- NULL
   if(tree_source=="datelife") {
-    data(opentree_chronograms)
+    data(opentree_chronograms, package="datelife")
     phy <- datelife::datelife_search(rownames(data), summary_format=summary_format, ...)
     if(summary_format=="phylo_biggest") {
       tree_citation <- paste("Phylogeny from ", phy$citation, "\n\n", sep="")
