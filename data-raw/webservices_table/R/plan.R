@@ -1,4 +1,4 @@
-plan_webservice_table <- drake_plan(
+webservice_table_plan <- drake_plan(
   strings_in_dots = "literals",
   all_categories = c("Common Names to Scientific Names",
       "Scientific Name Extraction",

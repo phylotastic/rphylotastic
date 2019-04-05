@@ -24,111 +24,111 @@
 \usepackage{graphicx}
 \usepackage{xltxtra,xunicode}
 \begin{document}
-\begingroup\fontsize{6}{8}\selectfont
+\begingroup\fontsize{7}{9}\selectfont
 
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{7.5cm}}
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{5cm}>{\raggedright\arraybackslash}p{8cm}}
 \toprule
 \textbf{Web Service} & \textbf{Description}\\
 \midrule
 \addlinespace[0.5em]
 \multicolumn{2}{l}{\textbf{}}\\
-\textbf{Common Names to Scientific Names} & Get the scientific name of a species from its common name\\
+\textbf{Common Names to Scientific Names} & \textcolor{black}{Get the scientific name of a species from its common name}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {NCBI\_common\_name} & following the NCBI database\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {NCBI\_common\_name} & \hspace{1em}{following the NCBI database}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {EBI\_common\_name} & following EBI services\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {EBI\_common\_name} & \hspace{1em}{following EBI services}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {ITIS\_common\_name} & following ITIS services\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {ITIS\_common\_name} & \hspace{1em}{following ITIS services}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {TROPICOS\_common\_name} & following TROPICOS services\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {TROPICOS\_common\_name} & \hspace{1em}{following TROPICOS services}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {EOL\_common\_name} & following EOL services\\
-
-\addlinespace[0.5em]
-\multicolumn{2}{l}{\textbf{}}\\
-\textbf{Scientific Name Extraction} & Scrape scientific names from a URL, text or any type of file\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {GNRD\_wrapper\_URL;} & \\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {GNRD\_wrapper\_text;} & \\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {GNRD\_wrapper\_file} & \multirow{-3}{7.5cm}{\raggedright\arraybackslash using Global Names Recognition and Discovery (GNRD) services}\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {TaxonFinder\_wrapper\_URL;} & \\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {TaxonFinder\_wrapper\_text} & \multirow{-2}{7.5cm}{\raggedright\arraybackslash using Taxon Finder}\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {EOL\_common\_name} & \hspace{1em}{following EOL services}\\
 
 \addlinespace[0.5em]
 \multicolumn{2}{l}{\textbf{}}\\
-\textbf{Taxonomic Name Resolution} & Match scientific names to authoritative taxonomies and resolve mismatches\\
+\textbf{Scientific Name Extraction} & \textcolor{black}{Scrape scientific names from a URL, text or any type of file}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {OToL\_TNRS\_wrapper} & using the Open Tree of Life taxonomy\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {GNRD\_wrapper\_URL;} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {GNR\_TNRS\_wrapper} & using the Global Names Resolver tool (several taxonomies)\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {GNRD\_wrapper\_text;} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {iPlant\_TNRS\_wrapper} & using iPlant collaborative services\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {GNRD\_wrapper\_file} & \multirow{-3}{8cm}{\raggedright\arraybackslash \hspace{1em}{using Global Names Recognition and Discovery (GNRD) services}}\\
 
-\addlinespace[0.5em]
-\multicolumn{2}{l}{\textbf{}}\\
-\textbf{Taxon Sampling} & Get all scientific names of species that\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {TaxonFinder\_wrapper\_URL;} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Taxon\_all\_species} & belong to a given higher taxon name\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {Taxon\_country\_species} & and are found in a given country (using iNaturalist database)\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {Taxon\_genome\_species} & and have a genome sequence (deposited in NCBI)\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {Taxon\_popular\_species} & and match the most popular species within the taxon using OneZoom tool\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {TaxonFinder\_wrapper\_text} & \multirow{-2}{8cm}{\raggedright\arraybackslash \hspace{1em}{using Taxon Finder}}\\
 
 \addlinespace[0.5em]
 \multicolumn{2}{l}{\textbf{}}\\
-\textbf{Taxon Information and Images} & Get various information of a species such as\\
+\textbf{Taxonomic Name Resolution} & \textcolor{black}{Match scientific names to authoritative taxonomies and resolve mismatches}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Image\_url\_species} & image urls and corresponding license information using EOL\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {OToL\_TNRS\_wrapper} & \hspace{1em}{using the Open Tree of Life taxonomy}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Info\_url\_species} & information urls from EOL\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {GNR\_TNRS\_wrapper} & \hspace{1em}{using the Global Names Resolver tool (several taxonomies)}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {ECOS\_Conservation} & conservation status from ECO services\\
-
-\addlinespace[0.5em]
-\multicolumn{2}{l}{\textbf{}}\\
-\textbf{Tree Retrieval} & Get phylogenetic trees from a list of taxa\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {OToL\_wrapper\_Tree;} & from Open Tree of Life synthetic tree\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {OToL\_supported\_studies} & and all supporting studies\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {Phylomatic\_wrapper\_Tree} & from Phylomatic\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {Treebase\_Tree} & from TreeBase\\
-
-\hspace{1em}\fontfamily{qcr}\selectfont {Supersmart\_wrapper\_Tree} & using supersmart\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {iPlant\_TNRS\_wrapper} & \hspace{1em}{using iPlant collaborative services}\\
 
 \addlinespace[0.5em]
 \multicolumn{2}{l}{\textbf{}}\\
-\textbf{Tree Scaling} & Scale branch lengths of a tree to geologic time\\
+\textbf{Taxon Sampling} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Datelife\_scale\_tree} & using the DateLife service\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Taxon\_all\_species} & \multirow{-2}{8cm}{\raggedright\arraybackslash \textcolor{black}{Get all scientific names of species within a given higher-taxon name}}\\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {OToL\_scale\_tree} & using OToLs unofficial scaling service\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Taxon\_country\_species} & \hspace{1em}{and are found in a given country (using iNaturalist database),}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Taxon\_genome\_species} & \hspace{1em}{or have a genome sequence (deposited in NCBI),}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Taxon\_popular\_species} & \hspace{1em}{or match the most popular species within the taxon using OneZoom tool}\\
+
+\addlinespace[0.5em]
+\multicolumn{2}{l}{\textbf{}}\\
+\textbf{Taxon Information and Images} & \textcolor{black}{Get various information of a species such as}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Image\_url\_species} & \hspace{1em}{image urls and corresponding license information using EOL}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Info\_url\_species} & \hspace{1em}{information urls from EOL}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {ECOS\_Conservation} & \hspace{1em}{conservation status from ECO services}\\
+
+\addlinespace[0.5em]
+\multicolumn{2}{l}{\textbf{}}\\
+\textbf{Tree Retrieval} & \textcolor{black}{Get phylogenetic trees from a list of taxa}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {OToL\_wrapper\_Tree;} & \hspace{1em}{from Open Tree of Life synthetic tree}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {OToL\_supported\_studies} & \hspace{1em}{and all supporting studies}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Phylomatic\_wrapper\_Tree} & \hspace{1em}{from Phylomatic}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Treebase\_Tree} & \hspace{1em}{from TreeBase}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Supersmart\_wrapper\_Tree} & \hspace{1em}{using supersmart}\\
+
+\addlinespace[0.5em]
+\multicolumn{2}{l}{\textbf{}}\\
+\textbf{Tree Scaling} & \textcolor{black}{Scale branch lengths of a tree to geologic time}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Datelife\_scale\_tree} & \hspace{1em}{using the DateLife service}\\
+
+\hspace{1.5em}\fontfamily{qcr}\selectfont {OToL\_scale\_tree} & \hspace{1em}{using OToLs unofficial scaling service}\\
 
 \addlinespace[0.5em]
 \multicolumn{2}{l}{\textbf{}}\\
 \textbf{Tree Comparison} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Compare\_trees} & \multirow{-2}{7.5cm}{\raggedright\arraybackslash Compare two phylogenetic trees symmetrically}\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Compare\_trees} & \multirow{-2}{8cm}{\raggedright\arraybackslash \textcolor{black}{Compare two phylogenetic trees symmetrically}}\\
 
 \addlinespace[0.5em]
 \multicolumn{2}{l}{\textbf{}}\\
 \textbf{List Management} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Add\_new\_list; Get\_list;} & \\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Add\_new\_list; Get\_list;} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Replace\_species\_list;} & \\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Replace\_species\_list;} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Update\_metadata\_list;} & \\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Update\_metadata\_list;} & \\
 
-\hspace{1em}\fontfamily{qcr}\selectfont {Remove\_list;} & \multirow{-5}{7.5cm}{\raggedright\arraybackslash Save, publish, access, remove or update lists of names.}\\
+\hspace{1.5em}\fontfamily{qcr}\selectfont {Remove\_list;} & \multirow{-5}{8cm}{\raggedright\arraybackslash \textcolor{black}{Save, publish, access, remove or update lists of names.}}\\
 \bottomrule
 \end{tabu}
 \endgroup{}
