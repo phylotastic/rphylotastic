@@ -28,7 +28,7 @@ Suggests:
     datelife,
     rotl
 Remotes:
-    rphylotastic/datelife
+    phylotastic/datelife
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
