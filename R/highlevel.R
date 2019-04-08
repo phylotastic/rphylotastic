@@ -20,15 +20,17 @@
 #' @param summary_format What format to return from datelife
 #' @param ... Other options to pass to datelife::datelife_search
 #' @return list with a phy and a traits object, both pruned to the same taxon set,
+#' @importFrom datelife opentree_chronograms
 #' as well as citation information for the sources of the taxonomic resolution
 #' and phylogeny (also cite this package and, if you use it, datelife)
 #' @export
 traits_get_tree <- function(traits, tnrs_source="otol", tree_source="otol", prune=TRUE, summary_format="phylo_biggest", ...) {
+    traits <- my_vector
   if(inherits(traits, "numeric")) {
-    traits2 <- data.frame(trait=traits, stringsAsFactors=FALSE)
-    rownames(traits2) <- names(traits)
-    traits <- traits2
-    warning("This function takes in data.frames, not vectors. Trying to convert to data.frame")
+    traits <- data.frame(traits, stringsAsFactors=FALSE)
+    # rownames(traits2) <- names(traits)
+    # traits <- traits2
+    warning("This function takes in data.frames, not vectors. Tried to convert traits to data.frame")
   }
   if(nchar(rownames(traits)[1])<2) {
     stop("This expects rownames of traits to be taxon names")
@@ -42,7 +44,7 @@ traits_get_tree <- function(traits, tnrs_source="otol", tree_source="otol", prun
 
     }
     resolved.names <- sapply(rownames(traits),resolver_fn)
-    traits <- traits[!sapply(resolved.names, is.null),] #prune TNRS failures
+    traits <- traits[!sapply(resolved.names, is.null),, drop = FALSE] #prune TNRS failures
     rownames(traits) <- resolved.names[!sapply(resolved.names, is.null)]
   }
   tree_fun <- taxa_get_otol_tree
@@ -54,7 +56,7 @@ traits_get_tree <- function(traits, tnrs_source="otol", tree_source="otol", prun
 
   phy <- NULL
   if(tree_source=="datelife") {
-    traits(opentree_chronograms, package="datelife")
+    # data(opentree_chronograms, package="datelife")
     phy <- datelife::datelife_search(rownames(traits), summary_format=summary_format, ...)
     if(summary_format=="phylo_biggest") {
       tree_citation <- paste("Phylogeny from ", phy$citation, "\n\n", sep="")
