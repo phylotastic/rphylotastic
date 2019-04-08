@@ -61,22 +61,17 @@ taxa_get_otol_tree <- function(taxa) {
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription} or the interface of phylomatic \url{http://phylodiversity.net/phylomatic/}
 #' @export
 taxa_get_phylomatic_tree <- function(taxa) {
-    # taxa.string <- vector(mode = "character", length = length(taxa))
-    # progression <- utils::txtProgressBar(min = 0, max = length(taxa), style = 3)
-    # for(i in seq_along(taxa)){
-        taxa.string <- brranching::phylomatic_names(taxa, format = "isubmit")
-        # taxa.string[i] <- suppressMessages(brranching::phylomatic_names(taxa[i], format = "isubmit")) # this step is necessary to clean names for phylomatic
-        # it's giving trouble at taxize::tax_name:
-        # Error: '{"error":"API rate limit exceeded","api-key":"160.36.155.220","count":"4","limit":"3"}
-        # ' does not exist in current working directory ('/Users/luna/Desktop/rphylotastic').
+    # taxa <- c("Dionaea muscipula", "Sarracenia", "Darlingtonia californica",
+    #           "Drosera", "Pinguicula", "Utricularia", "Roridulaceae")
+    taxa.string <- vector(mode = "character", length = length(taxa))
+    for(i in seq_along(taxa)){
+        # taxa.string <- brranching::phylomatic_names(taxa, format = "isubmit")
+        taxa.string[i] <- brranching::phylomatic_names(taxa[i], format = "isubmit") # this step is necessary to clean names for phylomatic
+        # it's giving rate limit trouble at taxize::tax_name:
         # so adding sys.sleep to limit calls to ncbi api
-    #     Sys.sleep(0.33)
-    #     utils::setTxtProgressBar(progression, i)
-    # }
-    # cat("\n")
+        Sys.sleep(0.35)
+    }
     # it was giving trouble because I used suppressMessages and taxon matching decisions would not be shown, exceeding wait time for the function...
-    taxa.string2 <- taxa.string
-    taxa.string <- taxa.string2[1:100]
   # get method; chokes with more than 105 names too:
   # taxa.string <- utils::URLencode(paste(taxa.string, collapse="|"))  # this is crucial to process query
   # results <- jsonlite::fromJSON(paste0(get_base_url(), 'gt/pm/get_tree?taxa=', taxa.string))
@@ -87,7 +82,7 @@ taxa_get_phylomatic_tree <- function(taxa) {
   #   results$newick
   # })
   # Post method: it works, but it is behaving weirdly:
-  # try code in rphylotastic_examples to see how
+  # try code in rphylotastic_examples to see how it works
   taxa.string <- paste(taxa.string, collapse='", "')
   postcall <- paste0('{"taxa": ["', taxa.string, '"]}')
   postcall <- paste0("curl -X POST '", get_base_url(), "gt/pm/tree' -H 'content-type:application/json' -d '", postcall, "'")

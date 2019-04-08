@@ -155,7 +155,9 @@ species_gnr <- gnr_resolve(names = species)
 nrow(species_gnr)
 # it is a big table. Let's subset by unique matched names, so it is easier to choose:
 species_gnr[!duplicated(species_gnr$matched_name),c("user_supplied_name", "matched_name")]
-tnrs(query = species)
+# tnrs(query = species)
+# Calling http://taxosaurus.org/retrieve/22734481b2e16922e8a4fe9f8459b0e6
+# Error: HTTP status 500 - Internal Server Error. The server encountered an unexpected condition which prevented it from fulfilling the request.
 ```
 
 On the example above, species names were matched to iPlant database only. If you look at the score, it's pretty low (<0.6), so you can tell that this match is probably wrong.
