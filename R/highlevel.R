@@ -24,11 +24,11 @@
 #' and phylogeny (also cite this package and, if you use it, datelife)
 #' @export
 data_get_tree <- function(data, tnrs_source="otol", tree_source="otol", prune=TRUE, summary_format="phylo_biggest", ...) {
-  if(is.null(dim(data))) {
-    warning("This function takes in data.frames, not vectors. Trying to convert to data.frame")
+  if(inherits(data, "numeric")) {
     data2 <- data.frame(trait=data, stringsAsFactors=FALSE)
     rownames(data2) <- names(data)
     data <- data2
+    warning("This function takes in data.frames, not vectors. Trying to convert to data.frame")
   }
   if(nchar(rownames(data)[1])<2) {
     stop("This expects rownames of data to be taxon names")
