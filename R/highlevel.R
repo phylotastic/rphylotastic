@@ -19,8 +19,8 @@
 #' @param prune If TRUE, delete taxa to matching sets only
 #' @param summary_format What format to return from datelife
 #' @param ... Other options to pass to datelife::datelife_search
-#' @return list with a phy and a traits object, both pruned to the same taxon set,
 #' @importFrom datelife opentree_chronograms
+#' @return list with a phy and a traits object, both pruned to the same taxon set,
 #' as well as citation information for the sources of the taxonomic resolution
 #' and phylogeny (also cite this package and, if you use it, datelife)
 #' @export
