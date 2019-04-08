@@ -25,7 +25,7 @@
 #' and phylogeny (also cite this package and, if you use it, datelife)
 #' @export
 traits_get_tree <- function(traits, tnrs_source="otol", tree_source="otol", prune=TRUE, summary_format="phylo_biggest", ...) {
-    traits <- my_vector
+    # traits <- my_vector
   if(inherits(traits, "numeric")) {
     traits <- data.frame(traits, stringsAsFactors=FALSE)
     # rownames(traits2) <- names(traits)
