@@ -19,7 +19,8 @@ Imports:
     phylobase,
     methods,
     rentrez (>= 1.0.4),
-    plotrix
+    plotrix,
+    utils
 Suggests:
     testthat,
     knitr,
