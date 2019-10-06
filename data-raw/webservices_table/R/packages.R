@@ -6,7 +6,7 @@ reqins_pkg <- function(pkg){
   }
 }
 # devtools::install_github(repo = "haozhu233/kableExtra")
-pkgs <- c("drake", "knitr", "kableExtra", "magrittr", "magick")
+pkgs <- c("drake", "knitr", "kableExtra", "magrittr", "magick", "dplyr")
 x <- lapply(pkgs, reqins_pkg)
 if(!all(unlist(lapply(x, is.null)))){
   print("Some packages could not be loaded")
