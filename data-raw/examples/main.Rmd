@@ -1,0 +1,117 @@
+```{r setup, include = FALSE, warnings = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "# >"
+)
+```
+
+This is an example to use rphylotastic tools to contextualize phylogenetic relationships.
+The main packages are not yet installable via CRAN, so to install them you have to use the `install_github` function from the package `devtools`: 
+```{r cran, include=TRUE, eval=FALSE}
+install.packages("devtools") # this installs devtools package
+library(devtools) # this loads the package contents into the workspace
+# the following two lines install datelife and rphylotastic from development repositories
+install_github("phylotastic/datelife") 
+install_github("phylotastic/rphylotastic")
+```
+```{r load, include=TRUE, eval=TRUE, results = "hide"}
+library(datelife)
+library(rphylotastic)
+```
+
+Now, say you are hiking in Yellowstone with ypur students, and yu want them to get the phylogenetic relationships of the organisms they spotted during the hike.
+The function `taxa_common_to_sicentific` will get the scientific names from common names you provide. In this example, the student is interested in birds:
+
+```{r include=TRUE, eval=TRUE}
+birds_I_saw = taxa_common_to_scientific(c("Osprey", "House sparrow", 
+    "Mallard duck", "American Robin", "song sparrow", "mourning dove", 
+    "house wren"))
+```
+
+This gets the species that will provide phylogenetic context to the focal species:
+```{r include=TRUE, eval=TRUE, message = FALSE}
+yellowstone_birds <- url_get_scientific_names(URL=
+    "https://www.nps.gov/yell/learn/nature/upload/BirdChecklist2014.pdf")
+```
+
+Then, we will get the tree with dates containing both the focal species and their phylogenetic context
+```{r include=TRUE, eval=TRUE, message = FALSE, results = "hide"}
+yellowstone_bird_tree <- datelife::datelife_search(
+    taxa_get_otol_tree(yellowstone_birds), summary_format 
+    = "phylo_median")
+```
+To plot the tree you will need some `ape` package functions:
+```{r}
+library(ape)
+```
+
+```{r eval = TRUE, results="asis", fig.height = 7, fig.width = 7, fig.align = "center", out.width = "\\textwidth"}
+par(xpd = NA)
+ape::plot.phylo(yellowstone_bird_tree,
+      tip.color = ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
+      cex=0.3, type = "fan", edge.width = 0.45, label.offset = 1.5)
+```
+We can add taxonomic labels such as family names. If you have a table with the corresponding families to each species on the tip of the tree, you can type it in as a vector, or read it with `read.table` function.
+If you do not have that info, you can pull it using a `datelife` function called `get_ott_clade`.
+```{r, message = FALSE, results = "hide"}
+yellowstone_bird_fams = get_ott_clade(ott_ids = yellowstone_bird_tree$ott_ids,
+        ott_rank = "family")
+```
+Then, we will make a list of species within families, to feed to the function that will plot the arcs:
+We will call this list `tipsies`
+```{r, message = FALSE, results = "hide"}
+families = unique(names(yellowstone_bird_fams$family))
+tipsies = sapply(families, function(x) 
+    yellowstone_bird_tree$tip.label[names(yellowstone_bird_fams$family)%in%x])
+```
+Now we are gonna set the colors of the arc lines in the variable `arc_grays` and their position in `arc_line_offset`:
+```{r}
+seede = set.seed(100)
+arc_grays = sample(gray.colors(n = length(tipsies)), length(tipsies))
+arc_line_offset = rep(1.63, length(tipsies))
+```
+Finally, we need to costumize the position of family name labels so they do not overlap. 
+For that we made a function that simply adds to the already known position of the arc lines in `arc_line_offset`.
+And then we ended up tweaking the position for certain families that were overlapping too much
+```{r}
+get_arc_label_offset <- function(alineo){
+    res <- alineo + 0.05
+    res[29] <- res[29]-0.0 #laridae
+    res[30] <- res[30]+0.05
+    res[31] <- res[31]-0.18 #recurvirostridae
+    res[34] <- res[34]-0.16 #ardeidae
+    res[37] <- res[37]-0.19 #gaviidae
+    return(res)
+}
+arc_label_offset = get_arc_label_offset(arc_line_offset)
+```
+We also made a function to customize the degrees for the labels so they do not overlap. Index gives the position of he family that we want to set, and degree gives the degree that we want to set:
+```{r}
+make_label_degree <- function(length, index, degree){
+  deg <- rep(NA, length)
+  for(i in seq(length(index))){
+    deg[index[i]] <- degree[i]
+  }
+  return(deg)
+}
+our_label_degree = make_label_degree(length(families),
+  index = c(5,6,7,14,15, 17, 31, 32, 34, 36, 37, 38, 39, 40, 43, 44),
+  degree = c(24, 26, 28, 112.5, 116.5, 125, 270, 275, 278, 293, 285, 297, 301, 304, 314, 316))
+```
+Finally we plot the tree again and add the labels with the rphylotasic function `arclabels`:
+```{r eval = TRUE, results="asis", fig.height = 5.5, fig.width = 5.5, fig.align = "left", out.width = "\\textwidth", message = FALSE}
+par(xpd = TRUE, mai = rep(1,4))
+ape::plot.phylo(yellowstone_bird_tree,
+      tip.color = ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
+      cex=0.3, type = "fan", edge.width = 0.45, label.offset = 1.5)
+      for(i in seq(length(tipsies))){
+        # cat(i, families[i], "\n")
+        arclabels(phy = yellowstone_bird_tree, text = families[i], tips = tipsies[[i]],
+            orientation = "horizontal", col = arc_grays[i], lwd = 4,
+            lab.offset = arc_label_offset[i], ln.offset = arc_line_offset[i],
+            cex = 0.5, label_degree = our_label_degree[i])
+      }
+```
+
+
+

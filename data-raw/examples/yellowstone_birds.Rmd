@@ -1,0 +1,13 @@
+---
+title: "Yellowstone Birds"
+author: "Luna L. Sánchez-Reyes and Brian O'Meara"
+date: "2019-09-30"
+output: 
+  bookdown::pdf_document2:
+    keep_tex: yes
+    toc: false
+    fig_crop: no
+---
+
+```{r child="main.Rmd"}
+```

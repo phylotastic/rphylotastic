@@ -76,7 +76,7 @@ arclabels.default <- function (phy = NULL, tips, text, plot_singletons = TRUE,
             0))
         deg[ii] <- 360 + deg[ii]
         # ln.offset <- 1.16
-        cat("deg", deg, "\n")
+        message(paste0("deg", deg, "\n"))
         plotrix::draw.arc(x = 0, y = 0, radius = ln.offset * h, deg1 = min(deg),
             deg2 = max(deg), lwd = lwd, col = col, lend = lend, n = n)
         if(!is.null(text)){
