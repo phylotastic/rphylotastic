@@ -4,8 +4,13 @@
 \alias{get_species_from_list}
 \title{Get existing list/lists of species}
 \usage{
-get_species_from_list(userid, access_token, list_id, verbose = FALSE,
-  content = TRUE)
+get_species_from_list(
+  userid,
+  access_token,
+  list_id,
+  verbose = FALSE,
+  content = TRUE
+)
 }
 \arguments{
 \item{userid}{A valid gmail address of the user}

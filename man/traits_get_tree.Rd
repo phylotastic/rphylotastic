@@ -4,8 +4,14 @@
 \alias{traits_get_tree}
 \title{Function to get tree for a traits set.}
 \usage{
-traits_get_tree(traits, tnrs_source = "otol", tree_source = "otol",
-  prune = TRUE, summary_format = "phylo_biggest", ...)
+traits_get_tree(
+  traits,
+  tnrs_source = "otol",
+  tree_source = "otol",
+  prune = TRUE,
+  summary_format = "phylo_biggest",
+  ...
+)
 }
 \arguments{
 \item{traits}{Data.frame with species names as rownames}
