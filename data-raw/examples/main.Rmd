@@ -57,7 +57,7 @@ If you do not have that info, you can pull it using a `datelife` function called
 yellowstone_bird_fams = get_ott_clade(ott_ids = yellowstone_bird_tree$ott_ids,
         ott_rank = "family")
 ```
-Then, we will make a list of species within families, to feed to the function that will plot the arcs:
+Then, we will make a list of species within families, and feed it to the function that will plot the arcs:
 We will call this list `tipsies`
 ```{r, message = FALSE, results = "hide"}
 families = unique(names(yellowstone_bird_fams$family))
@@ -71,8 +71,8 @@ arc_grays = sample(gray.colors(n = length(tipsies)), length(tipsies))
 arc_line_offset = rep(1.63, length(tipsies))
 ```
 Finally, we need to costumize the position of family name labels so they do not overlap. 
-For that we made a function that simply adds to the already known position of the arc lines in `arc_line_offset`.
-And then we ended up tweaking the position for certain families that were overlapping too much
+For that we made two functions. The first one simply changes the horizontal position, modifying `arc_line_offset` and allowing labels to be closer or further away from the arcs.
+And then we ended up tweaking the position for certain families that were still overlapping too much.
 ```{r}
 get_arc_label_offset <- function(alineo){
     res <- alineo + 0.05
@@ -85,7 +85,7 @@ get_arc_label_offset <- function(alineo){
 }
 arc_label_offset = get_arc_label_offset(arc_line_offset)
 ```
-We also made a function to customize the degrees for the labels so they do not overlap. Index gives the position of he family that we want to set, and degree gives the degree that we want to set:
+The second function changes their actual position in degressa round the plot. `index` indicates the family that we want to change, and `degree` sets the new degree that we want to set for the label:
 ```{r}
 make_label_degree <- function(length, index, degree){
   deg <- rep(NA, length)
@@ -99,7 +99,7 @@ our_label_degree = make_label_degree(length(families),
   degree = c(24, 26, 28, 112.5, 116.5, 125, 270, 275, 278, 293, 285, 297, 301, 304, 314, 316))
 ```
 Finally we plot the tree again and add the labels with the rphylotasic function `arclabels`:
-```{r eval = TRUE, results="asis", fig.height = 5.5, fig.width = 5.5, fig.align = "left", out.width = "\\textwidth", message = FALSE}
+```{r eval = TRUE, results="hide", fig.height = 5.5, fig.width = 5.5, fig.align = "left", out.width = "\\textwidth", message = FALSE}
 par(xpd = TRUE, mai = rep(1,4))
 ape::plot.phylo(yellowstone_bird_tree,
       tip.color = ifelse(yellowstone_bird_tree$tip.label%in%birds_I_saw, "red", "black"),
