@@ -199,4 +199,8 @@ remove_species_from_list()
 
 # Citing
 
-The phylotastic manuscript is still being written.
+To get the cutations for the package and accompanying publications, please do:
+```{r }
+citation("rphylotastic")
+toBibtex(citation("rphylotastic"))
+```
