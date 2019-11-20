@@ -1,33 +1,38 @@
-citHeader("To cite package 'rphylotastic' in publications, please use:")
+citHeader("To cite package 'rphylotastic' in publications, please use the first entry. To cite the accompanying paper, use the second entry:")
 
- # year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
- year <- format(Sys.time(), "%Y")
- vers <- paste("R package version", meta$Version)
+year <- format(Sys.time(), "%Y")
+vers <- paste("R package version", meta$Version)
+authors <- personList(person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre")),
+                      person("Abu Saleh", "Md Tayeen", email = "abusalehmdtayeen@gmail.com", role = "aut"),
+                      person("Luna L.", "Sanchez Reyes", email = "sanchez.reyes.luna@gmail.com", role = "aut"))
+authors_format <- paste(format(authors, include = c("given", "family")), collapse = ", ")
+pkg_title <- paste0(meta$Package, ": ", meta$Title)
 
- citEntry(entry="Manual",
-		  title = "rphylotastic: An R interface to 'Phylotastic' Web Services",
-		  author = personList(person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre")),
-          person("Abu Saleh", "Md Tayeen", email = "abusalehmdtayeen@gmail.com", role = "aut"),
-          person("Luna L.", "Sanchez Reyes", email = "sanchez.reyes.luna@gmail.com", role = "aut")),
-		  year = year,
-		  note = vers,
-		  textVersion =
-		  paste("Brian O'Meara, Abu Saleh Md Tayeen, Luna L. Sanchez-Reyes (",
-				year,
-				"). rphylotastic: An R interface to 'Phylotastic' Web Services.",
-				vers, ".", sep=""))
+citEntry(entry="Manual",
+ 		  title = pkg_title,
+ 		  author =  authors_format,
+ 		  year = year,
+ 		  note = vers,
+ 		  textVersion = paste(authors_format, year, pkg_title, vers, sep=". "))
 
+authors2 <- personList(person("Van D.", "Nguyen"),
+                      person("N. Thanh", "Nguyen"),
+                      person("Abu Saleh", "Md Tayeen", email = "abusalehmdtayeen@gmail.com"),
+                      person("H. Dail", "Laughinghouse IV"),
+                      person("Luna L.", "Sanchez Reyes", email = "sanchez.reyes.luna@gmail.com"),
+                      person("Jodie", "Wiggins"),
+                      person("Enrico", "Pontelli"),
+                      person("Dimitry", "Mozzherin"),
+                      person("Brian", "O'Meara", email = "omeara.brian@gmail.com"),
+                      person("Arlin", "Stoltzfus"))
+authors2_format <- paste(format(authors2, include = c("given", "family")), collapse = ", ")
 
-# citEntry(entry = "Article",
-#          author = "Brandon LeBeau",
-#          title = "{pdfsearch}: Search Tools for PDF Files",
-#          journal = "Journal of Open Source Software",
-#          year = "2018",
-#          volume = "3",
-#          issue = "27",
-#          pages = "668",
-#          doi = "10.21105/joss.00668",
-#          textVersion = "Brandon LeBeau, (2018). pdfsearch: Search Tools for PDF Files. Journal of Open Source Software, 3(27), 668, https://doi.org/10.21105/joss.00668"
-# )
-
-# citFooter("As datelife is continually evolving, you may want to cite its version number. Find it with 'help(package=datelife)'.")
+citEntry(entry="Article",
+	title = "Phylotastic: improving access to tree-of-life knowledge with flexible, on-the-fly delivery of trees",
+  author = authors2,
+	journal = "Evolutionary Bioinformatics",
+  	year = "2019",
+	volume = "xx",
+	pages = "xxx-xxx",
+  textVersion = paste0(authors2_format, ". 2019. Phylotastic: improving access to tree-of-life knowledge with flexible, on-the-fly delivery of trees. Evolutionary Bioinformatics xx: xxx-xxx.")
+  )

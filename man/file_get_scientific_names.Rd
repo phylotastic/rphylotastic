@@ -4,7 +4,8 @@
 \alias{file_get_scientific_names}
 \title{Function to pull scientific names from file}
 \usage{
-file_get_scientific_names(file_name, search_engine = 0, above_species = FALSE)
+file_get_scientific_names(file_name, search_engine = 0,
+  above_species = FALSE)
 }
 \arguments{
 \item{file_name}{The file path and name to extract names from}

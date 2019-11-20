@@ -4,7 +4,8 @@
 \alias{taxon_get_species}
 \title{Get all species from a taxon from Open Tree of Life taxonomy.}
 \usage{
-taxon_get_species(taxon, filters = c("environmental", "sp\\\\.", "cf\\\\."))
+taxon_get_species(taxon, filters = c("environmental", "sp\\\\.",
+  "cf\\\\."))
 }
 \arguments{
 \item{taxon}{A character vector of length 1. Specify the taxon name to get all species for. If vector is longer than 1, it will only take the first element and ignore all other names.}
