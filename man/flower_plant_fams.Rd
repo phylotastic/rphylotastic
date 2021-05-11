@@ -4,7 +4,9 @@
 \name{flower_plant_fams}
 \alias{flower_plant_fams}
 \title{Flowering plants families from Open Tree Taxonomy}
-\format{A character vector}
+\format{
+A character vector
+}
 \source{
 \url{https://tree.opentreeoflife.org/about/taxonomy-version/ott3.0}
 }

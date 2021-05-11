@@ -4,8 +4,10 @@
 \alias{taxon_get_species_with_genome}
 \title{Get all species that have genome sequence in NCBI from a taxon}
 \usage{
-taxon_get_species_with_genome(taxon, filters = c("environmental",
-  "sp\\\\.", "cf\\\\."))
+taxon_get_species_with_genome(
+  taxon,
+  filters = c("environmental", "sp\\\\.", "cf\\\\.")
+)
 }
 \arguments{
 \item{taxon}{A character vector of length 1. Specify the taxon name to get a subset of species having genome sequence}

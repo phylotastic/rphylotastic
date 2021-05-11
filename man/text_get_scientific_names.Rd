@@ -4,8 +4,7 @@
 \alias{text_get_scientific_names}
 \title{Function to pull scientific names from text}
 \usage{
-text_get_scientific_names(text, search_engine = 0,
-  above_species = FALSE)
+text_get_scientific_names(text, search_engine = 0, above_species = FALSE)
 }
 \arguments{
 \item{text}{The text string to extract names from}

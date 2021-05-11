@@ -21,6 +21,29 @@ url_get_scientific_names <- function(URL, search_engine=0, above_species = FALSE
   return(results)
 }
 
+#' Function to pull scientific names from web pages
+#'
+#' @param URL The URL to extract names from. Can be a pdf url.
+#' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
+#' @param above_species Boolean. Default to FALSE. If TRUE it will only return scientific names above the species level.
+#' @return A vector of scientific names. It returns unique matches.
+#' @examples
+#' # get scientific names from a wikipedia web page:
+#' url_get_scientific_names(URL = "https://en.wikipedia.org/wiki/Plain_pigeon")
+#' # get scientific names from a pdf URL:
+#' url_get_scientific_names(URL =
+#'  "http://darwin-online.org.uk/converted/pdf/1897_Insectivorous_F1229.pdf")
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
+#' @export
+url_get_scientific_names_from_GNRD2 <- function(URL, search_engine=0, above_species = FALSE){
+  results <- jsonlite::fromJSON(paste0('https://gnrd.globalnames.org/name_finder.json?url=', URL, '&engine=', search_engine))
+  results <- unique(results$names$scientificName)
+  if(above_species){
+    results <- taxa_toss_binomials(results)
+  }
+  return(results)
+}
+
 #' Function to pull scientific names from text
 #'
 #' This takes a string of text and extracts any scientific names in the text. Other words in the text are ignored.

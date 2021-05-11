@@ -7,9 +7,17 @@
 \usage{
 arclabels(phy, tips, ...)
 
-\method{arclabels}{default}(phy = NULL, tips, text,
-  plot_singletons = TRUE, ln.offset = 1.02, lab.offset = 1.06,
-  cex = 1, orientation = "horizontal", ...)
+\method{arclabels}{default}(
+  phy = NULL,
+  tips,
+  text,
+  plot_singletons = TRUE,
+  ln.offset = 1.02,
+  lab.offset = 1.06,
+  cex = 1,
+  orientation = "horizontal",
+  ...
+)
 }
 \arguments{
 \item{phy}{An object of class phylo.}

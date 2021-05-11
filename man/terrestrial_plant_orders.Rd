@@ -4,7 +4,9 @@
 \name{terrestrial_plant_orders}
 \alias{terrestrial_plant_orders}
 \title{Flowering plants families from Open Tree Taxonomy}
-\format{A character vector}
+\format{
+A character vector
+}
 \source{
 \url{https://tree.opentreeoflife.org/about/taxonomy-version/ott3.0}
 }
