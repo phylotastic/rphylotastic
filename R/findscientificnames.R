@@ -21,7 +21,7 @@ url_get_scientific_names <- function(URL, search_engine=0, above_species = FALSE
   return(results)
 }
 
-#' Function to pull scientific names from web pages
+#' Function to pull scientific names from web pages using GNRD
 #'
 #' @param URL The URL to extract names from. Can be a pdf url.
 #' @param search_engine 1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both
@@ -35,7 +35,7 @@ url_get_scientific_names <- function(URL, search_engine=0, above_species = FALSE
 #'  "http://darwin-online.org.uk/converted/pdf/1897_Insectivorous_F1229.pdf")
 #' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
-url_get_scientific_names_from_GNRD2 <- function(URL, search_engine=0, above_species = FALSE){
+url_get_scientific_names_from_GNRD <- function(URL, search_engine=0, above_species = FALSE){
   results <- jsonlite::fromJSON(paste0('https://gnrd.globalnames.org/name_finder.json?url=', URL, '&engine=', search_engine))
   results <- unique(results$names$scientificName)
   if(above_species){
@@ -85,4 +85,31 @@ file_get_scientific_names <- function(file_name, search_engine=0, above_species 
   results <- jsonlite::fromJSON(system(paste0("curl -X POST ", get_base_url(), "/fn/names_file -F 'inputFile=@", file_name_only, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
   setwd(original_dir)
   return(results$scientificNames)
+}
+
+#' Function to pull scientific names from file using GNRD
+#'
+#' This uploads a file (a PDF, Microsoft Word document, plain text file, etc.) and extracts all scientific names from it. For example, you can input a PDF of a scientific article and it will return all the scientific names in that article.
+#'
+#' It requires that curl is installed on your system.
+#'
+#' @param file_name The file path and name to extract names from
+#' @inheritParams url_get_scientific_names
+#' @return A vector of scientific names
+#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
+#' @export
+file_get_scientific_names_from_GNRD <- function(file_name, search_engine=0, above_species = FALSE) {
+  # results <- jsonlite::fromJSON(httr::POST(paste0(get_base_url(), 'fn/names_file'), body=list(inputFile=httr::upload_file(file_name), engine=search_engine)))  #not working -- returns 200 and valid json, but no names
+  if(Sys.info()[['sysname']]!="Windows") {
+	original_dir <- getwd()
+	newdir <- dirname(file_name)
+	setwd(newdir)
+  }
+  file_name_only <- basename(file_name)
+  # results <- jsonlite::fromJSON(system(paste0("curl -X POST http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/names_file -F 'inputFile=@", file_name_only, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
+  results <- jsonlite::fromJSON(system(paste0("curl -X POST ", get_base_url(), "/fn/names_file -F 'inputFile=@", file_name_only, "'  -F 'engine=", search_engine, "'"), intern=TRUE))
+  if(Sys.info()[['sysname']]!="Windows") {
+	  setwd(original_dir)
+  }
+  return(results$names$scientificName)
 }
