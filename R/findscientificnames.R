@@ -49,19 +49,18 @@ url_get_scientific_names_from_GNRD <- function(URL, search_engine=0, above_speci
 #' This takes a string of text and extracts any scientific names in the text. Other words in the text are ignored.
 #'
 #' @param text The text string to extract names from
-#' @inheritParams url_get_scientific_names
-#' @return A vector of scientific names
+#' @return A data.frame of scientific names and other data from GNRD
 #' @examples
 #' text <- "Formica polyctena is a species of European red wood ant in
 #'    the genus Formica. The pavement ant, Tetramorium caespitum
 #'    is an ant native to Europe."
 #' print(text_get_scientific_names(text))
-#' @seealso \url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 #' @export
-text_get_scientific_names <- function(text, search_engine=0, above_species = FALSE) {
+text_get_scientific_names <- function(text) {
   #results <- jsonlite::fromJSON(utils::URLencode(paste(get_base_url(), 'fn/names_url?url=', text, '&engine=', search_engine, sep="")))
-  results <- jsonlite::fromJSON((paste0(get_base_url(), 'fn/names_text?text=', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '&engine=', search_engine)))
-  return(results$scientificNames)
+  results <- jsonlite::fromJSON(paste0('https://finder.globalnames.org/api/v1/find/', utils::URLencode(gsub("[^[:alnum:] ]", "",as.character(text))), '?format=json&bytes_offset=false&return_content=false&unique_names=false&ambiguous_names=false&no_bayes=false&odds_details=false&language=eng&words_around=0&verification=true&all_matches=false'))
+  results_cleaned <- results$names$verification$bestResult
+  return(results_cleaned)
 }
 
 #' Function to pull scientific names from file

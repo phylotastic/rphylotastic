@@ -4,17 +4,13 @@
 \alias{text_get_scientific_names}
 \title{Function to pull scientific names from text}
 \usage{
-text_get_scientific_names(text, search_engine = 0, above_species = FALSE)
+text_get_scientific_names(text)
 }
 \arguments{
 \item{text}{The text string to extract names from}
-
-\item{search_engine}{1 to use TaxonFinder, 2 to use NetiNeti, 0 to use both}
-
-\item{above_species}{Boolean. Default to FALSE. If TRUE it will only return scientific names above the species level.}
 }
 \value{
-A vector of scientific names
+A data.frame of scientific names and other data from GNRD
 }
 \description{
 This takes a string of text and extracts any scientific names in the text. Other words in the text are ignored.
@@ -24,7 +20,4 @@ text <- "Formica polyctena is a species of European red wood ant in
    the genus Formica. The pavement ant, Tetramorium caespitum
    is an ant native to Europe."
 print(text_get_scientific_names(text))
-}
-\seealso{
-\url{https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription}
 }
